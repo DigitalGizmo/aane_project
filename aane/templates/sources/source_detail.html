@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}AANE - Primary Source{% endblock %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > <a href="{% url 'sources:index'%}">Primary Sources </a> > Source Detail
+	{% endblock %}
+
+{% block page_title %}AANE - Primary Source{% endblock %}
+
+{% block content %}
+	
+	<h3>{{ primarysource.title|safe }}</h3>
+	<p>PVMA call number: {{ primarysource.pvma_call_num }}</br>
+	Description: {{ primarysource.description }}</br>
+	Start Year: {{ primarysource.year_start }}, End Year: {{ primarysource.year_end }}</br>
+	</p>
+
+	<table>
+		<tr>
+			<!-- <th>Edit</th> --><th>Date</th><th>Name</th><th>Entry</th>
+		</tr>
+		{% for entry in primarysource.sourceentry_set.all %}
+		<tr>
+			<td>{{ entry.year_start }}-{{ entry.month }}-{{ entry.day }}</td>
+			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
+			<td>{{ entry.aa_name }}</td>
+			<td>{{ entry.entry_text|safe }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+
+{% endblock content %}

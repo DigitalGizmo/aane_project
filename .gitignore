@@ -1,0 +1,13 @@
+# extensions
+*.pyc
+*.log
+
+# files
+.DS_Store
+
+# directories
+static/
+webstat/
+migrations/
+
+# allow

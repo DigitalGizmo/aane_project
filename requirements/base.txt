@@ -1,0 +1,12 @@
+Requirements
+
+Python packages required for this project
+
+(env_pvma)SantaCruz:aane don$ pip freeze --local
+Django==1.7.1
+Pygments==2.0.1
+#markdown2==2.3.0
+mod-wsgi==4.4.2
+mod-wsgi-metrics==1.1.0
+psutil==2.1.3
+psycopg2==2.5.4

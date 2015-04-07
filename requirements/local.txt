@@ -1,0 +1,6 @@
+-r base.txt
+
+Pygments==2.0.1
+# mod-wsgi==4.4.2
+# mod-wsgi-metrics==1.1.0
+# psutil==2.1.3

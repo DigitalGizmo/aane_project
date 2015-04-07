@@ -1,0 +1,97 @@
+from django.core.urlresolvers import reverse
+from django.db import models
+from sources.models import SourceEntry
+
+
+class PersonModel(models.Model):
+    """
+    Person - abstract class for fields common to AAPerson and OPerson (Other, Owner)
+    """
+    GENDER = (
+        ('male','male'),
+        ('female','female'),
+        ('unknown', 'unknown'),
+    )
+    name = models.CharField(max_length=64)
+    first_name = models.CharField(max_length=32, blank=True, default='')
+    last_name = models.CharField(max_length=32, blank=True, default='')
+    gender = models.CharField(max_length=12, choices=GENDER)
+    bio = models.TextField(blank=True, default='')
+    birth_year = models.IntegerField(default=0)
+    death_year = models.IntegerField(default=0)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+
+class AAPerson(PersonModel):
+    """
+    AAPerson - inherits PersonModel
+    """
+    first_appearance_year = models.IntegerField(default=0)
+    last_appearance_year = models.IntegerField(default=0)
+    free_start_year = models.IntegerField(default=0)
+    owner_id = models.IntegerField(default=0)
+    place_of_origin = models.CharField(max_length=64, blank=True, default='')
+    owners = models.ManyToManyField('people.OPerson', verbose_name='Owner(s)', 
+    blank=True, null=True)
+
+    class Meta:
+        ordering = ["pk"]
+        verbose_name = "African American"
+    	
+    # return list of entries for given person
+    @property
+    def person_entries(self):
+        person_entry_list = SourceEntry.objects.filter(aa_id=self.pk)
+        return person_entry_list
+
+    # return name of owner - was used before I went to many to many
+    """
+    @property
+    def owner_name(self):
+        operson_object = OPerson.objects.get(slave_owner_id=self.owner_id)
+        return operson_object.name
+        """
+
+    # so that generic update and create views can find the detail template.
+    def get_absolute_url(self):
+        return reverse('people:aaperson_detail', kwargs={'pk': self.pk})
+		
+
+class OPerson(PersonModel):
+    """
+    OPerson Other/ Owner - inherits PersonModel
+    """
+    ROLE = (
+        ('owner','owner'),
+        ('user','user'),
+        ('service_provider', 'service_provider'),
+    )
+    RACE = (
+        ('white','white'),
+        ('african_american','african_american'),
+        ('native', 'native'),
+    )
+    title = models.CharField(max_length=24, blank=True, default='')
+    role = models.CharField(max_length=12, choices=ROLE)
+    race = models.CharField(max_length=12, choices=RACE)
+    slave_owner_id = models.IntegerField(default=0)
+    year_lower = models.IntegerField(default=0)
+    year_upper = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["pk"]
+        verbose_name = "Other/Owner"
+
+    # return list of enslaved people for given owner - used before we went to many to many
+    """
+    @property
+    def enslaved_list(self):
+        enslaved_list = AAPerson.objects.filter(owner_id=self.slave_owner_id)
+        return enslaved_list
+        """
+

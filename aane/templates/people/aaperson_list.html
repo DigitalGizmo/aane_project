@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}AANE - African American People{% endblock %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > AA People
+	{% endblock %}
+
+{% block page_title %}AANE - African American People{% endblock %}
+
+{% block content %}
+
+	<table>
+		<tr>
+			<th>id</th><!--th>edit</th --><th>details</th><th>name</th><th>owner(s)</th>
+		</tr>
+		{% for aaperson in aaperson_list %}
+		<tr>
+			<td>{{ aaperson.id }}</td>
+			<!-- td><a href="{ url 'people:aaperson_update' aaperson.id }">edit</a></td -->
+			<td><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
+			<td>{{ aaperson.name|safe }}</td>
+			<td>
+				{% for owner in aaperson.owners.all %}
+					{{ owner.name|safe }},
+				{% endfor %}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	
+	<!-- p><a href="{ url 'people:aaperson_add' }">add</a></p -->
+
+{% endblock content %}

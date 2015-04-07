@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > <a href="{% url 'people:operson_index'%}">Other People </a> > Other/Owner Person Details
+	{% endblock %}
+
+{% block content %}
+
+	<h3>{{ operson.name|safe  }}</h3>
+
+	<table>
+		<tr>
+			<td>first_name</td><td>{{ operson.first_name }}</td>
+		</tr>
+		<tr>
+			<td>title</td><td>{{ operson.title }}</td>
+		</tr>
+		<tr>
+			<td>last_name</td><td>{{ operson.last_name }}</td>
+		</tr>
+		<tr>
+			<td>gender</td><td>{{ operson.gender }}</td>
+		</tr>
+		<tr>
+			<td>bio</td><td>{{ operson.bio }}</td>
+		</tr>
+		<tr>
+			<td>birth_year</td><td>{{ operson.birth_year }}</td>
+		</tr>
+		<tr>
+			<td>death_year</td><td>{{ operson.death_year }}</td>
+		</tr>
+		<tr>
+			<td>role</td><td>{{ operson.role }}</td>
+		</tr>
+		<tr>
+			<td>race</td><td>{{ operson.race }}</td>
+		</tr>
+		<tr>
+			<td>year_lower</td><td>{{ operson.year_lower }}</td>
+		</tr>
+		<tr>
+			<td>slave_owner_id</td><td>{{ operson.slave_owner_id }}</td>
+		</tr>
+	</table>
+
+	<p>Enslaved:</p>
+	<ul>
+		{% for aaperson in operson.aaperson_set.all %}
+			<li>{{ aaperson.name|safe }}</li>
+		{% endfor %}
+	</ul>
+
+{% endblock content %}

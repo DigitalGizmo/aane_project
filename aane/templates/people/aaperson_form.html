@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+	
+	<h3>{{ aaperson.name|safe }}</h3>
+
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+	<form action="{% url 'people:aaperson_update' aaperson.id %}" method="post">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}		
+	</table>
+
+	<input type="submit" value="Update" />
+	</form>
+	
+
+{% endblock content %}

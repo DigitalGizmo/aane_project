@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Details
+	{% endblock %}
+
+{% block content %}
+	<table>
+		<tr>
+			<td>name</td><td>{{ aaperson.name|safe  }}</td>
+		</tr>
+		<tr>
+			<td>first_name</td><td>{{ aaperson.first_name }}</td>
+		</tr>
+		<tr>
+			<td>last_name</td><td>{{ aaperson.last_name }}</td>
+		</tr>
+		<tr>
+			<td>gender</td><td>{{ aaperson.gender }}</td>
+		</tr>
+		<tr>
+			<td>bio</td><td>{{ aaperson.bio }}</td>
+		</tr>
+		<tr>
+			<td>birth_year</td><td>{{ aaperson.birth_year }}</td>
+		</tr>
+		<tr>
+			<td>death_year</td><td>{{ aaperson.death_year }}</td>
+		</tr>
+		<tr>
+			<td>enslaved_start_year</td><td>{{ aaperson.enslaved_start_year }}</td>
+		</tr>
+		<tr>
+			<td>free_start_year</td><td>{{ aaperson.free_start_year }}</td>
+		</tr>
+		<tr>
+			<td>owner_id</td><td>{{ aaperson.owner_id }}</td>
+		</tr>
+		<tr>
+			<td>place_of_origin</td><td>{{ aaperson.place_of_origin }}</td>
+		</tr>
+	</table>
+
+{% endblock content %}

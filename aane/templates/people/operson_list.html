@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}AANE - Other People (Owners){% endblock %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > Other/Owner People
+	{% endblock %}
+
+{% block page_title %}AANE - Other People (Owners){% endblock %}
+
+{% block content %}
+
+	<table>
+		<tr>
+			<th>s.o.id</th><th>details</th><th>Name</th><th>enslaved</th>
+		</tr>
+		{% for operson in operson_list %}
+		<tr>
+			<td>{{ operson.slave_owner_id }}</td>
+			<td><a href="{% url 'people:operson_detail' operson.id %}">details</a></td>
+			<td>{{ operson.name|safe }}</td>
+			<td>
+				{% for aaperson in operson.aaperson_set.all %}
+					{{ aaperson.name|safe }},
+				{% endfor %}
+			</td>	
+		</tr>
+		{% endfor %}
+	</table>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}AANE - Primary Sources{% endblock %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > Primary Sources
+	{% endblock %}
+
+{% block page_title %}AANE - Primary Sources{% endblock %}
+
+{% block content %}
+
+	<table>
+		<tr>
+			<th>id</th><th>details</th><th>Title</th>
+		</tr>
+		{% for primarysource in primarysource_list %}
+		<tr>
+			<td>{{ primarysource.pk }}</td>
+			<td><a href="{% url 'sources:source_detail' primarysource.id %}">details</a></td>
+			<td>{{ primarysource.title|safe }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	
+
+{% endblock content %}
