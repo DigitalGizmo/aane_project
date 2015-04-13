@@ -5,42 +5,54 @@ import people.models
 
 class SourceCollection(models.Model):
 	"""docstring for SourceCollection"""
-	title = models.CharField(max_length=128, blank=True, null=True)
-	sec_person_id = models.CharField(max_length=32, blank=True, null=True)
-	description = models.TextField(blank=True, null=True)
+	title = models.CharField(max_length=128, blank=True,  default='')
+	description = models.TextField(blank=True,  default='')
 
 	def __str__(self):
 		return self.title
 
 class PrimarySource(models.Model):
-	"""docstring for PrimarySource"""
-	source_collection = models.ForeignKey('SourceCollection')
-	title = models.CharField(max_length=128, blank=True, null=True)
-	pvma_call_num = models.CharField(max_length=32, blank=True, null=True)
-	description = models.TextField(blank=True, null=True)
+	"""PrimarySource
+	Also includes secondary sources -- determined by source type.
+	Originally planned foreign key to Collection, but doens't seem necessary"""
+	# .source_collection = models.ForeignKey('SourceCollection')
+	source_type = models.CharField(max_length=32, blank=True,  default='')
+	title = models.CharField(max_length=128, blank=True,  default='')
+	pub_info = models.CharField(max_length=128, blank=True,  default='')
+	description = models.TextField(blank=True,  default='')
 	year_start = models.IntegerField('Start year or single', default=0)
 	year_end = models.IntegerField('End year if range', default=0)
+	operson_id = models.IntegerField('O Person id if known',default=0)
 
 	class Meta:
 		ordering = ["pk"]
+		verbose_name = "Source"
 			
 	def __str__(self):
 		return self.title
 		
 
 class SourceEntry(models.Model):
+	"""
+	SourceEntry
+	ForeignKey to PrimarySource
+	"""
 	primary_source = models.ForeignKey('PrimarySource')
 	entry_text = models.CharField(max_length=255)
-	clarified = models.CharField(max_length=255, blank=True, null=True)
+	clarified = models.CharField(max_length=255, blank=True,  default='')
 	aa_id = models.IntegerField('aa id if known for sure',default=0)
-	secondary_person_id = models.IntegerField(
+	operson_id = models.IntegerField(
 							'2ndary person ID, only if aa id not known',default=0)
 	name_note = models.CharField('Name note if no id known', max_length=64, 
-							blank=True, null=True)
+							blank=True,  default='')
 	year_start = models.IntegerField('Start year or single', default=0)
 	year_end = models.IntegerField('End year if range', default=0)
 	month = models.IntegerField('Month (number)', default=0)
 	day = models.IntegerField('Day of month (number)', default=0)
+	pvma_call_num = models.CharField(max_length=32, blank=True,  default='')
+	date_range = models.CharField('Date range (from title field)', max_length=32, blank=True,  default='')
+	page_num = models.CharField('Page info', max_length=32, blank=True,  default='')
+	location = models.CharField('Other location info', max_length=32, blank=True,  default='')
 
 	@property
 	def aa_name(self):

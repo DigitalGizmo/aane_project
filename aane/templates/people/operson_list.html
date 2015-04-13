@@ -17,7 +17,7 @@
 		</tr>
 		{% for operson in operson_list %}
 		<tr>
-			<td>{{ operson.slave_owner_id }}</td>
+			<td>{{ operson.id }}</td>
 			<td><a href="{% url 'people:operson_detail' operson.id %}">details</a></td>
 			<td>{{ operson.name|safe }}</td>
 			<td>
