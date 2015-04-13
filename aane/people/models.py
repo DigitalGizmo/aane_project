@@ -49,14 +49,6 @@ class AAPerson(PersonModel):
         person_entry_list = SourceEntry.objects.filter(aa_id=self.pk)
         return person_entry_list
 
-    # return name of owner - was used before I went to many to many
-    """
-    @property
-    def owner_name(self):
-        operson_object = OPerson.objects.get(slave_owner_id=self.owner_id)
-        return operson_object.name
-        """
-
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
         return reverse('people:aaperson_detail', kwargs={'pk': self.pk})
@@ -82,16 +74,10 @@ class OPerson(PersonModel):
     slave_owner_id = models.IntegerField(default=0)
     year_lower = models.IntegerField(default=0)
     year_upper = models.IntegerField(default=0)
+    legacy_owner_id = models.IntegerField(default=0)
+    original_id = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["pk"]
         verbose_name = "Other/Owner"
-
-    # return list of enslaved people for given owner - used before we went to many to many
-    """
-    @property
-    def enslaved_list(self):
-        enslaved_list = AAPerson.objects.filter(owner_id=self.slave_owner_id)
-        return enslaved_list
-        """
 
