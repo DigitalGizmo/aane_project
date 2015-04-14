@@ -8,11 +8,11 @@ class AAPersonAdmin(admin.ModelAdmin):
             'birth_year', 'death_year', 'bio', 'owners', 'place_of_origin', 
             'owner_id','first_appearance_year', 'last_appearance_year', 
             'free_start_year']
-    list_display = ('name', 'id', 'first_name', 'last_name', 'alt_name_spelling', 
-        'known_status', 'freed_status', 'birth_year', 'death_year', 'owner_id')
+    list_display = ('name', 'id', 'owner_id', 'first_name', 'last_name', 'alt_name_spelling', 
+        'known_status', 'freed_status', 'birth_year', 'death_year')
     search_fields = ['name']
     filter_horizontal = ['owners']
-    list_filter  = ['known_status'] 
+    list_filter  = ['known_status', 'freed_status'] 
 
 admin.site.register(AAPerson, AAPersonAdmin)
 
