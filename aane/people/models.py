@@ -17,8 +17,8 @@ class PersonModel(models.Model):
     last_name = models.CharField(max_length=32, blank=True, default='')
     gender = models.CharField(max_length=12, choices=GENDER)
     bio = models.TextField(blank=True, default='')
-    birth_year = models.IntegerField(default=0)
-    death_year = models.IntegerField(default=0)
+    birth_year = models.IntegerField(blank=True, null=True)
+    death_year = models.IntegerField(blank=True, null=True)
 
     class Meta:
         abstract = True
@@ -31,13 +31,27 @@ class AAPerson(PersonModel):
     """
     AAPerson - inherits PersonModel
     """
-    first_appearance_year = models.IntegerField(default=0)
-    last_appearance_year = models.IntegerField(default=0)
-    free_start_year = models.IntegerField(default=0)
-    owner_id = models.IntegerField(default=0)
+    KNOWN_STATUS = (
+        (1,'known'),
+        (2,'owner known'),
+        (3,'unknown'),
+        (9,'discard'),
+    )
+    FREED_STATUS = (
+        (1,'enslaved'),
+        (2,'transition'),
+        (3,'always free'),
+    )
+    alt_name_spelling = models.CharField(max_length=32, blank=True, default='')
+    first_appearance_year = models.IntegerField(blank=True, null=True)
+    last_appearance_year = models.IntegerField(blank=True, null=True)
+    free_start_year = models.IntegerField(blank=True, null=True)
+    owner_id = models.IntegerField(blank=True, null=True)
     place_of_origin = models.CharField(max_length=64, blank=True, default='')
     owners = models.ManyToManyField('people.OPerson', verbose_name='Owner(s)', 
-    blank=True, null=True)
+        blank=True, null=True)
+    known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
+    freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
 
     class Meta:
         ordering = ["pk"]
