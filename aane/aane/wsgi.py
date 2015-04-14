@@ -16,12 +16,12 @@ import os
 try:
 	import mod_wsgi
 	try:
-		os.environ['DJANGO_SETTINGS_MODULE'] = 'impressions.settings.%s' % mod_wsgi.process_group
+		os.environ['DJANGO_SETTINGS_MODULE'] = 'aane.settings.%s' % mod_wsgi.process_group
 	except AttributeError:
 		# let the above setting stand
-		os.environ.setdefault("DJANGO_SETTINGS_MODULE", "impressions.settings.local")
+		os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aane.settings.local")
 except ImportError:
-	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "impressions.settings.local")
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aane.settings.local")
 	
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
