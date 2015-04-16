@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import SourceCollection, PrimarySource, SourceEntry
+from .models import PrimarySource, SourceEntry
+# SourceCollection, 
 
 """
 class SourceCollectionAdmin(admin.ModelAdmin):

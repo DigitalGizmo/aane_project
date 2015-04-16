@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import PrimarySource, SourceEntry, SourceCollection
+from .models import PrimarySource, SourceEntry
 from people.models import AAPerson
 # new
 from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
