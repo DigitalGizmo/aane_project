@@ -13,13 +13,30 @@
 
 	<table>
 		<tr>
-			<th>id</th><th>details</th><th>Name</th><th>enslaved</th>
+			<th>id</th>
+			<th>edit</th>
+			<!--th>details</th -->
+			<th>Name</th>
+			<th>Title</th>
+			<th>Role</th>
+			<th>Race</th>
+			<th>Birth</th>
+			<th>Death</th>
+			<th>Enslaved Person(s)</th>
 		</tr>
 		{% for operson in operson_list %}
 		<tr>
 			<td>{{ operson.id }}</td>
-			<td><a href="{% url 'people:operson_detail' operson.id %}">details</a></td>
+			<td>
+				<!--a href="{% url 'people:operson_detail' operson.id %}">details</a -->
+				<a href="/admin/people/operson/{{operson.id}}/" target="admin">edit</a>
+			</td>
 			<td>{{ operson.name|safe }}</td>
+			<td>{{ operson.title|safe }}</td>
+			<td>{{ operson.role }}</td>
+			<td>{{ operson.race }}</td>
+			<td>{{ operson.birth }}</td>
+			<td>{{ operson.death }}</td>
 			<td>
 				{% for aaperson in operson.aaperson_set.all %}
 					{{ aaperson.name|safe }},

@@ -5,7 +5,8 @@ from sources.models import SourceEntry
 
 class PersonModel(models.Model):
     """
-    Person - abstract class for fields common to AAPerson and OPerson (Other, Owner)
+    Person - abstract class for fields common to AAPerson and 
+    OPerson (Other, Owner)
     """
     GENDER = (
         ('male','male'),
@@ -43,6 +44,7 @@ class AAPerson(PersonModel):
         (3,'always free'),
     )
     alt_name_spelling = models.CharField(max_length=32, blank=True, default='')
+    freed_name = models.CharField(max_length=32, blank=True, default='')
     first_appearance_year = models.IntegerField(blank=True, null=True)
     last_appearance_year = models.IntegerField(blank=True, null=True)
     free_start_year = models.IntegerField(blank=True, null=True)
@@ -83,13 +85,12 @@ class OPerson(PersonModel):
         ('native', 'native'),
     )
     title = models.CharField(max_length=24, blank=True, default='')
-    role = models.CharField(max_length=12, choices=ROLE)
-    race = models.CharField(max_length=12, choices=RACE)
-    slave_owner_id = models.IntegerField(default=0)
-    year_lower = models.IntegerField(default=0)
-    year_upper = models.IntegerField(default=0)
-    legacy_owner_id = models.IntegerField(default=0)
-    original_id = models.IntegerField(default=0)
+    role = models.CharField(max_length=24, choices=ROLE)
+    race = models.CharField(max_length=24, choices=RACE)
+    year_lower = models.IntegerField(blank=True, null=True)
+    year_upper = models.IntegerField(blank=True, null=True)
+    legacy_owner_id = models.IntegerField(blank=True, null=True)
+    original_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         ordering = ["pk"]

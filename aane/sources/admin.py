@@ -16,7 +16,7 @@ class PrimarySourceAdmin(admin.ModelAdmin):
     fields = ['source_type', 'title', 'pub_info', 'description', 'year_start', 
     'year_end', 'operson_id']
     #inlines = [SourceEntryInline]
-    list_display = ('title', 'source_type', 'pub_info', 'operson_id', 'year_start', 'year_end')
+    list_display = ('title', 'id', 'source_type', 'pub_info', 'operson_id', 'year_start', 'year_end')
     search_fields = ['title']
     list_filter  = ['source_type'] 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
