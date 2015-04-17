@@ -19,6 +19,12 @@ ul.horiz li	{float: left; margin-right: 2em;}
 /*style for basic text elements*/
 p, li, blockquote {	font-size: 1em; line-height: 1.75em;	}
 table, th, td {	font-size: .9em; line-height: 1.75em;	}
+table {	width: 80%;	}
+th	{	text-align: left;	}
+td {border-bottom: 1px dotted silver; border-left: 1px dotted silver; }
+td.id {width: 5%;}
+td.details {width: 8%;}
+td.name {width: 30%;}
 .small	{	font-size: .75em; }
 
 /*style for links*/

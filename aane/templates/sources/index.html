@@ -23,9 +23,9 @@
 		</tr>
 		{% for primarysource in primarysource_list %}
 		<tr>
-			<td>{{ primarysource.pk }}</td>
-			<td><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
-			<td>
+			<td class="id">{{ primarysource.pk }}</td>
+			<td class="details"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
+			<td class="id">
 				<a href="/admin/sources/primarysource/{{primarysource.id}}/" target="admin">edit</a>
 			</td>
 			<td>{{ primarysource.source_type }}</td>

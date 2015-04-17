@@ -26,8 +26,8 @@
 		</tr>
 		{% for operson in operson_list %}
 		<tr>
-			<td>{{ operson.id }}</td>
-			<td>
+			<td class="id">{{ operson.id }}</td>
+			<td class="details">
 				<!--a href="{% url 'people:operson_detail' operson.id %}">details</a -->
 				<a href="/admin/people/operson/{{operson.id}}/" target="admin">edit</a>
 			</td>
