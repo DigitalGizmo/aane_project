@@ -15,7 +15,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Edit</th>
-			<!--th>details</th -->
+			<th>details</th>
 			<th>Name</th>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -26,11 +26,11 @@
 		{% for aaperson in aaperson_list %}
 		<tr>
 			<td class="id">{{ aaperson.id }}</td>
-			<td class="details">
+			<td >
 				<!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
 				<a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
 			</td>
-			<!-- td><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td -->
+			<td><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
 			<td class="name">{{ aaperson.name|safe }}</td>
 			<td>{{ aaperson.first_name|safe }}</td>
 			<td>{{ aaperson.last_name|safe }}</td>

@@ -52,7 +52,10 @@
 		{% for entry in aaperson.person_entries %}
 		<tr>
 			<td><em>{{ entry.primary_source }}</em></td>
-			<td>{{ entry.year_start }}-{{ entry.month }}-{{ entry.day }}</td>
+			<td>{{ entry.low_year }} 
+			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
+			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
+			</td>
 			<td>{{ entry.entry_text|safe }}</td>
 		</tr>
 		{% endfor %}

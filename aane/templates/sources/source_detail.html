@@ -19,12 +19,16 @@
 
 	<table>
 		<tr>
-			<!-- <th>Edit</th> --><th>Date</th><th>Name</th><th>Entry</th>
+			<!-- <th>Edit</th> -->
+			<th>Date</th><th>Name</th><th>Entry</th>
 		</tr>
 		{% for entry in primarysource.sourceentry_set.all %}
 		<tr>
-			<td>{{ entry.year_start }}-{{ entry.month }}-{{ entry.day }}</td>
 			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
+			<td>{{ entry.low_year }} 
+			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
+			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
+			</td>
 			<td>{{ entry.aa_name }}</td>
 			<td>{{ entry.entry_text|safe }}</td>
 		</tr>
