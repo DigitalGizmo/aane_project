@@ -18,14 +18,18 @@ ul.horiz li	{float: left; margin-right: 2em;}
 
 /*style for basic text elements*/
 p, li, blockquote {	font-size: 1em; line-height: 1.75em;	}
-table, th, td {	font-size: .9em; line-height: 1.75em;	}
+table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
 table {	width: 80%;	}
 th	{	text-align: left;	}
 td {border-bottom: 1px dotted silver; border-left: 1px dotted silver; }
 td.id {width: 5%;}
 td.details {width: 8%;}
 td.name {width: 30%;}
+dl {/* figure out how to clear after the dl */}
+dt {float: left; padding-right: 1em; clear: left;}
+dd {font-weight: bold;}
 .small	{	font-size: .75em; }
+.faint	{color: #bbb;}
 
 /*style for links*/
 a:link		{	color: #333399; text-decoration: none;	}
@@ -36,11 +40,3 @@ nav ul	{
 	font-size: 85%;
 	font-weight: normal;
 }
-/*styles for Tracker Lists*/
-/* Alternating row colors for team/glossary/list.jsp, etc. Even row */
-table.list th {text-align: left}
-table.list tr	{vertical-align: top; }
-table.list td {padding-right: 2em; padding-top: 4px;}
-table.list tr.row0 { background-color: #FFFFFF; }
-/* Odd row */
-table.list tr.row1 { background-color: #DDDDDD; }
