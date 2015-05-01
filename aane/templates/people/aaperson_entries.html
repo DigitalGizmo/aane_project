@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block head_title %}AANE - African Americans{% endblock %}
+
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Entries
 	{% endblock %}
+
+ {% block page_title %}African American Person Details{% endblock %}
 
 {% block content %}
 
@@ -26,20 +30,20 @@
 			</dd>
 		<dt>place of origin</dt><dd>{{ aaperson.place_of_origin }}</dd>
 	</dl>
-
+	<br clear="left" />
 	<h2>Primary Source Entries for {{ aaperson.name|safe }}</h2>
-	<table cellpadding="3">
+	<table>
 		<tr>
 			<th>Source</th><th>Date</th><th>Entry</th>
 		</tr>
 		{% for entry in aaperson.person_entries %}
 		<tr>
-			<td><em>{{ entry.primary_source }}</em></td>
-			<td>{{ entry.low_year }} 
+			<td class="medlrg"><em>{{ entry.primary_source }}</em></td>
+			<td class="med">{{ entry.low_year }} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
-			<td>{{ entry.entry_text|safe }}</td>
+			<td class="xlrg">{{ entry.entry_text|safe }}</td>
 		</tr>
 		{% endfor %}
 	</table>

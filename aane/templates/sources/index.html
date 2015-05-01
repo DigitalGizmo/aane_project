@@ -13,8 +13,8 @@
 
 	<table>
 		<tr>
-			<th>id</th>
-			<th>entries</th>
+			<th>ID</th>
+			<th>Entries</th>
 			<th>edit</th>
 			<th>Type</th>
 			<th>Title</th>
@@ -23,18 +23,19 @@
 		</tr>
 		{% for primarysource in primarysource_list %}
 		<tr>
-			<td class="id">{{ primarysource.pk }}</td>
-			<td class="details"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
-			<td class="id">
+			<td class="sm">{{ primarysource.pk }}</td>
+			<td class="med"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
+			<td class="sm">
 				<a href="/admin/sources/primarysource/{{primarysource.id}}/" target="admin">edit</a>
 			</td>
-			<td>{{ primarysource.source_type }}</td>
-			<td>{{ primarysource.title|safe }}</td>
-			<td>{{ primarysource.pub_info|safe }}</td>
-			<td>{{ primarysource.description|safe }}</td>
+			<td class="med">{{ primarysource.source_type }}</td>
+			<td class="lrg">{{ primarysource.title|safe }}</td>
+			<td class="lrg">{{ primarysource.pub_info|safe }}</td>
+			<td class="lrg">{{ primarysource.description|safe }}</td>
 		</tr>
 		{% endfor %}
 	</table>
-	
+	<p class="small"><a href="#top">top of page</a></p>
+	<p class="faint">sources/index.html</p>
 
 {% endblock content %}

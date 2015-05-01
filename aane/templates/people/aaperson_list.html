@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}AANE - African American People{% endblock %}
+{% block head_title %}AANE - African Americans{% endblock %}
 
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > AA People
 	{% endblock %}
 
-{% block page_title %}AANE - African American People{% endblock %}
+{% block page_title %}AANE - African Americans{% endblock %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Edit</th>
-			<th>details</th>
+			<th>Details</th>
 			<th>Name</th>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -25,17 +25,17 @@
 		</tr>
 		{% for aaperson in aaperson_list %}
 		<tr>
-			<td class="id">{{ aaperson.id }}</td>
-			<td >
+			<td class="sm">{{ aaperson.id }}</td>
+			<td class="sm">
 				<!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
 				<a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
 			</td>
-			<td><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
-			<td class="name">{{ aaperson.name|safe }}</td>
-			<td>{{ aaperson.first_name|safe }}</td>
-			<td>{{ aaperson.last_name|safe }}</td>
-			<td>{{ aaperson.birth }}</td>
-			<td>{{ aaperson.death }}</td>
+			<td class="med"><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
+			<td class="medlrg">{{ aaperson.name|safe }}</td>
+			<td class="medlrg">{{ aaperson.first_name|safe }}</td>
+			<td class="medlrg">{{ aaperson.last_name|safe }}</td>
+			<td class="med">{{ aaperson.birth }}</td>
+			<td class="med">{{ aaperson.death }}</td>
 			<td>
 				{% for owner in aaperson.owners.all %}
 					{{ owner.name|safe }};
@@ -46,5 +46,6 @@
 	</table>
 	
 	<!-- p><a href="{ url 'people:aaperson_add' }">add</a></p -->
-
+	<p class="small"><a href="#top">top of page</a></p>
+<p class="faint">aaperson_list.html</p>
 {% endblock content %}

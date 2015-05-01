@@ -1,52 +1,37 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block head_title %}AANE - African Americans{% endblock %}
+
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > <a href="{% url 'people:operson_index'%}">Other People </a> > Other/Owner Person Details
 	{% endblock %}
+ 
+ {% block page_title %}Other Person / Owner Details{% endblock %}
 
 {% block content %}
 
-	<h3>{{ operson.name|safe  }}</h3>
+	<h1>{{ operson.name|safe  }}</h1>
 
-	<table>
-		<tr>
-			<td>first_name</td><td>{{ operson.first_name }}</td>
-		</tr>
-		<tr>
-			<td>title</td><td>{{ operson.title }}</td>
-		</tr>
-		<tr>
-			<td>last_name</td><td>{{ operson.last_name }}</td>
-		</tr>
-		<tr>
-			<td>gender</td><td>{{ operson.gender }}</td>
-		</tr>
-		<tr>
-			<td>bio</td><td>{{ operson.bio }}</td>
-		</tr>
-		<tr>
-			<td>birth_year</td><td>{{ operson.birth_year }}</td>
-		</tr>
-		<tr>
-			<td>death_year</td><td>{{ operson.death_year }}</td>
-		</tr>
-		<tr>
-			<td>role</td><td>{{ operson.role }}</td>
-		</tr>
-		<tr>
-			<td>race</td><td>{{ operson.race }}</td>
-		</tr>
-		<tr>
-			<td>year_lower</td><td>{{ operson.year_lower }}</td>
-		</tr>
-	</table>
-
-	<p>Enslaved:</p>
-	<ul>
+	<dl>
+		<dt>title</dt><dd>{{ operson.title }}</dd>
+		<dt>first_name</dt><dd>{{ operson.first_name }}</dd>
+		<dt>last_name</dt><dd>{{ operson.last_name }}</dd>
+		<dt>gender</dt><dd>{{ operson.gender }}</dd>
+		<dt>bio</dt><dd>{{ operson.bio }}</dd>
+		<dt>birth_year</dt><dd>{{ operson.birth_year }}</dd>
+		<dt>death_year</dt><dd>{{ operson.death_year }}</dd>
+		<dt>role</dt><dd>{{ operson.role }}</dd>
+		<dt>race</dt><dd>{{ operson.race }}</dd>
+		<dt>year_lower</dt><dd>{{ operson.year_lower }}</dd>
+	</dl>
+	<br clear="left" />
+	<h2>Enslaved:</h2>
+	<ul class="unstyledlist">
 		{% for aaperson in operson.aaperson_set.all %}
 			<li>{{ aaperson.name|safe }}</li>
 		{% endfor %}
 	</ul>
+	<p class="faint">operson_detail.html</p>
 
 {% endblock content %}

@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}AANE - Other People (Owners){% endblock %}
+{% block head_title %}AANE - Other People/Owners{% endblock %}
 
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > Other/Owner People
 	{% endblock %}
 
-{% block page_title %}AANE - Other People (Owners){% endblock %}
+{% block page_title %}AANE - Other People / Owners{% endblock %}
 
 {% block content %}
 
 	<table>
 		<tr>
-			<th>id</th>
-			<th>edit</th>
-			<th>details</th>
+			<th>ID</th>
+			<th>Edit</th>
+			<th>Details</th>
 			<th>Name</th>
 			<th>Title</th>
 			<th>Role</th>
@@ -26,20 +26,20 @@
 		</tr>
 		{% for operson in operson_list %}
 		<tr>
-			<td class="id">{{ operson.id }}</td>
-			<td class="details">
+			<td class="sm">{{ operson.id }}</td>
+			<td class="med">
 				<a href="/admin/people/operson/{{operson.id}}/" target="admin">edit</a>
 			</td>
-			<td class="details">
+			<td class="med">
 				<a href="{% url 'people:operson_detail' operson.id %}">details</a>
 			</td>
-			<td>{{ operson.name|safe }}</td>
-			<td>{{ operson.title|safe }}</td>
-			<td>{{ operson.role }}</td>
-			<td>{{ operson.race }}</td>
-			<td>{{ operson.birth }}</td>
-			<td>{{ operson.death }}</td>
-			<td>
+			<td class="medlrg">{{ operson.name|safe }}</td>
+			<td class="med">{{ operson.title|safe }}</td>
+			<td class="med">{{ operson.role }}</td>
+			<td class="med">{{ operson.race }}</td>
+			<td class="med">{{ operson.birth }}</td>
+			<td class="med">{{ operson.death }}</td>
+			<td class="xlrg">
 				{% for aaperson in operson.aaperson_set.all %}
 					{{ aaperson.name|safe }},
 				{% endfor %}
@@ -47,5 +47,6 @@
 		</tr>
 		{% endfor %}
 	</table>
+<p class="faint">operson_list.html</p>
 
 {% endblock content %}
