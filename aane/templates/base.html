@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <title>{% block head_title %}African Americans in Rural New England{% endblock %}</title>
+    <title>{% block head_title %}AAERNE Head Title{% endblock %}</title>
 	
 	{% block stylesheets %}
 		<link rel="stylesheet" href="{% static 'common/aane_style.css' %}" type="text/css"  media="all"/>
@@ -26,14 +26,15 @@
 </head>
 
 <body>
-<h2>{% block page_title %}African Americans in Rural New England{% endblock %}</h2>
+<a id="top"></a>
+<h1>{% block page_title %}AAERNE Page Title{% endblock %}</h1>
 
 <!--  header and main nav -->
 <header id="header">
-	<p><a href="{% url 'people:aaperson_index' %}">AA People</a>,
-	<a href="{% url 'people:operson_index' %}">Other People</a> | 
+	<p><a href="{% url 'people:aaperson_index' %}">African Americans</a> | 
+	<a href="{% url 'people:operson_index' %}">Other People/Owners</a> | 
 	<a href="{% url 'sources:index' %}">Primary Sources</a></p>
-	<p>
+	<p class="breadcrumbs">
 		{% block breadcrumbs %}
 
 		{% endblock %}

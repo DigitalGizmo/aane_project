@@ -1,65 +1,52 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block head_title %}AAERNE - African Americans{% endblock %}
+
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Entries
+		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Details
 	{% endblock %}
+
+ {% block page_title %}AAERNE - African American Person Details{% endblock %}
 
 {% block content %}
 
-	<h3>{{ aaperson.name|safe }}</h3>
+	<h1>{{ aaperson.name|safe }}</h1>
 
-	<table>
-		<tr>
-			<td>first_name</td><td>{{ aaperson.first_name }}</td>
-		</tr>
-		<tr>
-			<td>last_name</td><td>{{ aaperson.last_name }}</td>
-		</tr>
-		<tr>
-			<td>gender</td><td>{{ aaperson.gender }}</td>
-		</tr>
-		<tr>
-			<td>bio</td><td>{{ aaperson.bio }}</td>
-		</tr>
-		<tr>
-			<td>Birth, death year</td><td>{{ aaperson.birth_year }}, {{ aaperson.death_year }}</td>
-		</tr>
-		<tr>
-			<td>First, last year in records</td><td>{{ aaperson.first_appearance_year }}, 
-			{{ aaperson.last_appearance_year }}</td>
-		</tr>
-		<tr>
-			<td>Year freed</td><td>{{ aaperson.free_start_year }}</td>
-		</tr>
-		<tr>
-			<td>owner(s)</td>
-			<td>
+	<dl>
+		<dt>first name</dt><dd>{{ aaperson.first_name }}</dd>
+		<dt>last name</dt><dd>{{ aaperson.last_name }}</dd>
+		<dt>gender</dt><dd>{{ aaperson.gender }}</dd>
+		<dt>bio</dt><dd>{{ aaperson.bio }}</dd>
+		<dt>birth, death year</dt><dd>{{ aaperson.birth_year }}, {{ aaperson.death_year }}</dd>
+		<dt>first, last year in records</dt><dd>{{ aaperson.first_appearance_year }}, 
+			{{ aaperson.last_appearance_year }}</dd>
+		<dt>year freed</dt><dd>{{ aaperson.free_start_year }}</dd>
+		<dt>owner(s)</dt>
+			<dd>
 				{% for owner in aaperson.owners.all %}
 					{{ owner.name|safe }},
 				{% endfor %}
-			</td>
-		</tr>
-		<tr>
-			<td>place_of_origin</td><td>{{ aaperson.place_of_origin }}</td>
-		</tr>
-	</table>
+			</dd>
+		<dt>place of origin</dt><dd>{{ aaperson.place_of_origin }}</dd>
+	</dl>
+	<br clear="left" />
 	<h2>Primary Source Entries for {{ aaperson.name|safe }}</h2>
-	<table cellpadding="3">
+	<table>
 		<tr>
 			<th>Source</th><th>Date</th><th>Entry</th>
 		</tr>
 		{% for entry in aaperson.person_entries %}
 		<tr>
-			<td><em>{{ entry.primary_source }}</em></td>
-			<td>{{ entry.low_year }} 
+			<td class="medlrg"><em>{{ entry.primary_source }}</em></td>
+			<td class="med">{{ entry.low_year }} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
-			<td>{{ entry.entry_text|safe }}</td>
+			<td class="xlrg">{{ entry.entry_text|safe }}</td>
 		</tr>
 		{% endfor %}
 	</table>
-
-
+	<p class="small"><a href="#top">top of page</a></p>
+<p class="faint">aaperson_entries.html</p>
 {% endblock content %}
