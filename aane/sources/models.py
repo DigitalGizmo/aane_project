@@ -101,6 +101,9 @@ class SourceEntry(models.Model):
     access_order = models.IntegerField(blank=True, null=True)
     legacy_id = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['low_year', 'low_month', 'low_day']
+             
     @property
     def aa_name(self):
         aaperson_object = people.models.AAPerson.objects.get(pk=self.aa_id)

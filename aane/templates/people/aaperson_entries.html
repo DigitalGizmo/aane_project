@@ -18,10 +18,17 @@
 		<dt>last name</dt><dd>{{ aaperson.last_name }}</dd>
 		<dt>gender</dt><dd>{{ aaperson.gender }}</dd>
 		<dt>bio</dt><dd>{{ aaperson.bio }}</dd>
-		<dt>birth, death year</dt><dd>{{ aaperson.birth_year }}, {{ aaperson.death_year }}</dd>
-		<dt>first, last year in records</dt><dd>{{ aaperson.first_appearance_year }}, 
-			{{ aaperson.last_appearance_year }}</dd>
-		<dt>year freed</dt><dd>{{ aaperson.free_start_year }}</dd>
+		<dt>birth, death year</dt>
+		<dd>
+			{% firstof aaperson.birth_year "--" %}, 
+			{% firstof aaperson.death_year "--" %} 
+		</dd>
+		<dt>first, last year in records</dt>
+		<dd>
+			{% firstof aaperson.first_appearance_year "--" %}, 
+			{% firstof aaperson.last_appearance_year "--" %} 
+		</dd>
+		<dt>year freed</dt><dd>{% firstof aaperson.free_start_year "--" %}</dd>
 		<dt>owner(s)</dt>
 			<dd>
 				{% for owner in aaperson.owners.all %}
@@ -39,7 +46,7 @@
 		{% for entry in aaperson.person_entries %}
 		<tr>
 			<td class="medlrg"><em>{{ entry.primary_source }}</em></td>
-			<td class="med">{{ entry.low_year }} 
+			<td class="med">{% firstof entry.low_year "--" %} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>

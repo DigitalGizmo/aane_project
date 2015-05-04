@@ -15,18 +15,19 @@
 
 	<dl>
 		<dt>title</dt><dd>{{ operson.title }}</dd>
-		<dt>first_name</dt><dd>{{ operson.first_name }}</dd>
-		<dt>last_name</dt><dd>{{ operson.last_name }}</dd>
+		<dt>first name</dt><dd>{{ operson.first_name }}</dd>
+		<dt>last name</dt><dd>{{ operson.last_name }}</dd>
 		<dt>gender</dt><dd>{{ operson.gender }}</dd>
 		<dt>bio</dt><dd>{{ operson.bio }}</dd>
-		<dt>birth_year</dt><dd>{{ operson.birth_year }}</dd>
-		<dt>death_year</dt><dd>{{ operson.death_year }}</dd>
+		<dt>birth, death year</dt>
+		<dd>
+			{% firstof operson.birth_year "--" %}, {% firstof operson.death_year "--" %} 
+		</dd>
 		<dt>role</dt><dd>{{ operson.role }}</dd>
 		<dt>race</dt><dd>{{ operson.race }}</dd>
-		<dt>year_lower</dt><dd>{{ operson.year_lower }}</dd>
 	</dl>
 	<br clear="left" />
-	<h2>Enslaved:</h2>
+	<h2>Enslaved persons:</h2>
 	<ul class="unstyledlist">
 		{% for aaperson in operson.aaperson_set.all %}
 			<li>{{ aaperson.name|safe }}</li>
