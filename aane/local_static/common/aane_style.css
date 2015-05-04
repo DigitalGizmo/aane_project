@@ -30,8 +30,9 @@ td.lrg	{ width: 30%;}
 td.xlrg { width: 50%;}
 
 dl {line-height: 1.5em; margin-bottom: 0;}
-dt {float: left; padding-right: .5em; clear: left;}
+dt {float: left; padding-right: .5em; clear: left; width: 150px}
 dd {font-weight: bold;}
+dd:after {content: "."; color: #faf6ef;}
 
 ul.unstyledlist	{list-style-type: none; padding-left: 0;}
 ul.unstyledlist li	{ line-height: 1.5em;}

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}AANE - African Americans{% endblock %}
+{% block head_title %}AAERNE - African Americans{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Entries
+		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Details
 	{% endblock %}
 
- {% block page_title %}African American Person Details{% endblock %}
+ {% block page_title %}AAERNE - African American Person Details{% endblock %}
 
 {% block content %}
 
@@ -47,6 +47,6 @@
 		</tr>
 		{% endfor %}
 	</table>
-
+	<p class="small"><a href="#top">top of page</a></p>
 <p class="faint">aaperson_entries.html</p>
 {% endblock content %}
