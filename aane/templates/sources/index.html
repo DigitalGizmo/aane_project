@@ -17,6 +17,7 @@
 			<th>edit</th>
 			<th>Entries</th>
 			<th>Type</th>
+			<th>Count</th>
 			<th>Title</th>
 			<th>Pub Info</th>
 			<th>Description</th>
@@ -29,6 +30,7 @@
 			</td>
 			<td class="med"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
 			<td class="med">{{ primarysource.source_type }}</td>
+			<td class="sm">{{ primarysource.entries_count}}</td>
 			<td class="lrg">{{ primarysource.title|safe }}</td>
 			<td class="lrg">{{ primarysource.pub_info|safe }}</td>
 			<td class="lrg">{{ primarysource.description|safe }}</td>

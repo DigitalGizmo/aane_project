@@ -31,9 +31,13 @@ class PrimarySource(models.Model):
     operson_id = models.IntegerField('O Person id if known', blank=True, null=True)
 
     class Meta:
-        ordering = ["pk"]
+        ordering = ['source_type', 'title']
         verbose_name = "Source"
-            
+    
+    @property
+    def entries_count(self):
+        return self.sourceentry_set.count()
+
     def __str__(self):
         return self.title
         
@@ -42,6 +46,9 @@ class SourceEntry(models.Model):
     """
     SourceEntry
     Has foreignKey to PrimarySource
+    All enties will end up with an aa_id - lots of those ids will be more or less place-
+    holders. In the meantime, an entry may have no aa_id, in which case the name_note will 
+    be displayed.
     Fields:
         If we want to display shillings or pence as fractions we'll need
         calculate from the integer fields.
@@ -110,26 +117,8 @@ class SourceEntry(models.Model):
         return people.models.AAPerson.objects.get(pk=self.aa_id)
     
     @property
-    def o_name(self):
-        operson_object = people.models.OPerson.objects.get(pk=self.operson_id)
-        return operson_object.name
-    
-    @property
     def o_person(self):
         return people.models.OPerson.objects.get(pk=self.operson_id)
-    
-    @property
-    def aa_id_status(self):
-        id_status ="ambiguous"
-        if self.enslaved_id > 0:
-            id_status = "known"
-        elif self.owner_id > 0:
-            id_status = "owner known"
-        return id_status
-
-    @property
-    def person_entries_test(self):
-        return "test string"
     
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):

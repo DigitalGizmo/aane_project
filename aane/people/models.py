@@ -34,7 +34,7 @@ class AAPerson(PersonModel):
     """
     KNOWN_STATUS = (
         (1,'known'),
-        (2,'owner known'),
+        (2,'only ownr'),
         (3,'unknown'),
         (9,'discard'),
     )
@@ -56,7 +56,7 @@ class AAPerson(PersonModel):
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
 
     class Meta:
-        ordering = ["pk"]
+        ordering = ['known_status', 'freed_status', 'name']
         verbose_name = "African American"
     	
     # return list of entries for given person

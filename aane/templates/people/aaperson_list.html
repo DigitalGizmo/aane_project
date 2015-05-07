@@ -10,12 +10,15 @@
 {% block page_title %}AAERNE - African Americans{% endblock %}
 
 {% block content %}
-
+	<p>Sorted by (known, owner only known, unknown), (enslaved, became freed, always free), then Name.</p>
 	<table>
 		<tr>
 			<th>ID</th>
 			<th>Edit</th>
 			<th>Details</th>
+			<th>Entries</th>
+			<th>Known?</th>
+			<th>Enslaved?</th>
 			<th>Name</th>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -31,9 +34,12 @@
 				<a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
 			</td>
 			<td class="med"><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
+			<td class="sm">{{ aaperson.person_entries.count }}</td>
+			<td class="med">{{ aaperson.get_known_status_display }}</td>
+			<td class="med">{{ aaperson.get_freed_status_display }}</td>
 			<td class="medlrg">{{ aaperson.name|safe }}</td>
-			<td class="medlrg">{{ aaperson.first_name|safe }}</td>
-			<td class="medlrg">{{ aaperson.last_name|safe }}</td>
+			<td class="medplus">{{ aaperson.first_name|safe }}</td>
+			<td class="medplus">{{ aaperson.last_name|safe }}</td>
 			<td class="med">{{ aaperson.birth }}</td>
 			<td class="med">{{ aaperson.death }}</td>
 			<td>
