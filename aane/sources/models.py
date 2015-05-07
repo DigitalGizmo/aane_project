@@ -73,7 +73,8 @@ class SourceEntry(models.Model):
     event = models.CharField(max_length=128, blank=True, default='')
     aa_id = models.IntegerField('aa id if known for sure', blank=True, null=True)
     operson_id = models.IntegerField(
-        '2ndary person ID, only if aa id not known', blank=True, null=True)
+        'Owner ID', blank=True, null=True, 
+        help_text="blank if free. If unknown, choose the special 'Unknow Owner")
     name_note = models.CharField('Name note if no id known', max_length=64, 
         blank=True, default='')
     date_status = models.IntegerField(default=0, choices=DATE_STATUS)
@@ -105,9 +106,17 @@ class SourceEntry(models.Model):
         ordering = ['low_year', 'low_month', 'low_day']
              
     @property
-    def aa_name(self):
-        aaperson_object = people.models.AAPerson.objects.get(pk=self.aa_id)
-        return aaperson_object.name
+    def aa_person(self):
+        return people.models.AAPerson.objects.get(pk=self.aa_id)
+    
+    @property
+    def o_name(self):
+        operson_object = people.models.OPerson.objects.get(pk=self.operson_id)
+        return operson_object.name
+    
+    @property
+    def o_person(self):
+        return people.models.OPerson.objects.get(pk=self.operson_id)
     
     @property
     def aa_id_status(self):

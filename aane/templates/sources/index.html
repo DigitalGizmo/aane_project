@@ -14,8 +14,8 @@
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Entries</th>
 			<th>edit</th>
+			<th>Entries</th>
 			<th>Type</th>
 			<th>Title</th>
 			<th>Pub Info</th>
@@ -24,10 +24,10 @@
 		{% for primarysource in primarysource_list %}
 		<tr>
 			<td class="sm">{{ primarysource.pk }}</td>
-			<td class="med"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
 			<td class="sm">
 				<a href="/admin/sources/primarysource/{{primarysource.id}}/" target="admin">edit</a>
 			</td>
+			<td class="med"><a href="{% url 'sources:source_detail' primarysource.id %}">entries</a></td>
 			<td class="med">{{ primarysource.source_type }}</td>
 			<td class="lrg">{{ primarysource.title|safe }}</td>
 			<td class="lrg">{{ primarysource.pub_info|safe }}</td>

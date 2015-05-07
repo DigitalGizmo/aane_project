@@ -25,6 +25,7 @@ th		{ text-align: left;	}
 td 		{ border-bottom: 1px dotted silver; border-left: 1px dotted silver; padding: 3px; }
 td.sm 	{ width: 3%;}
 td.med 	{ width: 6%;}
+td.medplus 	{ width: 10%;}
 td.medlrg { width: 15%;}
 td.lrg	{ width: 30%;}
 td.xlrg { width: 50%;}

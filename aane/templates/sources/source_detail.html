@@ -24,25 +24,49 @@
 	<br clear="left">
 	<table>
 		<tr>
-			<!-- <th>Edit</th> -->
+			<th>Edit</th>
 			<th>Date</th>
-			<th>Name</th>
+			<th>AA Name</th>
+			<th>Owner</th>
 			<th>Entry</th>
 		</tr>
 		{% for entry in primarysource.sourceentry_set.all %}
 		<tr>
 			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
+			<td class="sm"><a href="/admin/sources/sourceentry/{{entry.id}}/" target="admin">edit</a></td>
 			<td class="med">{% firstof entry.low_year "--" %} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
-			<td class="med">{{ entry.aa_name }}</td>
+			<td class="medplus">
+				{% if entry.aa_person %}
+					{% if entry.aa_person.known_status == 1 %}<strong>{% endif %}
+					<a href="/people/aaperson/entries/{{ entry.aa_person.id }}/">{{ entry.aa_person.name }}</a>
+					{% if entry.aa_person.known_status == 1 %}</strong>{% endif %}
+
+				{% else %}
+					<span class="faint">{{ entry.name_note }}</span>
+				{% endif %}
+			</td>
+			<td class="medplus">
+				{% if entry.o_person %}
+					<a href="/people/operson/{{ entry.o_person.id }}/">{{ entry.o_person.name }}</a></td>
+				{% else %}
+					<span class="faint">Free</span>
+				{% endif %}
+			</td>
 			<td class="xlrg">{{ entry.entry_text|safe }}</td>
 		</tr>
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
 <p class="faint">sources/source_detail.html</p>
+<p class="faint">Wish list:</p>
+<ul class="faint">
+	<li>Navigation: next and previous source</li>
+	<li></li>
+	<li></li>
+</ul>
 
 
 {% endblock content %}
