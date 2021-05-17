@@ -5,6 +5,7 @@ It exposes the WSGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
+
 Deployed instances (dev and prod on eApps) will have mod_wsgi active, as configured in 
 httpd.conf, to have the appropriate process_group name.
 

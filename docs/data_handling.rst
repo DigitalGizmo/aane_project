@@ -1,5 +1,26 @@
-Data Import Process
+Data Handling
 ======================
+
+Ongoing backups and transfer to local
+-------------------------------------
+
+Backup with custom format
+::
+
+	cd /var/www/dino_user/data/FTP_transfer
+
+
+Inital trasnfer to change owner on local end to match. -p for plain text.
+::
+
+	pg_dump -OFp --create --verbose aanedata > aanedata_2015_04_16cpfix.backup
+
+With Create, we need to delete and re-create public schema locally
+
+ongoing backups
+::
+
+	pg_dump -Fc --clean --verbose aanedata --user=aanedata_user > aanedata_2015_07_10.backup
 
 Import entries from "original" xls table
 ----------------------------------
@@ -39,4 +60,11 @@ Import 2 - had to replace illegal Word ellipses with ..., remove fraction pence
 Copy single table to server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Delete and copy data for entries
+::
+
+	aanedata=# DELETE FROM sources_sourceentry;
+	aanedata=# ALTER SEQUENCE sources_sourceentry_id_seq RESTART WITH 1;
+
+	psql aanedata < sourceentry.sql
 

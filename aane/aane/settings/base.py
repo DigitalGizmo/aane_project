@@ -21,7 +21,7 @@ SECRET_KEY = '^au&uezz#u+i99)-5)x@sf$(7r-dec^3&k6)r7r31*tohmo(sf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+# TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -98,6 +98,19 @@ STATICFILES_DIRS = (
     BASE_DIR.child("local_static"),
 )
 
-TEMPLATE_DIRS = (
-    BASE_DIR.child("templates"),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR.child("templates")],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+

@@ -1,7 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from . import views
 
-urlpatterns = patterns('sources.views',
+app_name = "sources"
+
+urlpatterns = [
     # Examples:
     # url(r'^$', 'aane.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -16,4 +18,4 @@ urlpatterns = patterns('sources.views',
     #temp
     url(r'^entry/(?P<pk>\d+)/$', views.EntryDetailView.as_view(), name='entry_detail'),
     url(r'^entries/$', views.EntryListView.as_view(), name='all_entries'),
-)
+]

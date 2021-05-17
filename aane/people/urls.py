@@ -1,7 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from . import views
 
-urlpatterns = patterns('people.views',
+app_name = "people"
+
+urlpatterns = [
 
     url(r'^aapersons/$', views.AAPersonListView.as_view(), name='aaperson_index'),
     url(r'^aaperson/(?P<pk>\d+)/$', views.AAPersonDetailView.as_view(), 
@@ -15,4 +17,4 @@ urlpatterns = patterns('people.views',
     url(r'^operson/(?P<pk>\d+)/$', views.OPersonDetailView.as_view(), 
     				name='operson_detail'),
 
-)
+]
