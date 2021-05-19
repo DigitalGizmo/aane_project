@@ -1,21 +1,18 @@
-from django.conf.urls import url
+from django.urls import include, path
 from . import views
 
 app_name = "sources"
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'aane.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', views.SourceListView.as_view(), name='index'),
-    url(r'^source/(?P<pk>\d+)/$', views.SourceDetailView.as_view(), name='source_detail'),
+    path('', views.SourceListView.as_view(), name='index'),
+    path('source/<int:pk>/', views.SourceDetailView.as_view(), name='source_detail'),
     # editing
-    url(r'entry/add/$', views.EntryCreateView.as_view(), name='entry_add'),
-    url(r'entry/update/(?P<pk>\d+)/$', views.EntryUpdateView.as_view(), name='entry_update'),
-    url(r'entry/(?P<pk>\d+)/delete/$', views.EntryDeleteView.as_view(), name='entry_delete'),
+    path(r'entry/add/', views.EntryCreateView.as_view(), name='entry_add'),
+    path(r'entry/update/<int:pk>/', views.EntryUpdateView.as_view(), name='entry_update'),
+    path(r'entry/<int:pk>/delete/', views.EntryDeleteView.as_view(), name='entry_delete'),
 
     #temp
-    url(r'^entry/(?P<pk>\d+)/$', views.EntryDetailView.as_view(), name='entry_detail'),
-    url(r'^entries/$', views.EntryListView.as_view(), name='all_entries'),
+    path('entry/<int:pk>/', views.EntryDetailView.as_view(), name='entry_detail'),
+    path('entries/', views.EntryListView.as_view(), name='all_entries'),
 ]

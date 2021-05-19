@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from sources.models import SourceEntry
 
@@ -51,7 +51,7 @@ class AAPerson(PersonModel):
     owner_id = models.IntegerField(blank=True, null=True)
     place_of_origin = models.CharField(max_length=64, blank=True, default='')
     owners = models.ManyToManyField('people.OPerson', verbose_name='Owner(s)', 
-        blank=True, null=True)
+        blank=True)
     known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
 

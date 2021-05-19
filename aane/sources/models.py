@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 #from people.models import AAPerson
 import people.models
@@ -74,7 +74,7 @@ class SourceEntry(models.Model):
         (11, 'Nov'),
         (12, 'Dec'),
     )
-    primary_source = models.ForeignKey('PrimarySource')
+    primary_source = models.ForeignKey('PrimarySource', on_delete=models.CASCADE)
     entry_text = models.CharField(max_length=255)
     clarified = models.CharField(max_length=255, blank=True, default='')
     event = models.CharField(max_length=128, blank=True, default='')

@@ -3,9 +3,8 @@ from .models import PrimarySource, SourceEntry
 from people.models import AAPerson
 # new
 from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
-from django.core.urlresolvers import reverse
+from django.urls import reverse_lazy, reverse
 from django.views import generic
-from django.core.urlresolvers import reverse_lazy
 
 """
 def index(request):

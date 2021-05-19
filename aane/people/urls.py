@@ -1,20 +1,22 @@
-from django.conf.urls import url
+from django.urls import include, path
 from . import views
 
 app_name = "people"
 
 urlpatterns = [
 
-    url(r'^aapersons/$', views.AAPersonListView.as_view(), name='aaperson_index'),
-    url(r'^aaperson/(?P<pk>\d+)/$', views.AAPersonDetailView.as_view(), 
-    				name='aaperson_detail'),
-    url(r'^aaperson/entries/(?P<pk>\d+)/$', views.AAPersonEntriesDetailView.as_view(), 
+    path('aapersons/', views.AAPersonListView.as_view(), name='aaperson_index'),
+    # path('aaperson/(?P<pk>\d+)/', views.AAPersonDetailView.as_view(), 
+    # 				name='aaperson_detail'),
+    path('aaperson/<int:pk>/', views.AAPersonDetailView.as_view(), 
+                  name='aaperson_detail'),
+    path('aaperson/entries/<int:pk>/', views.AAPersonEntriesDetailView.as_view(), 
     				name='aaperson_entries'),
-    url(r'^aaperson/update/(?P<pk>\d+)/$', views.AAPersonUpdateView.as_view(), 
+    path('aaperson/update/<int:pk>/', views.AAPersonUpdateView.as_view(), 
     				name='aaperson_update'),
-    url(r'^aaperson/add/$', views.AAPersonCreateView.as_view(), name='aaperson_add'),
-    url(r'^opersons/$', views.OPersonListView.as_view(), name='operson_index'),
-    url(r'^operson/(?P<pk>\d+)/$', views.OPersonDetailView.as_view(), 
+    path('aaperson/add/', views.AAPersonCreateView.as_view(), name='aaperson_add'),
+    path('opersons/', views.OPersonListView.as_view(), name='operson_index'),
+    path('operson/<int:pk>/', views.OPersonDetailView.as_view(), 
     				name='operson_detail'),
 
 ]

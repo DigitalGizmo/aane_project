@@ -13,6 +13,7 @@ Otherwise this will use the local settings.
 Some devel envs won't need or have mod_wsgi
 """
 
+"""
 import os
 try:
 	import mod_wsgi
@@ -26,3 +27,13 @@ except ImportError:
 	
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aane.settings.local")
+
+application = get_wsgi_application()
+
