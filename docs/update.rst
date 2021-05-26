@@ -3,15 +3,12 @@ Update 2021
 
 go from 1.7 to 1.11.17
 
-Created local db w pgAdmin
-Getting backup from Gizmo ..201 via pgAdmin
-
-Permissions to grant in Admin
-Three each: add, change, delete
-aa person
-o_person
-primary source
-source entry
+From 1.11 to 2.2.23
+- squashmigrations
+  
+From 2.2 to 3.2
+- pip install --upgrade Django==3.0.14
+- pip install --upgrade Django==3.2.3
 
 Data transfer
 ---------------
