@@ -22,3 +22,8 @@ pg_restore --dbname=aanedata --verbose aanedata_2021_05_17.backup
 Migrations, had to do fake
 # database already has it
 manage.py migrate sources 0009 --fake
+
+Moving to new server
+---------------------
+
+This has been on the old eApps server (vm1), moving to vm2
