@@ -1,8 +1,0 @@
-Requirements
-
-Python packages required for this project
-
-(aane)SantaCruz:aane don$ pip freeze --local
-Django==1.7.7
-psycopg2==2.6
-Unipath==1.1
