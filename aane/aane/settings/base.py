@@ -38,7 +38,7 @@ DEBUG = True
 
 # TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['http://aane.deerfield-ma.org/', '127.0.0.1']
+ALLOWED_HOSTS = ['aane.deerfield-ma.org', '127.0.0.1']
 
 
 # Application definition
