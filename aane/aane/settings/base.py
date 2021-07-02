@@ -12,18 +12,33 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # this call is now (with 3-tier approach) one level deeper, so ..
 # Using Unipath per Two Scoops
 from unipath import Path
+import json
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).ancestor(3)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^au&uezz#u+i99)-5)x@sf$(7r-dec^3&k6)r7r31*tohmo(sf'
+# JSON-based secrets module
+with open(BASE_DIR.child('aane', 'settings', 'secrets.json')) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """ Get the secret variable or return explicit exception. """
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://aane.deerfield-ma.org/', '127.0.0.1']
 
 
 # Application definition

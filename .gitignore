@@ -4,6 +4,9 @@
 
 # files
 .DS_Store
+secrets.json
+robots.txt
+.htaccess
 
 # directories
 static/
