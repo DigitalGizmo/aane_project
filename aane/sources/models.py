@@ -29,6 +29,9 @@ class PrimarySource(models.Model):
     year_start = models.IntegerField('Start year or single', blank=True, null=True)
     year_end = models.IntegerField('End year if range', blank=True, null=True)
     operson_id = models.IntegerField('O Person id if known', blank=True, null=True)
+    accession_num = models.CharField(max_length=64, blank=True, null=True)
+    other_accession_num = models.CharField(max_length=64, blank=True, null=True)
+
 
     class Meta:
         ordering = ['source_type', 'title']
@@ -78,36 +81,49 @@ class SourceEntry(models.Model):
     entry_text = models.CharField(max_length=255)
     clarified = models.CharField(max_length=255, blank=True, default='')
     event = models.CharField(max_length=128, blank=True, default='')
-    aa_id = models.IntegerField('aa id if known for sure', blank=True, null=True)
+    aa_id = models.IntegerField(blank=True, null=True,
+        help_text="Only if known for sure")
     operson_id = models.IntegerField(
         'Owner ID', blank=True, null=True, 
-        help_text="blank if free. If unknown, choose the special 'Unknow Owner")
+        help_text="blank if free. If unknown, choose the special 'Unknow Owner'")
     name_note = models.CharField('Name note if no id known', max_length=64, 
         blank=True, default='')
     date_status = models.IntegerField(default=0, choices=DATE_STATUS)
-    low_year = models.IntegerField('Lower year or single', blank=True, 
-        null=True)
-    low_month = models.IntegerField('Month (number)', choices=LOW_MONTH, blank=True, null=True)
-    low_day = models.IntegerField('Day of month (number)', blank=True, null=True)
+    low_year = models.IntegerField('Year', blank=True, null=True,
+        help_text='Low year if range')
+    low_month = models.IntegerField('Month', choices=LOW_MONTH, blank=True, null=True)
+    low_day = models.IntegerField('Day', blank=True, null=True,
+        help_text='number')
     upr_year = models.IntegerField('Upper year if range', blank=True, null=True)
-    upr_month = models.IntegerField('Month (number)', blank=True, null=True)
-    upr_day = models.IntegerField('Day of month (number)', blank=True, null=True)
+    upr_month = models.IntegerField('Month', blank=True, null=True)
+    upr_day = models.IntegerField('Day', blank=True, null=True,
+        help_text='upper range')
     date_note = models.CharField(max_length=124, blank=True, default='')
     pvma_call_num = models.CharField(max_length=32, blank=True, default='')
     date_range = models.CharField('Date range (from title field)', max_length=32, 
         blank=True, default='')
     vol_book = models.CharField('Volume or book info', max_length=32, blank=True, default='')
-    page_num = models.CharField('Page info', max_length=64, blank=True, default='')
+    page_num = models.CharField(max_length=64, blank=True, default='')
     transaction_note = models.CharField(max_length=64, blank=True, default='')
     dollars = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     pounds = models.IntegerField(blank=True, null=True)
     shillings = models.IntegerField(blank=True, null=True)
     pence = models.IntegerField(blank=True, null=True)
     farthing = models.IntegerField(blank=True, null=True)
-    notes = models.CharField(max_length=255, blank=True, default='')
+    notes = models.TextField(blank=True, default='')
     legacy_enslaved_id = models.IntegerField(blank=True, null=True)
     access_order = models.IntegerField(blank=True, null=True)
     legacy_id = models.IntegerField(blank=True, null=True)
+    image_name = models.CharField(max_length=128, blank=True, null=True)
+    percent_top = models.IntegerField('% top to top', blank=True, null=True)
+    percent_height = models.IntegerField('% height', blank=True, null=True)
+    percent_left = models.IntegerField('% to left', blank=True, null=True)
+    percent_right = models.IntegerField('% to right', blank=True, null=True)
+    page_note = models.TextField(blank=True, default='')
+    scan_date = models.DateField( blank=True, null=True)
+    image_source = models.CharField(max_length=255, blank=True, default='')
+    other_image_source = models.CharField(max_length=128, blank=True, default='')
+    scan_note = models.TextField(blank=True, default='')
 
     class Meta:
         ordering = ['low_year', 'low_month', 'low_day']
