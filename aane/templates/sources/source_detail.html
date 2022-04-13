@@ -25,6 +25,7 @@
 	<table>
 		<tr>
 			<th>Edit</th>
+			<th>detail</th>
 			<th>Date</th>
 			<th>AA Name</th>
 			<th>Owner</th>
@@ -34,6 +35,7 @@
 		<tr>
 			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
 			<td class="sm"><a href="/admin/sources/sourceentry/{{entry.id}}/" target="admin">edit</a></td>
+			<td class="sm"><a href="/sources/entry/{{entry.id}}/">detail</a></td>
 			<td class="med">{% firstof entry.low_year "--" %} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}

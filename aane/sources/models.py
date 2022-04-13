@@ -79,15 +79,16 @@ class SourceEntry(models.Model):
     )
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.CASCADE)
     entry_text = models.CharField(max_length=255)
-    clarified = models.CharField(max_length=255, blank=True, default='')
+    clarified = models.CharField(max_length=255, blank=True, default='',
+        help_text='was for editor interpretation of entry text')
     event = models.CharField(max_length=128, blank=True, default='')
     aa_id = models.IntegerField(blank=True, null=True,
         help_text="Only if known for sure")
     operson_id = models.IntegerField(
         'Owner ID', blank=True, null=True, 
         help_text="blank if free. If unknown, choose the special 'Unknow Owner'")
-    name_note = models.CharField('Name note if no id known', max_length=64, 
-        blank=True, default='')
+    name_note = models.CharField(max_length=64, 
+        blank=True, default='', help_text='If person ID is not known')
     date_status = models.IntegerField(default=0, choices=DATE_STATUS)
     low_year = models.IntegerField('Year', blank=True, null=True,
         help_text='Low year if range')
