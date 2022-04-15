@@ -22,16 +22,21 @@ class PrimarySource(models.Model):
         ('primary','primary'),
         ('secondary','secondary'),
     )
-    source_type = models.CharField(max_length=32, choices=SOURCE_TYPE)
+    source_type = models.CharField('Type', max_length=32, choices=SOURCE_TYPE)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
-    year_start = models.IntegerField('Start year or single', blank=True, null=True)
-    year_end = models.IntegerField('End year if range', blank=True, null=True)
-    operson_id = models.IntegerField('O Person id if known', blank=True, null=True)
-    accession_num = models.CharField(max_length=64, blank=True, null=True)
+    year_start = models.IntegerField('Year', blank=True, null=True, 
+        help_text='Start year if range')
+    year_end = models.IntegerField('End year', blank=True, null=True,
+        help_text='if range')
+    operson_id = models.IntegerField('Owner', blank=True, null=True,
+        help_text='Id if known')
+    accession_num = models.CharField(max_length=64, blank=True, null=True,
+        help_text='We often do not have this.')
     other_accession_num = models.CharField(max_length=64, blank=True, null=True)
-
+    scan_id = models.CharField(max_length=32, blank=True, default='',
+        help_text='the prefix of the scan name')
 
     class Meta:
         ordering = ['source_type', 'title']
@@ -44,6 +49,13 @@ class PrimarySource(models.Model):
     def __str__(self):
         return self.title
         
+
+class Volume(models.Model):
+    primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
+    title = models.CharField(max_length=128, blank=True, default='')
+    volume_scan_id = models.CharField(max_length=32, blank=True, default='',
+        help_text='if different from primary source scan id')
+
 
 class SourceEntry(models.Model):
     """
@@ -77,7 +89,7 @@ class SourceEntry(models.Model):
         (11, 'Nov'),
         (12, 'Dec'),
     )
-    primary_source = models.ForeignKey('PrimarySource', on_delete=models.CASCADE)
+    primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
     entry_text = models.CharField(max_length=255)
     clarified = models.CharField(max_length=255, blank=True, default='',
         help_text='was for editor interpretation of entry text')
@@ -116,6 +128,8 @@ class SourceEntry(models.Model):
     access_order = models.IntegerField(blank=True, null=True)
     legacy_id = models.IntegerField(blank=True, null=True)
     image_name = models.CharField(max_length=128, blank=True, null=True)
+    scan_name = models.CharField(max_length=128, blank=True, null=True,
+        help_text='use for image name for now. drop ".jpg"')
     percent_top = models.IntegerField('% top to top', blank=True, null=True)
     percent_height = models.IntegerField('% height', blank=True, null=True)
     percent_left = models.IntegerField('% to left', blank=True, null=True)
