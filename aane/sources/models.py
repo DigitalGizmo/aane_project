@@ -22,7 +22,8 @@ class PrimarySource(models.Model):
         ('primary','primary'),
         ('secondary','secondary'),
     )
-    source_classification = models.CharField('Type', max_length=32, choices=SOURCE_CLASSIFICATION)
+    source_classification = models.CharField('Classification', 
+        max_length=32, choices=SOURCE_CLASSIFICATION)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
@@ -77,7 +78,7 @@ class SourceEntry(models.Model):
     """
     SourceEntry
     Has foreignKey to PrimarySource
-    All enties will end up with an aa_id - lots of those ids will be more or less place-
+    All entries will end up with an aa_id - lots of those ids will be more or less place-
     holders. In the meantime, an entry may have no aa_id, in which case the name_note will 
     be displayed.
     Fields:

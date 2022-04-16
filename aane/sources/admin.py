@@ -1,7 +1,8 @@
+from dataclasses import fields
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
-from .models import PrimarySource, SourceEntry
+from .models import PrimarySource, SourceEntry, SourceType, Volume
 from calendar import month_abbr
 
 """
@@ -11,25 +12,31 @@ class SourceCollectionAdmin(admin.ModelAdmin):
 admin.site.register(SourceCollection, SourceCollectionAdmin)
 """
 
-class SourceEntryInline(admin.StackedInline):
-    model = SourceEntry
-    extra = 3
+class VolumeInline(admin.StackedInline):
+    model = Volume
+    extra = 2
+    fields = ['primary_source', 'title', 'volume_scan_id',
+    ('year_start', 'year_end')]
 
-class PrimarySourceAdmin(admin.ModelAdmin): # 'source_type', 
-    fields = ['title', 'pub_info', 'description', 
+class PrimarySourceAdmin(admin.ModelAdmin): 
+    fields = ['title', 'source_classification', 'pub_info', 'description', 
     ('year_start', 'year_end'), 'operson_id']
-    #inlines = [SourceEntryInline]
-    # 'source_type', 
     list_display = ('title', 'id', 'pub_info', 'operson_id', 
         'year_start', 'year_end')
     search_fields = ['title']
-    # list_filter  = ['source_type'] 
+    list_filter  = ['source_classification'] 
+    inlines = [VolumeInline]
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'60'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':60})},
     }
 
-admin.site.register(PrimarySource, PrimarySourceAdmin)
+class SourceTypeAdmin(admin.ModelAdmin):
+    fields = [
+        'slug', 'title', 'note'
+    ]
+    list_display = ('slug', 'title')
+
 
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -78,4 +85,6 @@ class SourceEntryAdmin(admin.ModelAdmin):
             return display_date
     month_day.short_description = 'Mo. Day'   
 
+admin.site.register(PrimarySource, PrimarySourceAdmin)
+admin.site.register(SourceType, SourceTypeAdmin)
 admin.site.register(SourceEntry, SourceEntryAdmin)
