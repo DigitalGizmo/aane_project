@@ -22,7 +22,7 @@ class PrimarySource(models.Model):
         ('primary','primary'),
         ('secondary','secondary'),
     )
-    source_type = models.CharField('Type', max_length=32, choices=SOURCE_TYPE)
+    source_classification = models.CharField('Type', max_length=32, choices=SOURCE_TYPE)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
@@ -39,7 +39,7 @@ class PrimarySource(models.Model):
         help_text='the prefix of the scan name')
 
     class Meta:
-        ordering = ['source_type', 'title']
+        ordering = ['title'] # 'source_type', 
         verbose_name = "Source"
     
     @property

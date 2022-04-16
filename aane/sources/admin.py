@@ -15,14 +15,15 @@ class SourceEntryInline(admin.StackedInline):
     model = SourceEntry
     extra = 3
 
-class PrimarySourceAdmin(admin.ModelAdmin):
-    fields = ['source_type', 'title', 'pub_info', 'description', 
+class PrimarySourceAdmin(admin.ModelAdmin): # 'source_type', 
+    fields = ['title', 'pub_info', 'description', 
     ('year_start', 'year_end'), 'operson_id']
     #inlines = [SourceEntryInline]
-    list_display = ('title', 'id', 'source_type', 'pub_info', 'operson_id', 
+    # 'source_type', 
+    list_display = ('title', 'id', 'pub_info', 'operson_id', 
         'year_start', 'year_end')
     search_fields = ['title']
-    list_filter  = ['source_type'] 
+    # list_filter  = ['source_type'] 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'60'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':60})},
