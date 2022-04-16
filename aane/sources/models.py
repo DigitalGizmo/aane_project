@@ -18,11 +18,11 @@ class PrimarySource(models.Model):
     Also includes secondary sources -- determined by source type.
     Originally planned foreign key to Collection, but doens't seem necessary"""
     # .source_collection = models.ForeignKey('SourceCollection')
-    SOURCE_TYPE = (
+    SOURCE_CLASSIFICATION = (
         ('primary','primary'),
         ('secondary','secondary'),
     )
-    source_classification = models.CharField('Type', max_length=32, choices=SOURCE_TYPE)
+    source_classification = models.CharField('Type', max_length=32, choices=SOURCE_CLASSIFICATION)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
@@ -48,13 +48,29 @@ class PrimarySource(models.Model):
 
     def __str__(self):
         return self.title
-        
+
+class SourceType(models.Model):
+    slug = models.SlugField('short name', max_length=32, unique=True)
+    title = models.CharField(max_length=64)
+    note = models.TextField(blank=True, default='')   
+
+    def __str__(self):
+        return self.title
+
 
 class Volume(models.Model):
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
     title = models.CharField(max_length=128, blank=True, default='')
     volume_scan_id = models.CharField(max_length=32, blank=True, default='',
         help_text='if different from primary source scan id')
+    year_start = models.IntegerField('Year', blank=True, null=True, 
+        help_text='Start year if range')
+    year_end = models.IntegerField('End year', blank=True, null=True,
+        help_text='if range')
+    note = models.TextField(blank=True, default='')   
+
+    def __str__(self):
+        return self.title
 
 
 class SourceEntry(models.Model):
