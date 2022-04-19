@@ -76,7 +76,7 @@ class Volume(models.Model):
     note = models.TextField(blank=True, default='')   
 
     def __str__(self):
-        return self.title
+        return self.primary_source + ": " + self.title
 
 
 class SourceEntry(models.Model):
@@ -112,6 +112,8 @@ class SourceEntry(models.Model):
         (12, 'Dec'),
     )
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
+    volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
+        null=True, blank=True)
     entry_text = models.CharField(max_length=255)
     clarified = models.CharField(max_length=255, blank=True, default='',
         help_text='was for editor interpretation of entry text')

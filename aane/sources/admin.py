@@ -15,7 +15,8 @@ admin.site.register(SourceCollection, SourceCollectionAdmin)
 class VolumeInline(admin.StackedInline):
     model = Volume
     extra = 2
-    fields = ['primary_source', 'title', 'volume_scan_id',
+    fields = ['primary_source', 'title', 
+    ('volume_scan_id', 'accession_num', 'other_accession_num'),
     ('year_start', 'year_end', 'note')]
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'60'})},
