@@ -78,7 +78,7 @@ class Volume(models.Model):
     note = models.TextField(blank=True, default='')   
 
     def __str__(self):
-        return self.primary_source + ": " + self.title
+        return self.primary_source.title + ": " + self.title
 
 
 class SourceEntry(models.Model):
@@ -139,8 +139,7 @@ class SourceEntry(models.Model):
         help_text='upper range')
     date_note = models.CharField(max_length=124, blank=True, default='')
     pvma_call_num = models.CharField(max_length=32, blank=True, default='')
-    date_range = models.CharField('Date range (from title field)', max_length=32, 
-        blank=True, default='')
+    date_range = models.CharField(max_length=32, blank=True, default='')
     vol_book = models.CharField('Volume or book info', max_length=32, blank=True, default='')
     page_num = models.CharField(max_length=64, blank=True, default='')
     transaction_note = models.CharField(max_length=64, blank=True, default='')

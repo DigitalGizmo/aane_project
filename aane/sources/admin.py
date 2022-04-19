@@ -24,7 +24,8 @@ class VolumeInline(admin.StackedInline):
     }
 
 class PrimarySourceAdmin(admin.ModelAdmin): 
-    fields = ['title', 'source_classification', 'pub_info', 'description', 
+    fields = ['title', ('source_classification', 'source_type'),
+    'pub_info', 'location', 'description', 
     ('year_start', 'year_end'), 'operson_id']
     list_display = ('title', 'id', 'pub_info', 'operson_id', 
         'year_start', 'year_end')
@@ -46,7 +47,7 @@ class SourceTypeAdmin(admin.ModelAdmin):
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'primary_source', 'date_range',
+            'primary_source', ('date_range', 'volume'),
             'entry_text', 'event', 'transaction_note',
             ('aa_id', 'operson_id'), 'name_note', 
             ]}
