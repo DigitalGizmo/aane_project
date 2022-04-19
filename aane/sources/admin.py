@@ -16,7 +16,11 @@ class VolumeInline(admin.StackedInline):
     model = Volume
     extra = 2
     fields = ['primary_source', 'title', 'volume_scan_id',
-    ('year_start', 'year_end')]
+    ('year_start', 'year_end', 'note')]
+    formfield_overrides = {
+        # models.CharField: {'widget': TextInput(attrs={'size':'60'})},
+        models.TextField: {'widget': Textarea(attrs={'rows':2, 'cols':80})},
+    }
 
 class PrimarySourceAdmin(admin.ModelAdmin): 
     fields = ['title', 'source_classification', 'pub_info', 'description', 
