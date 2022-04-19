@@ -26,6 +26,7 @@ class PrimarySource(models.Model):
         max_length=32, choices=SOURCE_CLASSIFICATION)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
+    location = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
     year_start = models.IntegerField('Year', blank=True, null=True, 
         help_text='Start year if range')
@@ -68,6 +69,10 @@ class Volume(models.Model):
         help_text='Start year if range')
     year_end = models.IntegerField('End year', blank=True, null=True,
         help_text='if range')
+    accession_num = models.CharField(max_length=64, blank=True, null=True,
+        help_text='We often do not have this.')
+    other_accession_num = models.CharField(max_length=64, blank=True, null=True,
+        help_text='Often the PVMA number')
     note = models.TextField(blank=True, default='')   
 
     def __str__(self):
