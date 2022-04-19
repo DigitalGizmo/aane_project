@@ -12,6 +12,14 @@ class SourceCollection(models.Model):
     def __str__(self):
         return self.title
 """
+class SourceType(models.Model):
+    slug = models.SlugField('short name', max_length=32, unique=True)
+    title = models.CharField(max_length=64)
+    note = models.TextField(blank=True, default='')   
+
+    def __str__(self):
+        return self.title
+
 
 class PrimarySource(models.Model):
     """PrimarySource
@@ -24,6 +32,8 @@ class PrimarySource(models.Model):
     )
     source_classification = models.CharField('Classification', 
         max_length=32, choices=SOURCE_CLASSIFICATION)
+    source_type = models.ForeignKey('SourceType', default=1, 
+        on_delete=models.PROTECT)
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     location = models.CharField(max_length=128, blank=True, default='')
@@ -47,14 +57,6 @@ class PrimarySource(models.Model):
     @property
     def entries_count(self):
         return self.sourceentry_set.count()
-
-    def __str__(self):
-        return self.title
-
-class SourceType(models.Model):
-    slug = models.SlugField('short name', max_length=32, unique=True)
-    title = models.CharField(max_length=64)
-    note = models.TextField(blank=True, default='')   
 
     def __str__(self):
         return self.title
