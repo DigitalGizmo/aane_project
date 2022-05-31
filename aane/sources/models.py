@@ -80,6 +80,8 @@ class Volume(models.Model):
     def __str__(self):
         return self.primary_source.title + ": " + self.title
 
+    class Meta:
+        ordering = ['primary_source', 'title'] # 'source_type', 
 
 class SourceEntry(models.Model):
     """

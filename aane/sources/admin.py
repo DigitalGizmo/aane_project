@@ -23,6 +23,19 @@ class VolumeInline(admin.StackedInline):
         models.TextField: {'widget': Textarea(attrs={'rows':2, 'cols':80})},
     }
 
+class VolumeAdmin(admin.ModelAdmin):
+    fields = ['primary_source', 'title', 
+    ('volume_scan_id', 'accession_num', 'other_accession_num'),
+    ('year_start', 'year_end', 'note')]
+    list_display = ('title', 'short_source', 'volume_scan_id',
+        'accession_num', 'other_accession_num')
+    list_filter  = ['primary_source'] 
+    search_fields = ['entry_text']
+    def short_source(self, obj):
+        return obj.primary_source.title[0:20]    
+    short_source.short_description = 'Source (truncated)'
+
+
 class PrimarySourceAdmin(admin.ModelAdmin): 
     fields = ['title', ('source_classification', 'source_type'),
     'pub_info', 'location', 'description', 
@@ -78,6 +91,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     list_display = ('entry_text', 'low_year', 'month_day',
         'date_range', 'page_num', 'aa_id', 'operson_id')
     list_filter  = ['primary_source'] 
+    search_fields = ['entry_text']
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
@@ -92,5 +106,6 @@ class SourceEntryAdmin(admin.ModelAdmin):
     month_day.short_description = 'Mo. Day'   
 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
+admin.site.register(Volume, VolumeAdmin)
 admin.site.register(SourceType, SourceTypeAdmin)
 admin.site.register(SourceEntry, SourceEntryAdmin)
