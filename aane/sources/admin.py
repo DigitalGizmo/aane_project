@@ -62,13 +62,13 @@ class SourceEntryAdmin(admin.ModelAdmin):
         (None, {'fields': [
             'primary_source', ('date_range', 'volume'),
             'entry_text', 'event', 'transaction_note',
-            ('aa_id', 'operson_id'), 'name_note', 
+            ('aa_id', 'operson_id'), 'name_note', 'notes',
             ]}
         ),
         ('Date Info', {'fields': [
             ('low_year', 'low_month', 'low_day'), 
             ('upr_year', 'upr_month', 'upr_day'),
-            'date_status', 'date_note',   
+            'date_status', 'date_note',  
         ]}),
         ('Image Info', {'fields': [
             'image_name', 'image_source', 'other_image_source',
@@ -77,8 +77,8 @@ class SourceEntryAdmin(admin.ModelAdmin):
             'scan_note',], 'classes': ['collapse']
         }),
         ('Monetary Transaction', {'fields': [
-            'dollars', 'pounds', 'shillings', 'pence', 'farthing', 
-            'notes'], 'classes': ['collapse']
+            'dollars', 'pounds', 'shillings', 'pence', 'farthing'
+            ], 'classes': ['collapse']
         }),
         ('Legacy Info', {'fields': [
             'legacy_enslaved_id', 'access_order', 'legacy_id', 'pvma_call_num',
