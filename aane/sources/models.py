@@ -162,7 +162,7 @@ class SourceEntry(models.Model):
     percent_left = models.IntegerField('% to left', blank=True, null=True)
     percent_right = models.IntegerField('% to right', blank=True, null=True)
     page_note = models.TextField(blank=True, default='')
-    scan_date = models.DateField( blank=True, null=True)
+    scan_date = models.CharField(max_length=24, blank=True, null=True)
     image_source = models.CharField(max_length=255, blank=True, default='')
     other_image_source = models.CharField(max_length=128, blank=True, default='')
     scan_note = models.TextField(blank=True, default='')
@@ -188,3 +188,11 @@ class SourceEntry(models.Model):
 class VolumeIdImport(models.Model):
     legacy_id = models.IntegerField(blank=True, null=True)
     volume_id = models.IntegerField(blank=True, null=True)
+
+class EntryScanImport(models.Model):
+    legacy_id = models.IntegerField(blank=True, null=True)
+    scan_date = models.CharField(max_length=24, blank=True, default='')
+    image_source = models.CharField(max_length=255, blank=True, default='')
+    other_image_source = models.CharField(max_length=128, blank=True, default='')
+    scan_name = models.CharField(max_length=128, blank=True, null=True)
+    scan_note = models.TextField(blank=True, default='')
