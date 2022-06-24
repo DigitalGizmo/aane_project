@@ -185,6 +185,6 @@ class SourceEntry(models.Model):
     def __str__(self):
         return self.entry_text
 
-class VolumeIdTemp(models.Model):
-    legacy_id = models.CharField(max_length=6, blank=True, default='')
-    volume_id = models.CharField(max_length=6, blank=True, default='')
+class VolumeIdImport(models.Model):
+    legacy_id = models.IntegerField(blank=True, null=True)
+    volume_id = models.IntegerField(blank=True, null=True)
