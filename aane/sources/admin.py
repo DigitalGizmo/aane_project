@@ -69,12 +69,19 @@ class SourceEntryAdmin(admin.ModelAdmin):
             ('low_year', 'low_month', 'low_day'), 
             ('upr_year', 'upr_month', 'upr_day'),
             'date_status', 'date_note',  
-        ]}),
+            ], 'classes': ['collapse']
+        }),
         ('Image Info', {'fields': [
-            'image_name', 'image_source', 'other_image_source',
+            'image_name', 'scan_name', 'image_source', 'other_image_source',
             'scan_date',
             ('vol_book', 'page_num'),
-            'scan_note',], 'classes': ['collapse']
+            'scan_note',
+            ], 'classes': ['collapse']
+        }),
+        ('Entry Highlight', {'fields': [
+            ('percent_top', 'percent_height'), 
+            ('percent_left', 'percent_right'), 
+            ], 'classes': ['collapse']
         }),
         ('Monetary Transaction', {'fields': [
             'dollars', 'pounds', 'shillings', 'pence', 'farthing'
