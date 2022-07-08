@@ -115,6 +115,18 @@ class SourceEntry(models.Model):
         (11, 'Nov'),
         (12, 'Dec'),
     )
+    IMAGE_STATUS = (
+        (0, 'None'),
+        (1, 'Scanned'),
+        (2, 'Cnvrted'),
+        (3, 'Posted'),
+    )
+    DATA_STATUS = (
+        (0, 'OrigEntry'),
+        (1, 'NewEntry'),
+        (2, 'Updated'),
+        (3, 'Vetted'),
+    )
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
     volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
         null=True, blank=True)
@@ -166,6 +178,8 @@ class SourceEntry(models.Model):
     image_source = models.CharField(max_length=255, blank=True, default='')
     other_image_source = models.CharField(max_length=128, blank=True, default='')
     scan_note = models.TextField(blank=True, default='')
+    data_status = models.IntegerField(default=0, choices=DATA_STATUS)
+    image_status = models.IntegerField(default=0, choices=IMAGE_STATUS)
 
     class Meta:
         ordering = ['low_year', 'low_month', 'low_day']
