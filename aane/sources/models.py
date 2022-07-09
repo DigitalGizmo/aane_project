@@ -178,8 +178,10 @@ class SourceEntry(models.Model):
     image_source = models.CharField(max_length=255, blank=True, default='')
     other_image_source = models.CharField(max_length=128, blank=True, default='')
     scan_note = models.TextField(blank=True, default='')
-    data_status = models.IntegerField(default=0, choices=DATA_STATUS)
-    image_status = models.IntegerField(default=0, choices=IMAGE_STATUS)
+    data_status = models.IntegerField('data', default=0, choices=DATA_STATUS,
+        help_text='Data Status')
+    image_status = models.IntegerField('image', default=0, choices=IMAGE_STATUS,
+        help_text='Image Status')
 
     class Meta:
         ordering = ['low_year', 'low_month', 'low_day']

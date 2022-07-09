@@ -61,8 +61,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
             'primary_source', ('date_range', 'volume'),
-            'entry_text', 'event', 'transaction_note',
-            ('aa_id', 'operson_id'), 'name_note', 'notes',
+            'entry_text', ('event', 'transaction_note'),
+            ('aa_id', 'operson_id'), 
+            ('name_note', 'data_status'), 'notes',
             ]}
         ),
         ('Date Info', {'fields': [
@@ -73,7 +74,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
         ('Image Info', {'fields': [
             'image_name', 'scan_name', 'image_source', 'other_image_source',
-            'scan_date',
+            ('image_status', 'scan_date'),
             ('vol_book', 'page_num'),
             'scan_note',
             ], 'classes': ['collapse']
@@ -96,11 +97,12 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
     ]
     list_display = ('entry_text', 'legacy_id', 'low_year', 'month_day',
-        'date_range', 'page_num', 'aa_id', 'operson_id')
+        'date_range', 'page_num', 'aa_id', 'operson_id', 'data_status',
+        'image_status',)
     list_filter  = ['primary_source'] 
     search_fields = ['entry_text']
     formfield_overrides = {
-        models.CharField: {'widget': TextInput(attrs={'size':'80'})},
+        # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
     }
 
