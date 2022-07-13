@@ -167,8 +167,7 @@ class SourceEntry(models.Model):
     access_order = models.IntegerField(blank=True, null=True)
     legacy_id = models.IntegerField(blank=True, null=True)
     image_name = models.CharField(max_length=128, blank=True, null=True)
-    scan_name = models.CharField(max_length=128, blank=True, null=True,
-        help_text='use for image name for now. drop ".jpg"')
+    scan_name = models.CharField(max_length=128, blank=True, null=True)
     percent_top = models.IntegerField('% top to top', blank=True, null=True)
     percent_height = models.IntegerField('% height', blank=True, null=True)
     percent_left = models.IntegerField('% to left', blank=True, null=True)
