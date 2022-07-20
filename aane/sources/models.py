@@ -44,11 +44,13 @@ class PrimarySource(models.Model):
         help_text='if range')
     operson_id = models.IntegerField('Owner', blank=True, null=True,
         help_text='Id if known')
+    scan_id = models.CharField(max_length=32, blank=True, default='',
+        help_text='the prefix of the scan name')
+    tiff_location = models.CharField(max_length=128, blank=True, null=True)
+    # Not used, now per volume
     accession_num = models.CharField(max_length=64, blank=True, null=True,
         help_text='We often do not have this.')
     other_accession_num = models.CharField(max_length=64, blank=True, null=True)
-    scan_id = models.CharField(max_length=32, blank=True, default='',
-        help_text='the prefix of the scan name')
 
     class Meta:
         ordering = ['title'] # 'source_type', 
@@ -127,7 +129,8 @@ class SourceEntry(models.Model):
         (2, 'Updated'),
         (3, 'Vetted'),
     )
-    primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
+    primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT,
+        help_text='We will soon go by volume only')
     volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
         null=True, blank=True)
     entry_text = models.CharField(max_length=255)

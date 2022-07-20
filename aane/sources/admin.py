@@ -60,28 +60,28 @@ class SourceTypeAdmin(admin.ModelAdmin):
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'primary_source', ('date_range', 'volume'),
+            'volume','primary_source', 
             'entry_text', ('event', 'transaction_note'),
             ('aa_id', 'operson_id'), 
             ('name_note', 'data_status'), 'notes',
             ]}
         ),
-        ('Date Info', {'fields': [
-            ('low_year', 'low_month', 'low_day'), 
-            ('upr_year', 'upr_month', 'upr_day'),
-            'date_status', 'date_note',  
-            ], 'classes': ['collapse']
-        }),
         ('Image Info', {'fields': [
-            'image_name', 'scan_name', 'image_source', 'other_image_source',
+            'image_name', 'scan_name', # 'image_source', 'other_image_source',
             ('image_status', 'scan_date'),
             ('vol_book', 'page_num'),
             'scan_note',
-            ], 'classes': ['collapse']
+            ] #, 'classes': ['collapse']
         }),
         ('Entry Highlight', {'fields': [
             ('percent_top', 'percent_height'), 
             ('percent_left', 'percent_right'), 
+            ], 'classes': ['collapse']
+        }),
+        ('Date Info', {'fields': [
+            ('low_year', 'low_month', 'low_day'), 
+            ('upr_year', 'upr_month', 'upr_day'),
+            ('date_status', 'date_range'), 'date_note',  
             ], 'classes': ['collapse']
         }),
         ('Monetary Transaction', {'fields': [
@@ -97,9 +97,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
     ]
     list_display = ('entry_text', 'legacy_id', 'low_year', 'month_day',
-        'date_range', 'page_num', 'aa_id', 'operson_id', 'data_status',
+        'image_name', 'page_num', 'aa_id', 'operson_id', 'data_status',
         'image_status',)
-    list_filter  = ['primary_source'] 
+    list_filter  = ['image_status', 'primary_source'] 
     search_fields = ['entry_text']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
