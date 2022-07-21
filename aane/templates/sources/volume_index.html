@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+<!-- Mistakenly started - really wanted entries per volume.
+But this may come in handy later -->
+
 {% block head_title %}AAERNE - Sources{% endblock %}
 
 	{% block breadcrumbs %}
@@ -16,36 +19,34 @@
 			<!-- <th>ID</th> -->
 			<!-- <th>edit</th> -->
 			<!-- <th>Entries</th> -->
-			<th>Type</th>
-			<th>Count</th>
+			<!-- <th>Type</th> -->
+			<!-- <th>Count</th> -->
 			<th>Title</th>
-			<th>Classification</th>
-			<th>Description</th>
+			<!-- <th>Classification</th> -->
+			<!-- <th>Description</th> -->
 		</tr>
-		{% for primarysource in primarysource_list %}
+		{% for volume in volume_list %}
 		<tr>
-			<!-- <td class="sm">{{ primarysource.pk }}</td> -->
+			<!-- <td class="sm">{{ volume.pk }}</td> -->
 			<!-- <td class="sm">
-				<a href="/admin/sources/primarysource/{{primarysource.id}}/" target="admin">edit</a>
+				<a href="/admin/sources/volume/{{volume.id}}/" target="admin">edit</a>
 			</td> -->
 			<!-- <td class="med">
-				<a href="{% url 'sources:source_detail' primarysource.id %}">
+				<a href="{% url 'sources:source_detail' volume.id %}">
 					entries</a></td> -->
-			<td class="med">{{ primarysource.source_type }}</td>
-			<td class="sm">{{ primarysource.entries_count}}</td>
+			<!-- <td class="med">{{ primarysource.source_type }}</td> -->
+			<!-- <td class="sm">{{ primarysource.entries_count}}</td> -->
 			<td class="lrg">
 				<a href="{% url 'sources:source_detail' primarysource.id %}">
 					{{ primarysource.title|safe }}
 				</a>
 			</td>
-			<td class="med">{{ primarysource.source_classification|safe }}</td>
+			<!-- <td class="med">{{ primarysource.source_classification|safe }}</td> -->
 			<td class="lrg">
 				<ul>
 					{% for volume in primarysource.volume_set.all %}
 						<li>
-							<a href="{% url 'sources:volume_detail' volume.id %}">
-								{{ volume.title|safe }}
-							</a>
+							{{ volume.title|safe }}
 						</li>
 					{% endfor %}
 					

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import PrimarySource, SourceEntry
+from .models import PrimarySource, SourceEntry, Volume
 from people.models import AAPerson
 # new
 from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
@@ -17,10 +17,24 @@ class SourceListView(generic.ListView):
     context_object_name = 'primarysource_list'
     template_name = 'sources/index.html'
 
+"""""
+Mistakenly started - really wanted entries per volume.
+But this may come in handy later
+"""""
+class VolumeListView(generic.ListView):
+    model = PrimarySource
+    context_object_name = 'volume_list'
+    template_name = 'sources/volume_index.html'
+
 # this displays the Source's Entries as well
 class SourceDetailView(generic.DetailView):
     model = PrimarySource
     template_name = 'sources/source_detail.html'
+
+# New July 2022 - per volume detail
+class VolumeDetailView(generic.DetailView):
+    model = Volume
+    template_name = 'sources/volume_detail.html'
 
 class EntryDetailView(generic.DetailView):
     model = SourceEntry

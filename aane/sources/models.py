@@ -53,7 +53,7 @@ class PrimarySource(models.Model):
     other_accession_num = models.CharField(max_length=64, blank=True, null=True)
 
     class Meta:
-        ordering = ['title'] # 'source_type', 
+        ordering = ['source_classification', 'title'] # 'source_type', 
         verbose_name = "Source"
     
     @property

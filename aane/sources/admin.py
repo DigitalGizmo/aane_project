@@ -39,7 +39,7 @@ class VolumeAdmin(admin.ModelAdmin):
 class PrimarySourceAdmin(admin.ModelAdmin): 
     fields = ['title', ('source_classification', 'source_type'),
     'pub_info', 'location', 'description', 
-    ('year_start', 'year_end'), 'operson_id']
+    ('year_start', 'year_end'), ('operson_id', 'tiff_location')]
     list_display = ('title', 'id', 'pub_info', 'operson_id', 
         'year_start', 'year_end')
     search_fields = ['title']
@@ -99,7 +99,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     list_display = ('entry_text', 'legacy_id', 'low_year', 'month_day',
         'image_name', 'page_num', 'aa_id', 'operson_id', 'data_status',
         'image_status',)
-    list_filter  = ['image_status', 'primary_source'] 
+    list_filter  = ['image_status', 'volume'] # , 'primary_source' 
     search_fields = ['entry_text']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},

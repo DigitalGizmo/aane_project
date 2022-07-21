@@ -7,6 +7,7 @@ urlpatterns = [
 
     path('', views.SourceListView.as_view(), name='index'),
     path('source/<int:pk>/', views.SourceDetailView.as_view(), name='source_detail'),
+    path('volume/<int:pk>/', views.VolumeDetailView.as_view(), name='volume_detail'),
     # editing
     path(r'entry/add/', views.EntryCreateView.as_view(), name='entry_add'),
     path(r'entry/update/<int:pk>/', views.EntryUpdateView.as_view(), name='entry_update'),
