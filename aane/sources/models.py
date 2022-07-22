@@ -118,10 +118,12 @@ class SourceEntry(models.Model):
         (12, 'Dec'),
     )
     IMAGE_STATUS = (
-        (0, 'None'),
-        (1, 'Scanned'),
-        (2, 'Cnvrted'),
-        (3, 'Posted'),
+        (0, 'TBD'),
+        (1, 'NotFound'),
+        (2, 'NoImg'),
+        (3, 'Scanned'),
+        (5, 'Cnvrted'),
+        (6, 'Posted'),
     )
     DATA_STATUS = (
         (0, 'OrigEntry'),

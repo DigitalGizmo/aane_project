@@ -97,9 +97,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
     ]
     list_display = ('entry_text', 'legacy_id', 'low_year', 'month_day',
-        'image_name', 'page_num', 'aa_id', 'operson_id', 'data_status',
-        'image_status',)
-    list_filter  = ['image_status', 'volume'] # , 'primary_source' 
+        'image_name', 'data_status',
+        'image_status',) # 'page_num', 'aa_id', 'operson_id',
+    list_filter  = ['image_status', 'volume', 'primary_source']  
     search_fields = ['entry_text']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
