@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ScholarsConfig(AppConfig):
+class SourcesConfig(AppConfig):
     name = 'sources'

@@ -43,14 +43,15 @@ ALLOWED_HOSTS = ['aane.deerfield-ma.org', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = (
+    'people.apps.PeopleConfig',
+    'sources.apps.SourcesConfig',
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'people',
-    'sources',
 )
 
 MIDDLEWARE = [
@@ -135,3 +136,6 @@ TEMPLATES = [
 # For Django 3.2
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+GRAPHENE = {
+    "SCHEMA": "aane.schema.schema"
+}
