@@ -45,10 +45,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
-    'graphene_django',
+    # 'graphene_django',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -137,6 +138,6 @@ TEMPLATES = [
 # For Django 3.2
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-GRAPHENE = {
-    "SCHEMA": "aane.schema.schema"
-}
+# GRAPHENE = {
+#     "SCHEMA": "aane.schema.schema"
+# }
