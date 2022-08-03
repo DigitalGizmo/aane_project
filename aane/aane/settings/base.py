@@ -39,13 +39,14 @@ DEBUG = True
 # TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['aane.deerfield-ma.org', '127.0.0.1']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
     'graphene_django',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

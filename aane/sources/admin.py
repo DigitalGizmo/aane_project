@@ -96,8 +96,8 @@ class SourceEntryAdmin(admin.ModelAdmin):
                 'clarified',  ], 'classes': ['collapse']
         }),
     ]
-    list_display = ('entry_text', 'legacy_id', 'low_year', 'month_day',
-        'image_name', 'data_status',
+    list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
+        'low_year', 'month_day', 'image_name', 'data_status',
         'image_status',) # 'page_num', 'aa_id', 'operson_id',
     list_filter  = ['image_status', 'volume', 'primary_source']  
     search_fields = ['entry_text']
@@ -112,7 +112,15 @@ class SourceEntryAdmin(admin.ModelAdmin):
             if (obj.low_day):
                 display_date += " - " + str(obj.low_day)
             return display_date
-    month_day.short_description = 'Mo. Day'   
+    month_day.short_description = 'Mo. Day' 
+
+    def short_pvma(self, obj):
+        return obj.pvma_call_num
+    short_pvma.short_description = 'pvma'  
+
+    def vol_title(self, obj):
+        return obj.volume
+    vol_title.short_description = 'vol'  
 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
 admin.site.register(Volume, VolumeAdmin)
