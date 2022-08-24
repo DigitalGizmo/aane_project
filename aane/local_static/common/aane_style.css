@@ -49,3 +49,13 @@ nav ul	{
 	font-size: 85%;
 	font-weight: normal;
 }
+
+/* by Don */
+.image-container {
+	max-width: 60%;
+}
+
+.source-image {
+	max-width: 95%;
+	padding: 2% 5% 5% 5%;
+}
