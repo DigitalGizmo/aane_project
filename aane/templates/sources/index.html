@@ -17,10 +17,10 @@
 			<!-- <th>edit</th> -->
 			<!-- <th>Entries</th> -->
 			<th>Type</th>
-			<th>Count</th>
-			<th>Title</th>
 			<th>Classification</th>
-			<th>Description</th>
+			<th>Count</th>
+			<th>Source</th>
+			<th>Volume</th>
 		</tr>
 		{% for primarysource in primarysource_list %}
 		<tr>
@@ -31,14 +31,14 @@
 			<!-- <td class="med">
 				<a href="{% url 'sources:source_detail' primarysource.id %}">
 					entries</a></td> -->
-			<td class="med">{{ primarysource.source_type }}</td>
+			<td class="sm">{{ primarysource.source_type }}</td>
+			<td class="sm">{{ primarysource.source_classification|safe }}</td>
 			<td class="sm">{{ primarysource.entries_count}}</td>
 			<td class="lrg">
 				<a href="{% url 'sources:source_detail' primarysource.id %}">
 					{{ primarysource.title|safe }}
 				</a>
 			</td>
-			<td class="med">{{ primarysource.source_classification|safe }}</td>
 			<td class="lrg">
 				<ul>
 					{% for volume in primarysource.volume_set.all %}

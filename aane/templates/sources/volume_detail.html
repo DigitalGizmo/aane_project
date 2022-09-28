@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block head_title %}AAERNE - Source Volume Detail{% endblock %}
+{% block head_title %}AAERNE - Entries by Volume{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'sources:index'%}">Primary Sources </a> > Source Detail
+		<a href="/">Home</a> > 
+		<a href="{% url 'sources:index'%}">Primary Sources </a> > 
+		Entry list by volume
 	{% endblock %}
 
-{% block page_title %}AAERNE - Source Volume Detail{% endblock %}
+{% block page_title %}AAERNE - Entries by Volume{% endblock %}
 
 {% block content %}
 	<h1>{{ volume.primary_source.title|safe }}</h1>

@@ -1,17 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% comment %} Probably temp, for tutorial{% endcomment %}
+{% block head_title %}AAERNE - Entry Detail{% endblock %}
+
+	{% block breadcrumbs %}
+		<a href="/">Home</a> > 
+		<a href="{% url 'sources:index'%}">Primary Sources </a> > 
+		<a href="{% url 'sources:volume_detail' sourceentry.volume.id %}">Entries by Volume </a> > 
+		Entry Detail
+	{% endblock %}
+
+{% block page_title %}AAERNE - Entry Detail{% endblock %}
+
 
 {% block content %}
-	<h2>{% firstof sourceentry.low_year "--" %} 
+	<!-- <h2> {{ sourceentry.volume.primary_source.title|safe }} </h2>
+	<h3> Volume: {{ sourceentry.volume.title|safe }} |
+		Date: {% firstof sourceentry.low_year "--" %} 
 		{% if sourceentry.low_month %} 
 			{{ sourceentry.get_low_month_display }}
 		{% endif %}
-		{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}</h2>
+		{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
+		| ({{ sourceentry.image_name }})
+	</h3>
 	
-	<h3>Entry: {{ sourceentry.entry_text|safe }}</h3>
+	<h3>Entry: {{ sourceentry.entry_text|safe }}</h3> -->
 
+	<dl>
+		<dt>Source:</dt>
+		<dd>{{ sourceentry.volume.primary_source.title|safe }}</dd>
+		<dt>Volume:</dt>
+		<dd>{{ sourceentry.volume.title|safe }}</dd>
+		<dt>Date:</dt>
+		<dd>{% firstof sourceentry.low_year "--" %} 
+			{% if sourceentry.low_month %} 
+				{{ sourceentry.get_low_month_display }}
+			{% endif %}
+			{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
+		</dd>
+		<dt>File:</dt>
+		<dd>{{ sourceentry.image_name }}</dd>
+		<dt>Entry:</dt>
+		<dd>{{ sourceentry.entry_text|safe }}</dd>
+	</dl>
 	<!-- <img 
 		width = "90%"
 		src="{% static 'sources/pages/' %}{{ sourceentry.image_name }}.jpg" 
@@ -19,7 +50,7 @@
 	/> -->
 	<div class="source-image">
 		<img class="source-image"
-			src="https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/200,800,3000,800/1000,/0/default.jpg" 
+			src="https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/pct:5,50,95,10/1000,/0/default.jpg" 
 			alt="{{ sourceentry.image_name }}"
 		/>
 	</div>
