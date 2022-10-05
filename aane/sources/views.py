@@ -1,3 +1,5 @@
+from multiprocessing import context
+import re
 from django.shortcuts import get_object_or_404, render
 from .models import PrimarySource, SourceEntry, Volume
 from people.models import AAPerson
@@ -37,9 +39,27 @@ class VolumeDetailView(generic.DetailView):
     template_name = 'sources/volume_detail.html'
 
 class EntryDetailView(generic.DetailView):
-    model = SourceEntry
+    model = SourceEntry 
     template_name = 'sources/entry_detail.html'
-
+    # get the entry record
+    def get_context_data(self, **kwargs):
+        # Get the context
+        context = super(EntryDetailView, self).get_context_data(**kwargs)
+        # Get this entry object
+        entry_object = super(EntryDetailView, self).get_object()
+        # Get the percentage from top
+        view_percent_top = 0
+        if entry_object.percent_top:
+            view_percent_top = entry_object.percent_top
+        view_percent_height = 8
+        if entry_object.percent_height:
+            view_percent_height = entry_object.percent_height
+        # Add updated variable to context
+        context.update({
+            'view_percent_top': view_percent_top,
+            'view_percent_height': view_percent_height})
+        return context    
+        
 class EntryCreateView(generic.CreateView):
     model = SourceEntry
     #fields = ['entry_text']
