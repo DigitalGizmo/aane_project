@@ -52,12 +52,21 @@ class EntryDetailView(generic.DetailView):
         if entry_object.percent_top:
             view_percent_top = entry_object.percent_top
         view_percent_height = 8
+        if entry_object.percent_left:
+            view_percent_left = entry_object.percent_left
+        view_percent_width = 100
         if entry_object.percent_height:
             view_percent_height = entry_object.percent_height
+        view_percent_left = 0
+        if entry_object.percent_right:
+            view_percent_width = entry_object.percent_right
         # Add updated variable to context
         context.update({
             'view_percent_top': view_percent_top,
-            'view_percent_height': view_percent_height})
+            'view_percent_left': view_percent_left,
+            'view_percent_width': view_percent_width,
+            'view_percent_height': view_percent_height,
+            })
         return context    
         
 class EntryCreateView(generic.CreateView):

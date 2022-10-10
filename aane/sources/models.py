@@ -124,6 +124,7 @@ class SourceEntry(models.Model):
         (3, 'Scanned'),
         (5, 'Cnvrted'),
         (6, 'Posted'),
+        (7, 'Hilite'),
     )
     DATA_STATUS = (
         (0, 'OrigEntry'),
@@ -173,10 +174,10 @@ class SourceEntry(models.Model):
     legacy_id = models.IntegerField(blank=True, null=True)
     image_name = models.CharField(max_length=128, blank=True, null=True)
     scan_name = models.CharField(max_length=128, blank=True, null=True)
-    percent_top = models.IntegerField('% top to top', blank=True, null=True)
+    percent_top = models.IntegerField('% from top', blank=True, null=True)
     percent_height = models.IntegerField('% height', blank=True, null=True)
-    percent_left = models.IntegerField('% to left', blank=True, null=True)
-    percent_right = models.IntegerField('% to right', blank=True, null=True)
+    percent_left = models.IntegerField('% from left', blank=True, null=True)
+    percent_right = models.IntegerField('% width', blank=True, null=True)
     page_note = models.TextField(blank=True, default='')
     scan_date = models.CharField(max_length=24, blank=True, null=True)
     image_source = models.CharField(max_length=255, blank=True, default='')
