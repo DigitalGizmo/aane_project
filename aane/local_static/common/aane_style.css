@@ -51,11 +51,21 @@ nav ul	{
 }
 
 /* by Don */
-.image-container {
-	max-width: 60%;
-}
 
 .source-image {
 	max-width: 95%;
-	/* padding: 0% 5% 0% 5%; */
+}
+
+.image-container {
+	position: relative;
+	max-width: 60%;
+}
+
+.box-hilite {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	background: rgba(0,0,0,0.0);
+	border:2px solid darkred;
+	z-index: 1;
 }
