@@ -14,7 +14,7 @@
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>Edit</th>
+			{% comment %} <th>Edit</th> {% endcomment %}
 			<th>Details</th>
 			<th>Entries</th>
 			<th>Known?</th>
@@ -29,10 +29,10 @@
 		{% for aaperson in aaperson_list %}
 		<tr>
 			<td class="sm">{{ aaperson.id }}</td>
-			<td class="sm">
+			{% comment %} <td class="sm"> {% endcomment %}
 				<!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
-				<a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
-			</td>
+				{% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
+			</td> {% endcomment %}
 			<td class="med"><a href="{% url 'people:aaperson_entries' aaperson.id %}">details</a></td>
 			<td class="sm">{{ aaperson.person_entries.count }}</td>
 			<td class="med">{{ aaperson.get_known_status_display }}</td>

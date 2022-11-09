@@ -32,6 +32,9 @@
 			<th>AA Name</th>
 			<th>Owner</th>
 			<th>Image</th>
+			<th>$</th>
+			<th>&pound;</th>
+			<th>shl</th>
 			<th>Entry</th>
 		</tr>
 		{% for entry in primarysource.sourceentry_set.all %}
@@ -39,7 +42,7 @@
 			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
 			<!-- <td class="sm"><a href="/admin/sources/sourceentry/{{entry.id}}/" target="admin">edit</a></td> -->
 			<td class="sm"><a href="/sources/entry/{{entry.id}}/">detail</a></td>
-			<td class="med">{% firstof entry.low_year "--" %} 
+			<td class="medplus">{% firstof entry.low_year "--" %} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
@@ -68,7 +71,17 @@
 			</td>
 			<td class="sm">
         {% if entry.image_status > 5 %} &check; {% endif %}
+        {% if entry.image_status > 6 %} &check; {% endif %}
       </td>	
+			<td class="xsm">
+				{% if entry.dollars %} {{ entry.dollars }}{% endif %}
+			</td>					
+			<td class="xsm">
+				{% if entry.pounds %} {{ entry.pounds }}{% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.shillings %} {{ entry.shillings }}{% endif %}
+			</td>			
 			<td class="xlrg">{{ entry.entry_text|safe }}</td>
 		</tr>
 		{% endfor %}

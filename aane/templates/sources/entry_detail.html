@@ -42,6 +42,19 @@
 		<dd>{{ sourceentry.image_name }}</dd>
 		<dt>Entry:</dt>
 		<dd>{{ sourceentry.entry_text|safe }}</dd>
+		<dt>Monetary Transaction:</dt>
+		<dd>
+			{% if sourceentry.dollars %} 
+				${{ sourceentry.dollars }}
+			{% endif %}
+			{% if sourceentry.pounds %} 
+				&pound;{{ sourceentry.pounds }}
+			{% endif %}
+			{% if sourceentry.shillings %} 
+				{{ sourceentry.shillings }} shillings
+			{% endif %}
+
+		</dd>
 	</dl>
 	<!-- <img 
 		width = "90%"
