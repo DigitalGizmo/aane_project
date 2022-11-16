@@ -51,7 +51,10 @@
 				&pound;{{ sourceentry.pounds }}
 			{% endif %}
 			{% if sourceentry.shillings %} 
-				{{ sourceentry.shillings }} shillings
+				/{{ sourceentry.shillings }}
+			{% endif %}
+			{% if sourceentry.pence %} 
+				/{{ sourceentry.pence }}
 			{% endif %}
 
 		</dd>

@@ -35,6 +35,7 @@
 			<th>$</th>
 			<th>&pound;</th>
 			<th>shl</th>
+			<th>pnc</th>
 			<th>Entry</th>
 		</tr>
 		{% for entry in primarysource.sourceentry_set.all %}
@@ -81,6 +82,9 @@
 			</td>			
 			<td class="xsm">
 				{% if entry.shillings %} {{ entry.shillings }}{% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.pence %} {{ entry.pence }}{% endif %}
 			</td>			
 			<td class="xlrg">{{ entry.entry_text|safe }}</td>
 		</tr>
