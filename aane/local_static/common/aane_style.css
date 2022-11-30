@@ -16,7 +16,9 @@ h3	{	font-size: 100%;	}
 ul.horiz li	{float: left; margin-right: 2em;}
 
 /*style for basic text elements*/
-p, li, blockquote {	font-size: 1em; line-height: 1.75em;	}
+p, blockquote {	font-size: 1em; line-height: 1.75em;	}
+li {	font-size: 1em; line-height: 1.2em;	}
+
 table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
 
 table 	{ width: 100%;	}
@@ -67,4 +69,8 @@ nav ul	{
 	background: rgba(0,0,0,0.0);
 	border:2px solid darkred;
 	z-index: 1;
+}
+
+.source-volumes {
+	line-height: 1.2em;
 }
