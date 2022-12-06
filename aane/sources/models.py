@@ -189,7 +189,8 @@ class SourceEntry(models.Model):
         help_text='Image Status')
 
     class Meta:
-        ordering = ['low_year', 'low_month', 'low_day']
+        ordering = ['primary_source', 'volume', 'low_year', 
+        'low_month', 'low_day']
              
     @property
     def aa_person(self):
