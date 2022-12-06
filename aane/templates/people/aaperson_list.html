@@ -38,8 +38,12 @@
 			</td>
 			<td class="medplus">{{ aaperson.first_name|safe }}</td>
 			<td class="medplus">{{ aaperson.last_name|safe }}</td>
-			<td class="med">{{ aaperson.birth }}</td>
-			<td class="med">{{ aaperson.death }}</td>
+			<td class="med">
+				{% if aaperson.birth_year %} {{ aaperson.birth_year }}{% endif %}
+			</td>
+			<td class="med">
+				{% if aaperson.death_year %} {{ aaperson.death_year }}{% endif %}
+			</td>
 			<td class="med">{{ aaperson.get_known_status_display }}</td>
 			<td class="med">{{ aaperson.get_freed_status_display }}</td>
 			<td>
