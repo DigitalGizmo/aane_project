@@ -6,11 +6,11 @@
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > 
 		<a href="{% url 'sources:index'%}">Primary Sources </a> > 
-		<a href="{% url 'sources:volume_detail' sourceentry.volume.id %}">Entries by Volume </a> > 
+		<a href="{% url 'sources:source_detail' sourceentry.primary_source.id %}#{{ sourceentry.volume.id }}">Volume </a> > 
 		Entry Detail
 	{% endblock %}
 
-{% block page_title %}AAERNE - Entry Detail{% endblock %}
+{% block page_title %}Entry Detail{% endblock %}
 
 
 {% block content %}
