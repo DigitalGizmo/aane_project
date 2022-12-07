@@ -59,7 +59,7 @@
 				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
 			</td>
 			<td class="medlrg"><em>{{ entry.primary_source }}</em></td>
-			<td class="medplus">{{ entry.volume.title }}</td>
+			<td class="medlrg">{{ entry.volume.title }}</td>
 			<td class="med">{% firstof entry.low_year "--" %} 
 			{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
 			{% if entry.low_day %} {{ entry.low_day }}{% endif %}

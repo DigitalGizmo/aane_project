@@ -33,6 +33,24 @@ class SourceDetailView(generic.DetailView):
     model = PrimarySource
     template_name = 'sources/source_detail.html'
 
+    # Get list of entries with no volume assignment
+    def get_context_data(self, **kwargs):
+        # Get the context
+        context = super(SourceDetailView, self).get_context_data(**kwargs)
+        # Get this source object
+        source_object = super(SourceDetailView, self).get_object()
+        # Filter for entries where volume_id === null
+        # entries_no_vol = source_object.sourceentry_set.all
+        entries_no_vol = source_object.sourceentry_set.filter(volume_id__isnull=True)
+
+        # Add updated variable to context
+        context.update({
+            'entries_no_vol': entries_no_vol,
+            })
+        return context    
+        
+
+
 # New July 2022 - per volume detail
 class VolumeDetailView(generic.DetailView):
     model = Volume

@@ -13,19 +13,19 @@
 	
 	<h3>{{ primarysource.title|safe }}</h3>
 	<dl>
-		<dt>PVMA call number:</dt><dd>{{ primarysource.pvma_call_num }}</dd>
+		{% comment %} <dt>PVMA call number:</dt><dd>{{ primarysource.pvma_call_num }}</dd> {% endcomment %}
 		<dt>Description:</dt><dd>{{ primarysource.description }}</dd>
-		<dt>Date range:</dt>
+		{% comment %} <dt>Date range:</dt>
 		<dd>
 			{% firstof primarysource.year_start "--" %} to
 			{% firstof primarysource.year_end "--" %}
-		</dd>
+		</dd> {% endcomment %}
 	</dl>
 	<br clear="left">
-	<table>
+
+	{% comment %} All entries in source with volume listed in a column {% endcomment %}
+	{% comment %} <table>
 		<tr>
-			<!-- <th>Edit</th> -->
-			{% comment %} <th>detail</th> {% endcomment %}
 			<th>Entry</th>
 			<th>Date</th>
 			<th>Vol Name</th>
@@ -40,9 +40,6 @@
 		</tr>
 		{% for entry in primarysource.sourceentry_set.all %}
 		<tr>
-			<!-- <td><a href="{ url 'sources:entry_update' entry.id }">edit</a></td> -->
-			<!-- <td class="sm"><a href="/admin/sources/sourceentry/{{entry.id}}/" target="admin">edit</a></td> -->
-			{% comment %} <td class="sm"><a href="/sources/entry/{{entry.id}}/">detail</a></td> {% endcomment %}
 			<td class="xlrg">
 				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
 			</td>
@@ -91,13 +88,142 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
-<p class="faint">sources/source_detail.html</p>
-<p class="faint">Wish list:</p>
-<ul class="faint">
-	<li>Navigation: next and previous source</li>
-	<li></li>
-	<li></li>
-</ul>
+	 {% endcomment %}
+	
+	{% comment %} Experimental Volume Headings {% endcomment %}
+
+	{% for volume in primarysource.volume_set.all %}
+		<h3 class="volume-heading">
+			Volume: {{ volume.title }} PVMA#: {%  firstof volume.other_accession_num "-" %} 
+			Date range: 
+				{% firstof volume.year_start "--" %} to
+				{% firstof volume.year_end "--" %}
+		</h3>
+
+		<table>
+			<tr>
+				<th>Entry</th>
+				<th>Date</th>
+				<th>AA Name</th>
+				<th>Owner</th>
+				<th>Image</th>
+				<th>$</th>
+				<th>&pound;</th>
+				<th>shl</th>
+			</tr>
+			{% for entry in volume.sourceentry_set.all %}
+			<tr>
+				<td class="xlrg">
+					<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+				</td>
+				<td class="medplus">{% firstof entry.low_year "--" %} 
+					{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
+					{% if entry.low_day %} {{ entry.low_day }}{% endif %}
+				</td>
+				<td class="medplus">
+					{% if entry.aa_person %}
+						{% if entry.aa_person.known_status == 1 %}<strong>{% endif %}
+						<a href="/people/aaperson/entries/{{ entry.aa_person.id }}/">{{ entry.aa_person.name }}</a>
+						{% if entry.aa_person.known_status == 1 %}</strong>{% endif %}
+	
+					{% else %}
+						<span class="faint">{{ entry.name_note }}</span>
+					{% endif %}
+				</td>
+				<td class="medplus">
+					{% if entry.o_person %}
+						<a href="/people/operson/{{ entry.o_person.id }}/">{{ entry.o_person.name }}</a></td>
+					{% else %}
+						<span class="faint">Free</span>
+					{% endif %}
+				</td>
+				<td class="sm">
+					{% if entry.image_status > 5 %} &check; {% endif %}
+					{% if entry.image_status > 6 %} &check; {% endif %}
+				</td>			
+				<td class="xsm">
+					{% if entry.dollars %} {{ entry.dollars }}{% endif %}
+				</td>					
+				<td class="xsm">
+					{% if entry.pounds %} {{ entry.pounds }}{% endif %}
+				</td>			
+				<td class="xsm">
+					{% if entry.shillings %} {{ entry.shillings }}{% endif %}
+				</td>			
+			</tr>
+			{% endfor %}
+		</table>
+		<p class="small"><a href="#top">top of page</a></p>
+
+
+	{% endfor %}
+	
+	<h3>No Volume assigned </h3>
+
+	<table>
+		<tr>
+			<th>Entry</th>
+			<th>Date</th>
+			<th>AA Name</th>
+			<th>Owner</th>
+			<th>Image</th>
+			<th>$</th>
+			<th>&pound;</th>
+			<th>shl</th>
+		</tr>
+		{% for entry in entries_no_vol %}
+		<tr>
+			<td class="xlrg">
+				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+			</td>
+			<td class="medplus">{% firstof entry.low_year "--" %} 
+				{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
+				{% if entry.low_day %} {{ entry.low_day }}{% endif %}
+			</td>
+			<td class="medplus">
+				{% if entry.aa_person %}
+					{% if entry.aa_person.known_status == 1 %}<strong>{% endif %}
+					<a href="/people/aaperson/entries/{{ entry.aa_person.id }}/">{{ entry.aa_person.name }}</a>
+					{% if entry.aa_person.known_status == 1 %}</strong>{% endif %}
+
+				{% else %}
+					<span class="faint">{{ entry.name_note }}</span>
+				{% endif %}
+			</td>
+			<td class="medplus">
+				{% if entry.o_person %}
+					<a href="/people/operson/{{ entry.o_person.id }}/">{{ entry.o_person.name }}</a></td>
+				{% else %}
+					<span class="faint">Free</span>
+				{% endif %}
+			</td>
+			<td class="sm">
+				{% if entry.image_status > 5 %} &check; {% endif %}
+				{% if entry.image_status > 6 %} &check; {% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.dollars %} {{ entry.dollars }}{% endif %}
+			</td>					
+			<td class="xsm">
+				{% if entry.pounds %} {{ entry.pounds }}{% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.shillings %} {{ entry.shillings }}{% endif %}
+			</td>			
+		</tr>
+		{% endfor %}
+	</table>
+
+	
+	{% comment %} {% endfor %} {% endcomment %}
+
+	{% comment %} <p class="faint">sources/source_detail.html</p>
+	<p class="faint">Wish list:</p>
+	<ul class="faint">
+		<li>Navigation: next and previous source</li>
+		<li></li>
+		<li></li>
+	</ul> {% endcomment %}
 
 
 {% endblock content %}

@@ -13,9 +13,6 @@
 
 	<table>
 		<tr>
-			<!-- <th>ID</th> -->
-			<!-- <th>edit</th> -->
-			<!-- <th>Entries</th> -->
 			<th>Source</th>
 			{% comment %} <th>Volume</th> {% endcomment %}
 			<th>Type</th>
@@ -25,12 +22,6 @@
 		{% for primarysource in primarysource_list %}
 		<tr>
 			<!-- <td class="sm">{{ primarysource.pk }}</td> -->
-			<!-- <td class="sm">
-				<a href="/admin/sources/primarysource/{{primarysource.id}}/" target="admin">edit</a>
-			</td> -->
-			<!-- <td class="med">
-				<a href="{% url 'sources:source_detail' primarysource.id %}">
-					entries</a></td> -->
 			<td class="lrg">
 				<a href="{% url 'sources:source_detail' primarysource.id %}">
 					{{ primarysource.title|safe }}
@@ -45,20 +36,8 @@
 					</li>
 					{% endfor %}				
 				</ul>
-
-
 			</td>
-			{% comment %} <td class="lrg">
-				<ul>
-					{% for volume in primarysource.volume_set.all %}
-					<li>
-						<a href="{% url 'sources:volume_detail' volume.id %}">
-							{{ volume.title|safe }}
-						</a>
-					</li>
-					{% endfor %}				
-				</ul>
-			</td> {% endcomment %}
+
 			<td class="sm">{{ primarysource.source_type }}</td>
 			<td class="sm">{{ primarysource.source_classification|safe }}</td>
 			<td class="sm">{{ primarysource.entries_count}}</td>
