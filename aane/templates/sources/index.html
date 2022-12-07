@@ -27,10 +27,13 @@
 					{{ primarysource.title|safe }}
 				</a>
 
-				<ul >
+				<ul class="volume-sublist">
 					{% for volume in primarysource.volume_set.all %}
 					<li class="source-volumes">
-						<a href="{% url 'sources:volume_detail' volume.id %}">
+
+						{% comment %} <a href="{% url 'sources:volume_detail' volume.id %}"> {% endcomment %}
+						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
+
 							{{ volume.title|safe }}
 						</a>
 					</li>

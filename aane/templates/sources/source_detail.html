@@ -93,7 +93,7 @@
 	{% comment %} Experimental Volume Headings {% endcomment %}
 
 	{% for volume in primarysource.volume_set.all %}
-		<h3 class="volume-heading">
+		<h3 id="{{ volume.id }}"  class="volume-heading">
 			Volume: {{ volume.title }} PVMA#: {%  firstof volume.other_accession_num "-" %} 
 			Date range: 
 				{% firstof volume.year_start "--" %} to
