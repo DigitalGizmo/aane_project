@@ -29,7 +29,7 @@
 			{% firstof aaperson.last_appearance_year "--" %} 
 		</dd>
 		<dt>year freed</dt><dd>{% firstof aaperson.free_start_year "--" %}</dd>
-		<dt>owner(s)</dt>
+		<dt>enslaver(s)</dt>
 			<dd>
 				{% for owner in aaperson.owners.all %}
 					{{ owner.name|safe }},
