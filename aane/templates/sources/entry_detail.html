@@ -80,5 +80,15 @@
 			style="left:{{ view_percent_left }}%;top:{{ view_percent_top }}%;width:{{ view_percent_width }}%;height:{{ view_percent_height }}%;"
 		></div> {% endcomment %}
 	</div>
+	{% comment %} Experiment w SeaDragon {% endcomment %}
+	<div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+	<script src="{% static 'js/openseadragon.min.js' %}"></script>
+	<script type="text/javascript">
+			var viewer = OpenSeadragon({
+					id: "openseadragon1",
+					prefixUrl: "{% static 'js/images/' %}",
+					tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
+			});
+	</script>
 
 {% endblock content %}
