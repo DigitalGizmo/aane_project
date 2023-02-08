@@ -59,29 +59,8 @@
 
 		</dd>
 	</dl>
-	<!-- <img 
-		width = "90%"
-		src="{% static 'sources/pages/' %}{{ sourceentry.image_name }}.jpg" 
-		alt="Just testing"
-	/> -->
-	{% comment %} <div class="source-image">
-		<img class="source-image"
-			src="https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/pct:{{ view_percent_left }},{{ view_percent_top }},{{ view_percent_width }},{{ view_percent_height }}/1000,/0/default.jpg" 
-			alt="{{ sourceentry.image_name }}"
-		/>
-	</div> {% endcomment %}
-	{% comment %} <div class="image-container">
-		<img class="source-image"
-			src="https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/full/,1200/0/default.jpg" 
-			alt="{{ sourceentry.image_name }}"
-		/> {% endcomment %}
-		{% comment %} <div 
-			class="box-hilite"
-			style="left:{{ view_percent_left }}%;top:{{ view_percent_top }}%;width:{{ view_percent_width }}%;height:{{ view_percent_height }}%;"
-		></div> {% endcomment %}
-	{% comment %} </div> {% endcomment %}
 	{% comment %} Experiment w SeaDragon {% endcomment %}
-	<div id="openseadragon1" style=" height: 1200px;"></div> 
+	<div id="openseadragon1" style=" height: 80vh; background-color: #EEE;"></div> 
 	{% comment %} width: 800px;  <div id="openseadragon1" class="zoom-image"></div> {% endcomment %}
 	<script src="{% static 'js/openseadragon.min.js' %}"></script>
 	<script type="text/javascript">
