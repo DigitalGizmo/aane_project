@@ -90,3 +90,11 @@ nav ul	{
 .site-heading {
 	margin-bottom: .3em;
 }
+
+/*style for basic text elements*/
+.full-bio p {	
+	font-size: 0.85em; 
+	line-height: 1;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
