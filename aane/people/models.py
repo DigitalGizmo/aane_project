@@ -1,5 +1,6 @@
 from django.urls import reverse
 from django.db import models
+from django_quill.fields import QuillField
 from sources.models import SourceEntry
 
 
@@ -18,6 +19,7 @@ class PersonModel(models.Model):
     last_name = models.CharField(max_length=32, blank=True, default='')
     gender = models.CharField(max_length=12, choices=GENDER)
     bio = models.TextField(blank=True, default='')
+    full_bio = QuillField(blank=True, default='')
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
 
@@ -94,5 +96,5 @@ class OPerson(PersonModel):
 
     class Meta:
         ordering = ["pk"]
-        verbose_name = "Other/Owner"
+        verbose_name = "Others/Enslavers"
 

@@ -45,6 +45,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
+    'django_quill',
     # 'graphene_django',
     'corsheaders',
     'django.contrib.admin',
