@@ -17,7 +17,7 @@
 		<dt>first name</dt><dd>{{ aaperson.first_name }}</dd>
 		<dt>last name</dt><dd>{{ aaperson.last_name }}</dd>
 		<dt>gender</dt><dd>{{ aaperson.gender }}</dd>
-		<dt>bio</dt><dd>{{ aaperson.bio }}</dd>
+	
 		<dt>birth, death year</dt>
 		<dd>
 			{% firstof aaperson.birth_year "--" %}, 
@@ -39,12 +39,12 @@
 	</dl>
 	<br clear="left" />
 
-	{% if aaperson.full_bio.html %}
+
 		<div class='full-bio'>
-			<h3>Full bio</h3>
-			{{ aaperson.full_bio.html|safe }}
+			<h3>Bio</h3>
+			{{ aaperson.bio.html|safe }}
 		</div>
-	{% endif %}
+	
 
 
 

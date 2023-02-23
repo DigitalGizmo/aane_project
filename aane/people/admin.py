@@ -5,7 +5,7 @@ from .models import AAPerson, OPerson
 class AAPersonAdmin(admin.ModelAdmin):
     fields = ['name', 'first_name','last_name', 'alt_name_spelling', 'freed_name', 'gender',
             'known_status', 'freed_status','birth_year', 
-            'death_year', 'bio', 'full_bio', 'owners', 'place_of_origin', 
+            'death_year', 'bio', 'owners', 'place_of_origin', 
             'owner_id','first_appearance_year', 'last_appearance_year', 
             'free_start_year']
     list_display = ('name', 'id', 'owner_id', 'first_name', 'last_name', 'alt_name_spelling', 

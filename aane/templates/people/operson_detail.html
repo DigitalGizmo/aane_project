@@ -18,7 +18,7 @@
 		<dt>first name</dt><dd>{{ operson.first_name }}</dd>
 		<dt>last name</dt><dd>{{ operson.last_name }}</dd>
 		<dt>gender</dt><dd>{{ operson.gender }}</dd>
-		<dt>bio</dt><dd>{{ operson.bio }}</dd>
+	
 		<dt>birth, death year</dt>
 		<dd>
 			{% firstof operson.birth_year "--" %}, {% firstof operson.death_year "--" %} 
@@ -27,6 +27,12 @@
 		<dt>race</dt><dd>{{ operson.race }}</dd>
 	</dl>
 	<br clear="left" />
+
+	<div class='full-bio'>
+		<h3>Bio</h3>
+		{{ operson.bio.html|safe }}
+	</div>
+
 	<h2>Enslaved persons:</h2>
 	<ul class="unstyledlist">
 		{% for aaperson in operson.aaperson_set.all %}
