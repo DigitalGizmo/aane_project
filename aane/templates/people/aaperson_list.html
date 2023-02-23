@@ -17,8 +17,8 @@
 			<th>Name</th>
 			<th>First Name</th>
 			<th>Last Name</th>
-			<th>Birth</th>
-			<th>Death</th>
+			<th>First Rec</th>
+			<th>Last Rec</th>
 			<th>Known?</th>
 			<th>Enslaved?</th>
 			<th>Enslaver(s)</th>
@@ -39,10 +39,14 @@
 			<td class="medplus">{{ aaperson.first_name|safe }}</td>
 			<td class="medplus">{{ aaperson.last_name|safe }}</td>
 			<td class="med">
-				{% if aaperson.birth_year %} {{ aaperson.birth_year }}{% endif %}
+				{% if aaperson.first_appearance_year %}
+					{{ aaperson.first_appearance_year }}
+				{% endif %}
 			</td>
 			<td class="med">
-				{% if aaperson.death_year %} {{ aaperson.death_year }}{% endif %}
+				{% if aaperson.last_appearance_year %} 
+					{{ aaperson.last_appearance_year }}
+				{% endif %}
 			</td>
 			<td class="med">{{ aaperson.get_known_status_display }}</td>
 			<td class="med">{{ aaperson.get_freed_status_display }}</td>
