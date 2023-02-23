@@ -19,6 +19,7 @@ class PersonModel(models.Model):
     last_name = models.CharField(max_length=32, blank=True, default='')
     gender = models.CharField(max_length=12, choices=GENDER)
     bio = models.TextField(blank=True, default='')
+    bio_plain_text = models.TextField(blank=True, default='')
     full_bio = QuillField(blank=True, default='')
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
