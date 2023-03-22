@@ -46,15 +46,14 @@
 		<dd>
 			{% if sourceentry.dollars %} 
 				${{ sourceentry.dollars }}
-			{% endif %}
-			{% if sourceentry.pounds %} 
-				&pound;{{ sourceentry.pounds }}
-			{% endif %}
-			{% if sourceentry.shillings %} 
-				/{{ sourceentry.shillings }}
-			{% endif %}
-			{% if sourceentry.pence %} 
-				/{{ sourceentry.pence }}
+			{% else %}
+				&pound;
+				{% firstof sourceentry.pounds "0" %}/
+				{% firstof sourceentry.shillings "0" %}/
+				{% firstof sourceentry.pence "0" %}
+				{% if sourceentry.farthing %}
+					(f {{ farthing }})
+				{% endif %}
 			{% endif %}
 
 		</dd>

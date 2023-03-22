@@ -23,6 +23,15 @@
 	</dl>
 	<br clear="left">
 
+	<ul>
+		{% for volume in primarysource.volume_set.all %}
+			<li><a href="#{{ volume.id }}">
+				{{ volume.title|safe }} 
+			</a> </li> 
+		{% endfor %}
+		</ul>
+	
+
 	{% for volume in primarysource.volume_set.all %}
 		<h3 id="{{ volume.id }}"  class="volume-heading">
 			Volume: {{ volume.title }}
@@ -44,8 +53,10 @@
 				<th>Enslaver</th>
 				<!-- <th>Imagex</th> -->
 				<th>$</th>
-				<th>&pound;/s/p</th>
-				<!-- <th>shl</th> -->
+				<th>&nbsp;&pound;</th>
+				<th>&nbsp;s</th>
+				<th>&nbsp;p</th>
+				<th>&nbsp;f</th>
 			</tr>
 			{% for entry in volume.sourceentry_set.all %}
 			<tr>
@@ -84,21 +95,18 @@
 				<td class="xsm">
 					{% if entry.dollars %} {{ entry.dollars }}{% endif %}
 				</td>					
-				<td class="sm">
-					{% if entry.pounds %} 
-						{{ entry.pounds }}
-					{% endif %}
-					{% if entry.shillings %} 
-						/{{ entry.shillings }}
-					{% endif %}
-					{% if entry.pence %} 
-						/{{ entry.pence }}
-					{% endif %}
-	
+				<td class="xsm">
+					{% if entry.pounds %} {{ entry.pounds }}{% endif %}
 				</td>			
-				<!-- <td class="xsm">
+				<td class="xsm">
 					{% if entry.shillings %} {{ entry.shillings }}{% endif %}
-				</td>			 -->
+				</td>			
+				<td class="xsm">
+					{% if entry.pence %} {{ entry.pence }}{% endif %}
+				</td>			
+				<td class="xsm">
+					{% if entry.farthing %} {{ entry.farthing }}{% endif %}
+				</td>			
 			</tr>
 			{% endfor %}
 		</table>
@@ -117,8 +125,10 @@
 			<th>Owner</th>
 			<!-- <th>Image</th> -->
 			<th>$</th>
-			<th>&pound;</th>
-			<th>shl</th>
+			<th>&nbsp;&pound;</th>
+			<th>&nbsp;s</th>
+			<th>&nbsp;p</th>
+			<th>&nbsp;f</th>
 		</tr>
 		{% for entry in entries_no_vol %}
 		<tr>
@@ -162,6 +172,12 @@
 			</td>			
 			<td class="xsm">
 				{% if entry.shillings %} {{ entry.shillings }}{% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.pence %} {{ entry.pence }}{% endif %}
+			</td>			
+			<td class="xsm">
+				{% if entry.farthing %} {{ entry.farthing }}{% endif %}
 			</td>			
 		</tr>
 		{% endfor %}

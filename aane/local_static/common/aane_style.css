@@ -25,7 +25,7 @@ table 	{ width: 100%;	}
 th		{ text-align: left;	}
 td 		{ border-bottom: 1px dotted silver; border-left: 1px dotted silver; padding: 3px; }
 td.sm 	{ width: 3%;}
-td.xsm 	{ width: 2%;}
+td.xsm 	{ width: 1%;}
 td.med 	{ width: 6%;}
 td.medplus 	{ width: 10%;}
 td.medlrg { width: 15%;}
@@ -83,7 +83,7 @@ nav ul	{
 }
 
 .volume-subhead {
-	margin-top: -0.5em;
+	margin-top: -0.4em;
 	padding: none;
 	margin: none;
 	font-size: .85em;
