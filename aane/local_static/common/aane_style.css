@@ -82,6 +82,13 @@ nav ul	{
 	margin-block-end: .1em;
 }
 
+.volume-subhead {
+	margin-top: -0.5em;
+	padding: none;
+	margin: none;
+	font-size: .85em;
+}
+
 .volume-sublist {
 	margin-block-start: 0em;
 	margin-block-end: .5em;

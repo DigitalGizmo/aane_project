@@ -4,9 +4,9 @@
 {% block head_title %}AAERNE - Entry Detail{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > 
-		<a href="{% url 'sources:index'%}">Primary Sources </a> > 
-		<a href="{% url 'sources:source_detail' sourceentry.primary_source.id %}#{{ sourceentry.volume.id }}">Volume </a> > 
+		<a href="/">Home</a> 
+		<a href="{% url 'sources:index'%}">Primary Sources </a> 
+		<a href="{% url 'sources:source_detail' sourceentry.primary_source.id %}#{{ sourceentry.volume.id }}">Volume </a>
 		Entry Detail
 	{% endblock %}
 
@@ -64,13 +64,13 @@
 	{% comment %} width: 800px;  <div id="openseadragon1" class="zoom-image"></div> {% endcomment %}
 	<script src="{% static 'js/openseadragon.min.js' %}"></script>
 	<script type="text/javascript">
-			var viewer = OpenSeadragon({
-					id: "openseadragon1",
-					minZoomImageRatio: 0.8,
-					maxZoomLevel: 1.3,
-					prefixUrl: "{% static 'js/images/' %}",
-					tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
-			});
+		var viewer = OpenSeadragon({
+			id: "openseadragon1",
+			minZoomImageRatio: 0.8,
+			maxZoomLevel: 1.3,
+			prefixUrl: "{% static 'js/images/' %}",
+			tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
+		});
 	</script>
 
 {% endblock content %}

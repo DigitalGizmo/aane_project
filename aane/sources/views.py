@@ -23,10 +23,10 @@ class SourceListView(generic.ListView):
 Mistakenly started - really wanted entries per volume.
 But this may come in handy later
 """""
-class VolumeListView(generic.ListView):
-    model = PrimarySource
-    context_object_name = 'volume_list'
-    template_name = 'sources/volume_index.html'
+# class VolumeListView(generic.ListView):
+#     model = PrimarySource
+#     context_object_name = 'volume_list'
+#     template_name = 'sources/volume_index.html'
 
 # this displays the Source's Entries as well
 class SourceDetailView(generic.DetailView):
@@ -87,23 +87,23 @@ class EntryDetailView(generic.DetailView):
             })
         return context    
         
-class EntryCreateView(generic.CreateView):
-    model = SourceEntry
-    #fields = ['entry_text']
+# class EntryCreateView(generic.CreateView):
+#     model = SourceEntry
+#     #fields = ['entry_text']
 
-class EntryUpdateView(generic.UpdateView):
-    model = SourceEntry
-    # template_name = 'sources/sourceentry_form.html'
-    fields = ['entry_text', 'clarified', 'aa_id', 'secondary_person_id', 'name_note']
+# class EntryUpdateView(generic.UpdateView):
+#     model = SourceEntry
+#     # template_name = 'sources/sourceentry_form.html'
+#     fields = ['entry_text', 'clarified', 'aa_id', 'secondary_person_id', 'name_note']
 
-class EntryDeleteView(generic.DeleteView):
-    model = SourceEntry
-    success_url = reverse_lazy('author-list')
+# class EntryDeleteView(generic.DeleteView):
+#     model = SourceEntry
+#     success_url = reverse_lazy('author-list')
 
-# probably temp - needed for generic forms tutorial
-class EntryListView(generic.ListView):
-    model = SourceEntry
-    context_object_name = 'sourceentry_list'
-    template_name = 'sources/entry_index.html'
+# # probably temp - needed for generic forms tutorial
+# class EntryListView(generic.ListView):
+#     model = SourceEntry
+#     context_object_name = 'sourceentry_list'
+#     template_name = 'sources/entry_index.html'
 
 
