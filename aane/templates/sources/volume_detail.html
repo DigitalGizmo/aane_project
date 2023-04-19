@@ -85,12 +85,13 @@
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
 <p class="faint">sources/source_detail.html</p>
-<p class="faint">Wish list:</p>
-<ul class="faint">
-	<li>Navigation: next and previous source</li>
-	<li></li>
-	<li></li>
-</ul>
-
+<button hx-get="/sources/entry/907/"
+	hx-trigger="click"
+	hx-target="#parent-div"
+	hx-swap="outerHTML"
+>
+	Get detail
+</button>
+<div id="parent-div">will be replaced</div>
 
 {% endblock content %}

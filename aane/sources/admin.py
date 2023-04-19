@@ -27,7 +27,7 @@ class VolumeAdmin(admin.ModelAdmin):
     fields = ['primary_source', 'title', 
     ('volume_scan_id', 'accession_num', 'other_accession_num'),
     ('year_start', 'year_end', 'note')]
-    list_display = ('title', 'id', 'short_source', 'volume_scan_id',
+    list_display = ('title', 'year_start', 'year_end', 'id', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
     list_filter  = ['primary_source'] 
     search_fields = ['entry_text']

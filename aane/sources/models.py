@@ -67,12 +67,18 @@ class PrimarySource(models.Model):
 class Volume(models.Model):
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT)
     title = models.CharField(max_length=128, blank=True, default='')
+    legacy_title = models.CharField(max_length=128, blank=True, default='')
     volume_scan_id = models.CharField(max_length=32, blank=True, default='',
         help_text='if different from primary source scan id')
-    year_start = models.IntegerField('Year', blank=True, null=True, 
+    year_start = models.IntegerField('Start Year', blank=True, null=True, 
         help_text='Start year if range')
-    year_end = models.IntegerField('End year', blank=True, null=True,
+    month_start = models.IntegerField('Start Month', blank=True, null=True, 
+        help_text='Optional')
+    day_start = models.IntegerField('Start Day', blank=True, null=True)
+    year_end = models.IntegerField('End Year', blank=True, null=True,
         help_text='if range')
+    month_end = models.IntegerField('End Month', blank=True, null=True)
+    day_end = models.IntegerField('End Day', blank=True, null=True)
     accession_num = models.CharField(max_length=64, blank=True, null=True,
         help_text='We often do not have this.')
     other_accession_num = models.CharField(max_length=64, blank=True, null=True,

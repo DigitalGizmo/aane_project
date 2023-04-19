@@ -46,11 +46,11 @@ INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
     'django_quill',
+    'django_htmx',
     # 'graphene_django',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
-
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -59,6 +59,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
