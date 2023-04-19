@@ -24,9 +24,11 @@ class VolumeInline(admin.StackedInline):
     }
 
 class VolumeAdmin(admin.ModelAdmin):
-    fields = ['primary_source', 'title', 
+    fields = ['primary_source', 'title', 'legacy_title',
     ('volume_scan_id', 'accession_num', 'other_accession_num'),
-    ('year_start', 'year_end', 'note')]
+    ('year_start', 'month_start', 'day_start'),
+    ('year_end', 'month_end', 'day_end'), 'note'
+    ]
     list_display = ('title', 'year_start', 'year_end', 'id', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
     list_filter  = ['primary_source'] 

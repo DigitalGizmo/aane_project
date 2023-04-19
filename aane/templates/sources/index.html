@@ -31,7 +31,15 @@
 					{% for volume in primarysource.volume_set.all %}
 					<li class="source-volumes">
 
-						{% comment %} <a href="{% url 'sources:volume_detail' volume.id %}"> {% endcomment %}
+						{{ volume.year_start}}
+						{% if volume.month_start %} 
+							- {{ volume.month_start }}
+							{% if volume.day_start %}
+								- {{ volume.day_start }}
+							{% endif %}
+
+						{% endif %} 
+
 						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
 
 							{{ volume.title|safe }}
