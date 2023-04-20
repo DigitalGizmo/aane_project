@@ -25,6 +25,10 @@ table 	{ width: 100%;	}
 th		{ text-align: left;	}
 td 		{ border-bottom: 1px dotted silver; border-left: 1px dotted silver; padding: 3px; }
 td.sm 	{ width: 3%;}
+td.sm-top 	{ /*  Don */
+	width: 3%;
+	vertical-align: top;
+}
 td.xsm 	{ width: 1%;}
 td.med 	{ width: 6%;}
 td.medplus 	{ width: 10%;}
@@ -104,4 +108,10 @@ nav ul	{
 	line-height: 1;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
+}
+
+/* Added for our favorite volume/date range display - Don */
+.date-span {
+	float: left;
+	width: 5em;
 }

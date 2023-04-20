@@ -14,7 +14,7 @@
 	<table>
 		<tr>
 			<th>Source</th>
-			{% comment %} <th>Volume</th> {% endcomment %}
+
 			<th>Type</th>
 			<th>Classification</th>
 			<th>Count</th>
@@ -31,17 +31,24 @@
 					{% for volume in primarysource.volume_set.all %}
 					<li class="source-volumes">
 
-						{{ volume.year_start}}
-						{% if volume.month_start %} 
-							- {{ volume.month_start }}
-							{% if volume.day_start %}
-								- {{ volume.day_start }}
-							{% endif %}
-
-						{% endif %} 
-
 						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
 
+							<span class="date-span">
+								{{ volume.year_start}}{% if volume.month_start %}-{{ volume.month_start }}{% if volume.day_start %}-{{ volume.day_start }}
+								{% endif %}
+								{% endif %} 
+							</span>
+						</a>
+							
+						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
+							<span class="date-span">
+								{{ volume.year_end}}{% if volume.month_end %}-{{ volume.month_end }}{% if volume.day_end %}-{{ volume.day_end }}
+								{% endif %}
+								{% endif %} 
+							</span>
+						</a>
+
+						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
 							{{ volume.title|safe }}
 						</a>
 					</li>
@@ -49,9 +56,9 @@
 				</ul>
 			</td>
 
-			<td class="sm">{{ primarysource.source_type }}</td>
-			<td class="sm">{{ primarysource.source_classification|safe }}</td>
-			<td class="sm">{{ primarysource.entries_count}}</td>
+			<td class="sm-top">{{ primarysource.source_type }}</td>
+			<td class="sm-top">{{ primarysource.source_classification|safe }}</td>
+			<td class="sm-top">{{ primarysource.entries_count}}</td>
 		</tr>
 		{% endfor %}
 	</table>
