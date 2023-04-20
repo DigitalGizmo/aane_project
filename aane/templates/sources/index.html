@@ -34,7 +34,7 @@
 						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
 
 							<span class="date-span">
-								{{ volume.year_start}}{% if volume.month_start %}-{{ volume.month_start }}{% if volume.day_start %}-{{ volume.day_start }}
+								{{ volume.year_start}}{% if volume.month_start %}-{{ volume.two_digit_month_start }}{% if volume.day_start %}-{{ volume.two_digit_day_start }}
 								{% endif %}
 								{% endif %} 
 							</span>
@@ -42,7 +42,7 @@
 							
 						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
 							<span class="date-span">
-								{{ volume.year_end}}{% if volume.month_end %}-{{ volume.month_end }}{% if volume.day_end %}-{{ volume.day_end }}
+								{{ volume.year_end}}{% if volume.month_end %}-{{ volume.two_digit_month_end }}{% if volume.day_end %}-{{ volume.two_digit_day_end }}
 								{% endif %}
 								{% endif %} 
 							</span>

@@ -85,6 +85,26 @@ class Volume(models.Model):
         help_text='Often the PVMA number')
     note = models.TextField(blank=True, default='')   
 
+    @property
+    def two_digit_month_start(self):
+        return ("0" + str(self.month_start) 
+                if self.month_start < 10 else self.month_start)
+
+    @property
+    def two_digit_day_start(self):
+        return ("0" + str(self.day_start) 
+                if self.day_start < 10 else self.day_start)
+
+    @property
+    def two_digit_month_end(self):
+        return ("0" + str(self.month_end) 
+                if self.month_end < 10 else self.month_end)
+
+    @property
+    def two_digit_day_end(self):
+        return ("0" + str(self.day_end) 
+                if self.day_end < 10 else self.day_end)
+
     def __str__(self):
         return self.primary_source.title + ": " + self.title
 

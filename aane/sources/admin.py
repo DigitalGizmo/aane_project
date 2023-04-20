@@ -29,7 +29,7 @@ class VolumeAdmin(admin.ModelAdmin):
     ('year_start', 'month_start', 'day_start'),
     ('year_end', 'month_end', 'day_end'), 'note'
     ]
-    list_display = ('title', 'year_start', 'year_end', 'id', 'short_source', 'volume_scan_id',
+    list_display = ('id', 'year_start', 'year_end', 'title', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
     list_filter  = ['primary_source'] 
     search_fields = ['entry_text']
