@@ -109,7 +109,7 @@ class Volume(models.Model):
         return self.primary_source.title + ": " + self.title
 
     class Meta:
-        ordering = ['primary_source', 'title'] # 'source_type', 
+        ordering = ['primary_source', 'year_start', 'title'] # 'source_type', 
 
 class SourceEntry(models.Model):
     """
