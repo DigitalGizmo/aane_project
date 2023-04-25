@@ -7,35 +7,35 @@
 	
 	{% block stylesheets %}
 		<link rel="stylesheet" href="{% static 'common/aane_style.css' %}" type="text/css"  media="all"/>
-		{% block additional_css %}{% endblock %}
-    {% endblock %}
-    {% block javascript %}
-		<script src="{% static 'js/htmx.min.js' %}" defer></script>
-    {% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,300;0,400;0,600;1,100;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+
+      {% block additional_css %}{% endblock %}
+  {% endblock stylesheets %}
+  {% block javascript %}
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
+  {% endblock %}
 </head>
 
 <body>
-<a id="top"></a>
-<h3 class="site-heading">African Americans in Rural New England</h3>
 
-<!--  header and main nav -->
-<header id="header">
-	<p><a href="{% url 'people:aaperson_index' %}">African Americans</a> | 
-	<a href="{% url 'people:operson_index' %}">Other People/Enslavers</a> | 
-	<a href="{% url 'sources:index' %}">Sources</a></p>
+  {% block page %}
 
-	<h2>{% block page_title %}AAERNE Page Title{% endblock %}</h2>
+  {% endblock %}
 
-	<p class="breadcrumbs">
-		{% block breadcrumbs %}
-
-		{% endblock %}
-	</p>
-</header><!-- #header -->
-
-{% block content %}
-Content goes here
-{% endblock %}
+<footer>
+	<nav>
+		<ul>
+			<li><a href="">About This Project</a></li>
+			<li><a href="">About This Database</a></li>
+			<li><a href="">Funders</a></li>
+			<li><a href="https://deerfield-ma.org/">About PVMA</a></li>
+			<li><a href="">Contact Us</a></li>
+		</ul>
+	</nav>
+</footer>
 
 </body>
 </html>

@@ -1,0 +1,117 @@
+body {
+	padding: 2% 5% 5% 5%;
+	background-color: #faf6ef;
+	font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
+	font-size: medium;
+	color: #333333;
+}
+section {clear: both; margin-top: 5em;}
+
+/*style for heads and subheads*/
+h1, h2, h3 {	color: #171849; font-weight: bold;	}
+h1 {	font-size: 150%;	}
+h2 {	font-size: 120%; margin-top: .5em;	}
+h3	{	font-size: 100%;	}
+
+ul.horiz li	{float: left; margin-right: 2em;}
+
+/*style for basic text elements*/
+p, blockquote {	font-size: 1em; line-height: 1.75em;	}
+li {	font-size: 1em; line-height: 1.2em;	}
+
+table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
+
+table 	{ width: 100%;	}
+th		{ text-align: left;	}
+td 		{ border-bottom: 1px dotted silver; border-left: 1px dotted silver; padding: 3px; }
+td.sm 	{ width: 3%;}
+td.sm-top 	{ /*  Don */
+	width: 3%;
+	vertical-align: top;
+}
+td.xsm 	{ width: 1%;}
+td.med 	{ width: 6%;}
+td.medplus 	{ width: 10%;}
+td.medlrg { width: 15%;}
+td.lrg	{ width: 30%;}
+td.xlrg { width: 50%;}
+
+dl {line-height: 1.5em; margin-bottom: 0;}
+dt {float: left; padding-right: .5em; clear: left; width: 150px}
+dd {font-weight: bold;}
+dd:after {content: "."; color: #faf6ef;}
+
+ul.unstyledlist	{list-style-type: none; padding-left: 0;}
+ul.unstyledlist li	{ line-height: 1.5em;}
+
+.small	{	font-size: .75em; }
+.faint	{color: #bbb; margin-top: 4em;}
+.breadcrumbs	{font-size: .8em;}
+/*style for links*/
+a:link		{	color: #333399; text-decoration: none;	}
+a:visited	{	color: #666699; text-decoration: none;	}
+a:hover		{	text-decoration: underline;	}
+nav ul	{
+	list-style-type: none;
+	font-size: 85%;
+	font-weight: normal;
+}
+
+/* by Don */
+
+.source-image {
+	max-width: 95%;
+}
+
+.image-container {
+	position: relative;
+	max-width: 60%;
+}
+
+.box-hilite {
+	position: absolute;
+	background: rgba(0,0,0,0.0);
+	border:2px solid darkred;
+	z-index: 1;
+}
+
+.source-volumes {
+	line-height: 1.2em;
+}
+
+.volume-heading {
+	margin-bottom: .5em;
+	padding: none;
+	margin: none;
+	margin-block-end: .1em;
+}
+
+.volume-subhead {
+	margin-top: -0.4em;
+	padding: none;
+	margin: none;
+	font-size: .85em;
+}
+
+.volume-sublist {
+	margin-block-start: 0em;
+	margin-block-end: .5em;
+}
+
+.site-heading {
+	margin-bottom: .3em;
+}
+
+/*style for basic text elements*/
+.full-bio p {	
+	font-size: 0.85em; 
+	line-height: 1;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+/* Added for our favorite volume/date range display - Don */
+.date-span {
+	float: left;
+	width: 5em;
+}

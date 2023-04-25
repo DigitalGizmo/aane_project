@@ -1,22 +1,150 @@
 body {
-	padding: 2% 5% 5% 5%;
-	background-color: #faf6ef;
-	font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
+	background-image: url('https://dev.digitalgizmo.com/aane-model/images/bkgrnd.jpg');
+	font-family: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
 	font-size: medium;
 	color: #333333;
 }
-section {clear: both; margin-top: 5em;}
 
+.landing {
+    text-align: center;
+    width: 75%;
+    margin: 2em auto;
+}
+
+.landing h1, .landing h3 {
+	color: #bc9906;
+	font-size: 3em;
+	line-height: .25em;
+}
+
+.landing h3 {
+	font-weight: 200;
+}
+.landing p, .landing a {
+    color: #f9f2c2;	
+}
+
+.landing nav {
+	background-image: url('https://dev.digitalgizmo.com/aane-model/images/landing-inset.jpg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 40vw;
+	width: 75vw;
+	position: relative;
+}
+.landing nav a {
+    color: #f9f2c2;
+    opacity: .9;
+    height: 80px;
+    padding: 1.25em 0 0 0;
+    display: inline-block;
+    background-color: #9B4D18;
+    margin: 15% .25em;
+    width: 250px;
+    border-radius: 100px;
+    border: 1px solid #D35C0B;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.landing nav a span {
+	font-weight: 200;
+	display: block;
+}
+
+header{
+	padding: 0.125em 5%;
+}
+
+header h3 a { /* global link to landing */
+	color: #CCB02F;
+	float: left;
+	font-size: 1.5em;
+	text-decoration: none;
+}
+
+ /* global links to browse sections */
+header nav {
+    text-align: right;
+}
+
+header nav ul li {
+	display: inline-block;
+}
+
+header nav ul li a:link, header nav ul li a:visited  {
+    color: #f9f2c2;
+    padding: 0.75em;
+    display: inline-block;
+    background-color: #BC4D02;
+    margin: 0 .25em;
+    width: 140px;
+    border-radius: 60px;
+    border: 1px solid #D35C0B;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: .9em;
+    text-decoration: none;
+}
+
+header nav ul li a:hover, header nav ul li a.selected {
+	background-color: #D35C0B;
+}
+
+section.wrapper {
+	background-color: #FFF;
+    border-top: 36px solid #BC4D02;
+    padding: 0 5% 2% 5%;
+}
+
+footer {
+	background-color: #96801A;
+}
+
+footer nav {
+	text-align: center;
+}
+
+footer nav ul	{
+    list-style-type: none;
+    font-size: 85%;
+    font-weight: normal;
+    padding: 1em 0;
+    margin: 0;
+}
+footer nav ul li {
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+footer nav ul li a {
+	color: #f9f2c2;
+	margin: 0 2em;
+}
+
+ul {
+	padding: 0;
+	list-style-type: none;
+}
 /*style for heads and subheads*/
-h1, h2, h3 {	color: #171849; font-weight: bold;	}
-h1 {	font-size: 150%;	}
-h2 {	font-size: 120%; margin-top: .5em;	}
-h3	{	font-size: 100%;	}
-
+h1, h2, h3 {
+	color: #96801A;
+	font-weight: 600;
+}
+h1 {font-size: 1.50em;}
+h2 {font-size: 1.25em; margin-top: .5em;}
+h3 {font-size: 1em;}
+h4 {
+	font-size: 1em;
+    margin: 0;
+    text-transform: uppercase;
+    color: #96801A;
+    letter-spacing: .025em;
+}
 ul.horiz li	{float: left; margin-right: 2em;}
-
 /*style for basic text elements*/
-p, blockquote {	font-size: 1em; line-height: 1.75em;	}
+p, blockquote {	font-size: 1em; line-height: 1.75em; font-weight: 200;	}
 li {	font-size: 1em; line-height: 1.2em;	}
 
 table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
@@ -29,16 +157,28 @@ td.sm-top 	{ /*  Don */
 	width: 3%;
 	vertical-align: top;
 }
-td.xsm 	{ width: 1%;}
+td.xsm 	{ width: 2%;}
 td.med 	{ width: 6%;}
 td.medplus 	{ width: 10%;}
 td.medlrg { width: 15%;}
 td.lrg	{ width: 30%;}
 td.xlrg { width: 50%;}
 
-dl {line-height: 1.5em; margin-bottom: 0;}
-dt {float: left; padding-right: .5em; clear: left; width: 150px}
-dd {font-weight: bold;}
+dl {
+	line-height: 1.5em;
+	margin: 0;
+}
+dt {
+	border-top: 1px dotted silver;
+	color: #999;
+	float: left;
+	width: 30%
+}
+dd {
+	border-top: 1px dotted silver;
+	margin-left: 33%;
+	width: 65%;
+}
 dd:after {content: "."; color: #faf6ef;}
 
 ul.unstyledlist	{list-style-type: none; padding-left: 0;}
@@ -46,17 +186,120 @@ ul.unstyledlist li	{ line-height: 1.5em;}
 
 .small	{	font-size: .75em; }
 .faint	{color: #bbb; margin-top: 4em;}
-.breadcrumbs	{font-size: .8em;}
+.breadcrumbs    {font-size: .8em; margin-top: -28px; font-weight: 200 !important; color: white;}
+.breadcrumbs a:visited, .breadcrumbs a:link {color: white; font-weight: 200 !important;}
+
 /*style for links*/
-a:link		{	color: #333399; text-decoration: none;	}
-a:visited	{	color: #666699; text-decoration: none;	}
-a:hover		{	text-decoration: underline;	}
-nav ul	{
-	list-style-type: none;
-	font-size: 85%;
-	font-weight: normal;
+section a:link		{	color: #29439C; text-decoration: none;	}
+section a:visited	{	color: #2D3F72; text-decoration: none;	}
+section a:hover		{	color: #96801A ;text-decoration: underline;	}
+
+
+/* styles for modal window */
+/* slim pop styles */
+
+.hidden {
+    display: none;
 }
 
+.unhidden {
+    display: block;
+}
+
+#slimpop-overlay {
+    background: url(images/overlay.png) repeat;
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 99;
+}
+
+#slimpop-wrapper {
+    background-color: #fff;
+    border: 1px solid #CCB02F;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+    overflow: auto;
+}
+
+/* JavaScript assigns this (or .hidden) to slimpop-container */
+.slimpop-basic {
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    /* this positions the slimpop relative to viewport, it won't scroll with the page */
+    right: 0;
+    top: 0;
+    z-index: 100;
+    max-height: 85%;
+    width: 85%;
+}
+
+.slim-info {
+	display: grid;
+	grid-template-columns: 45% 45%;
+	grid-auto-rows: auto;
+	grid-column-gap: 5%;
+    padding: 2em 3em;
+}
+
+.slimpop-close {
+    font-size: .9em;
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    position: relative;
+}
+
+.close { 
+  cursor:pointer;
+}
+ .close:after, .close:before {
+    content:"";
+    height:20px;
+    width:20px;
+    border-top:1px solid #000;
+    position:absolute;
+    top:10px;
+    right:-8px;
+    rotate: -45deg;
+}
+      
+.close:before {
+    right:6px;
+    rotate: 45deg;
+  }
+  
+.close:hover {	
+    opacity: 0.3;
+}
+  
+h1.slim-title {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+}
+
+.slim-entry {
+    grid-column: 1;
+    grid-row: 2;	
+}
+
+.slim-entry p {
+	font-size: 1.15em;
+	margin: 0;
+}
+
+.slim-details {
+    grid-column: 2;
+    grid-row: 2;	
+}
 /* by Don */
 
 .source-image {
@@ -86,32 +329,13 @@ nav ul	{
 	margin-block-end: .1em;
 }
 
-.volume-subhead {
-	margin-top: -0.4em;
-	padding: none;
-	margin: none;
-	font-size: .85em;
-}
-
 .volume-sublist {
 	margin-block-start: 0em;
 	margin-block-end: .5em;
 }
 
-.site-heading {
-	margin-bottom: .3em;
-}
+/* ----- COLORS --------
+rust: #BC4D02, dark rust: #9B4D18, bright rust #D35C0B
+gold: #96801A, bright gold: #CCB02F or #D3AD0D, dark gold #968024, rich gold: #BC9906
+blue: #29439C, dark blue: #2D3F72, bright blue: #3372FF-*/
 
-/*style for basic text elements*/
-.full-bio p {	
-	font-size: 0.85em; 
-	line-height: 1;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-/* Added for our favorite volume/date range display - Don */
-.date-span {
-	float: left;
-	width: 5em;
-}

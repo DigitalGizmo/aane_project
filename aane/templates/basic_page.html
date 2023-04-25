@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page %}
+<a id="top"></a>
+<header id="header">
+	<h3><a href="/">African Americans in the Record</a></h3>
+	<nav>
+		<ul>
+			<li><a href="{% url 'sources:index' %}" class="sources">Sources</a></li>
+			<li><a href="{% url 'people:aaperson_index' %}" class="aaperson selected">African Americans</a></li>
+			<li><a href="{% url 'people:operson_index' %}" class="operson">Enslavers</a></li>
+		</ul>
+	</nav>
+</header>
+
+<section class="wrapper">
+<p class="breadcrumbs">
+	{% block breadcrumbs %}
+
+	{% endblock %}
+</p>
+
+{% block content %}
+  Content goes here
+{% endblock %}
+</section><!-- /wrapper -->
+
+{% endblock page %}

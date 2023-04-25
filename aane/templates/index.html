@@ -1,13 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block head_title %}African Americans in Early Rural New England - Research Database{% endblock %}
+{% block page %}
 
-{% block page_title %}African Americans in Early Rural New England - Research Database{% endblock %}
+<div class="landing">
+	<h1>African Americans in the Record</h1>
+	<h3>Evidence from 18th Century Massachusetts</h3>
 
-{% block content %}
+	<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
 
-	<p>This is the browsing interface for our evolving research database. </p>
-	<p>See <strong><a href="/admin/" target="admin">Admin</a></strong> for data entry and editing.</p> 
+	<nav>
+		<a href="{% url 'sources:index' %}" class="sources"><span>Browse by</span>Primary Source<br><br></a>
 
-{% endblock content %}
+		<a href="{% url 'people:aaperson_index' %}" class="aaperson"><span>Browse by Person</span> African Americans:<br>Enslaved &amp; Free</a>
+		
+		<a href="{% url 'people:operson_index' %}" class="operson"><span>Browse by Person</span>Whites:<br>Enslavers &amp; Others</a>
+	</nav>
+</div>
+
+
+{% endblock page %}
+

@@ -1,66 +1,66 @@
-{% extends "base.html" %}
+{% extends "basic_page.html" %}
 {% load static %}
 
 {% block head_title %}AAERNE - African Americans{% endblock %}
 
-	{% block breadcrumbs %}
-		<a href="/">Home</a> > AA People
-	{% endblock %}
+{% block breadcrumbs %}
+  <a href="/">Home</a> > African American People
+{% endblock %}
 
-{% block page_title %}African Americans{% endblock %}
 
 {% block content %}
-	<p>Sorted by (known, enslaver only known, unknown), (enslaved, became freed, always free), then Name.</p>
-	<table>
-		<tr>
-			{% comment %} <th>Edit</th> {% endcomment %}
-			<th>Name</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>First Rec</th>
-			<th>Last Rec</th>
-			<th>Known?</th>
-			<th>Enslaved?</th>
-			<th>Enslaver(s)</th>
-			<th>Entries</th>
-			<th>ID</th>
-		</tr>
-		{% for aaperson in aaperson_list %}
-		<tr>
-			{% comment %} <td class="sm"> {% endcomment %}
-				<!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
-				{% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
-			</td> {% endcomment %}
-			<td class="medlrg">
-				<a href="{% url 'people:aaperson_entries' aaperson.id %}">
-					{{ aaperson.name|safe }}
-				</a>
-			</td>
-			<td class="medplus">{{ aaperson.first_name|safe }}</td>
-			<td class="medplus">{{ aaperson.last_name|safe }}</td>
-			<td class="med">
-				{% if aaperson.first_appearance_year %}
-					{{ aaperson.first_appearance_year }}
-				{% endif %}
-			</td>
-			<td class="med">
-				{% if aaperson.last_appearance_year %} 
-					{{ aaperson.last_appearance_year }}
-				{% endif %}
-			</td>
-			<td class="med">{{ aaperson.get_known_status_display }}</td>
-			<td class="med">{{ aaperson.get_freed_status_display }}</td>
-			<td>
-				{% for owner in aaperson.owners.all %}
-				{{ owner.name|safe }};
-				{% endfor %}
-			</td>
-			<td class="sm">{{ aaperson.person_entries.count }}</td>
-			<td class="sm">{{ aaperson.id }}</td>
-		</tr>
-		{% endfor %}
-	</table>
-	
-	<p class="small"><a href="#top">top of page</a></p>
-<p class="faint">aaperson_list.html</p>
+  <h1>African Americans</h1>
+  <p>Sorted by (known, enslaver only known, unknown), (enslaved, became freed, always free), then Name.</p>
+  <table>
+    <tr>
+      {% comment %} <th>Edit</th> {% endcomment %}
+      <th>Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>First Rec</th>
+      <th>Last Rec</th>
+      <th>Known?</th>
+      <th>Enslaved?</th>
+      <th>Enslaver(s)</th>
+      <th>Entries</th>
+      <th>ID</th>
+    </tr>
+    {% for aaperson in aaperson_list %}
+    <tr>
+      {% comment %} <td class="sm"> {% endcomment %}
+        <!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
+        {% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
+      </td> {% endcomment %}
+      <td class="medlrg">
+        <a href="{% url 'people:aaperson_entries' aaperson.id %}">
+          {{ aaperson.name|safe }}
+        </a>
+      </td>
+      <td class="medplus">{{ aaperson.first_name|safe }}</td>
+      <td class="medplus">{{ aaperson.last_name|safe }}</td>
+      <td class="med">
+        {% if aaperson.first_appearance_year %}
+          {{ aaperson.first_appearance_year }}
+        {% endif %}
+      </td>
+      <td class="med">
+        {% if aaperson.last_appearance_year %} 
+          {{ aaperson.last_appearance_year }}
+        {% endif %}
+      </td>
+      <td class="med">{{ aaperson.get_known_status_display }}</td>
+      <td class="med">{{ aaperson.get_freed_status_display }}</td>
+      <td>
+        {% for owner in aaperson.owners.all %}
+        {{ owner.name|safe }};
+        {% endfor %}
+      </td>
+      <td class="sm">{{ aaperson.person_entries.count }}</td>
+      <td class="sm">{{ aaperson.id }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p class="small"><a href="#top">top of page</a></p>
+  <p class="faint">aaperson_list.html</p>
 {% endblock content %}
