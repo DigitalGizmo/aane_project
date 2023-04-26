@@ -15,15 +15,15 @@
 </header>
 
 <section class="wrapper">
-<p class="breadcrumbs">
-	{% block breadcrumbs %}
+	<p class="breadcrumbs">
+		{% block breadcrumbs %}
 
+		{% endblock %}
+	</p>
+
+	{% block content %}
+	Content goes here
 	{% endblock %}
-</p>
-
-{% block content %}
-  Content goes here
-{% endblock %}
 </section><!-- /wrapper -->
 
 {% endblock page %}

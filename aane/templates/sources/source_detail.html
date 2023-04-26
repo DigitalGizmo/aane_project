@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basic_page.html" %}
 {% load static %}
 
 {% block head_title %}Sources{% endblock %}
@@ -7,39 +7,47 @@
 		<a href="/">Home</a> > <a href="{% url 'sources:index'%}">Primary Sources </a> > Source Detail
 	{% endblock %}
 
-{% block page_title %}Entries by Volume{% endblock %}
-
 {% block content %}
-	
-	<h3>{{ primarysource.title|safe }}</h3>
+	<h1>{{ primarysource.title|safe }}</h1>
 	<dl>
-		{% comment %} <dt>PVMA call number:</dt><dd>{{ primarysource.pvma_call_num }}</dd> {% endcomment %}
-		<dt>Description:</dt><dd>{{ primarysource.description }}</dd>
-		{% comment %} <dt>Date range:</dt>
-		<dd>
-			{% firstof primarysource.year_start "--" %} to
-			{% firstof primarysource.year_end "--" %}
-		</dd> {% endcomment %}
-	</dl>
-	<br clear="left">
+		<dt>Description:</dt>
+		<dd>{{ primarysource.description }}</dd>
 
+		{% comment %} <dt>PVMA call number:</dt>
+		<dd>{{ primarysource.pvma_call_num }}</dd> {% endcomment %}
+	</dl>
+
+  <p>Table of contents</p>
 	<ul>
 		{% for volume in primarysource.volume_set.all %}
-			<li><a href="#{{ volume.id }}">
-				{{ volume.title|safe }} 
-			</a> </li> 
+			<li>
+        <a href="#{{ volume.id }}">
+          <span class="date-span">
+            {{ volume.year_start}}{% if volume.month_start %}-{{ volume.two_digit_month_start }}{% if volume.day_start %}-{{ volume.two_digit_day_start }}
+            {% endif %}
+            {% endif %} 
+          </span>
+          <span class="date-span">
+            {{ volume.year_end}}{% if volume.month_end %}-{{ volume.two_digit_month_end }}{% if volume.day_end %}-{{ volume.two_digit_day_end }}
+            {% endif %}
+            {% endif %} 
+          </span>
+          {{ volume.title|safe }} 
+        </a> 
+      </li> 
 		{% endfor %}
-		</ul>
+  </ul>
 	
 
 	{% for volume in primarysource.volume_set.all %}
+
 		<h3 id="{{ volume.id }}"  class="volume-heading">
-			Volume: {{ volume.title }}
+      {% firstof volume.year_start "--" %} to
+      {% firstof volume.year_end "--" %}
+      {{ volume.title }}
 		</h3>
+
 		<p class="volume-subhead">
-			Date range: 
-			{% firstof volume.year_start "--" %} to
-			{% firstof volume.year_end "--" %}
 			{% if volume.other_accession_num %}
 				(PVMA#: {{volume.other_accession_num}})
 			{% endif %} 

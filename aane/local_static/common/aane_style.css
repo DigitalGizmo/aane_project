@@ -339,3 +339,8 @@ rust: #BC4D02, dark rust: #9B4D18, bright rust #D35C0B
 gold: #96801A, bright gold: #CCB02F or #D3AD0D, dark gold #968024, rich gold: #BC9906
 blue: #29439C, dark blue: #2D3F72, bright blue: #3372FF-*/
 
+/* Added for our favorite volume/date range display - Don */
+.date-span {
+	float: left;
+	width: 5em;
+}
