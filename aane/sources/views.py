@@ -58,7 +58,8 @@ class VolumeDetailView(generic.DetailView):
 
 class EntryDetailView(generic.DetailView):
     model = SourceEntry 
-    template_name = 'sources/entry_detail.html'
+    # template_name = 'sources/entry_detail.html'
+    template_name = 'sources/entry_pop_detail.html'
     # get the entry record
     def get_context_data(self, **kwargs):
         # Get the context

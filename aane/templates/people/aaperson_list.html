@@ -52,7 +52,7 @@
       <td class="med">{{ aaperson.get_freed_status_display }}</td>
       <td>
         {% for owner in aaperson.owners.all %}
-        {{ owner.name|safe }};
+          {{ owner.name|safe }};
         {% endfor %}
       </td>
       <td class="sm">{{ aaperson.person_entries.count }}</td>

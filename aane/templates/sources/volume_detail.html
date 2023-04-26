@@ -1,15 +1,11 @@
-{% extends "base.html" %}
+{% extends "basic_page.html" %}
 {% load static %}
 
-{% block head_title %}AAERNE - Entries by Volume{% endblock %}
-
-	{% block breadcrumbs %}
-		<a href="/">Home</a> > 
-		<a href="{% url 'sources:index'%}">Primary Sources </a> > 
-		Entry list by volume
-	{% endblock %}
-
-{% block page_title %}AAERNE - Entries by Volume{% endblock %}
+{% block breadcrumbs %}
+	<a href="/">Home</a> > 
+	<a href="{% url 'sources:index'%}">Primary Sources </a> > 
+	Entry list by volume
+{% endblock %}
 
 {% block content %}
 	<!-- Just for testing slimpop! -->
@@ -84,14 +80,17 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
-<p class="faint">sources/source_detail.html</p>
-<button hx-get="/sources/entry/907/"
-	hx-trigger="click"
-	hx-target="#parent-div"
-	hx-swap="outerHTML"
->
-	Get detail
-</button>
-<div id="parent-div">will be replaced</div>
+	<button hx-get="/sources/entry/907/"
+		hx-trigger="click"
+		hx-target="#parent-div"
+		hx-swap="outerHTML"
+	>
+		Get detail
+	</button>
 
 {% endblock content %}
+
+{% block pop %}
+<div id="parent-div">will be replaced</div>
+
+{% endblock %}
