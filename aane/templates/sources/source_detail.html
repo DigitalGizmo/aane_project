@@ -53,7 +53,10 @@
 			{% endif %} 
 		</h3>
 
-		<table>
+		<table
+			hx-target="#pop-div"
+			hx-swap="outerHTML"
+		>
 			<tr>
 				<th>Entry</th>
 				<th>Date</th>
@@ -70,7 +73,11 @@
 			<tr>
 				<td class="xlrg">
 					{% if entry.image_status > 5 %} 
-						&bull; <a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+						&bull; 
+						<!-- <a href="/sources/entry/{{entry.id}}/"> -->
+						<a hx-get="/sources/entry/{{entry.id}}/">
+							{{ entry.entry_text|safe }}
+						</a>
 					{% else %}
 						&nbsp; {{ entry.entry_text|safe }}
 					{% endif %}
@@ -191,16 +198,8 @@
 		{% endfor %}
 	</table>
 
-	
-	{% comment %} {% endfor %} {% endcomment %}
-
-	{% comment %} <p class="faint">sources/source_detail.html</p>
-	<p class="faint">Wish list:</p>
-	<ul class="faint">
-		<li>Navigation: next and previous source</li>
-		<li></li>
-		<li></li>
-	</ul> {% endcomment %}
-
-
 {% endblock content %}
+
+{% block pop %}
+	<div id="pop-div">will be replaced</div>
+{% endblock %}

@@ -80,9 +80,9 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
-	<button hx-get="/sources/entry/907/"
+	<button hx-get="/sources/entry/994/"
 		hx-trigger="click"
-		hx-target="#parent-div"
+		hx-target="#pop-div"
 		hx-swap="outerHTML"
 	>
 		Get detail
@@ -91,6 +91,8 @@
 {% endblock content %}
 
 {% block pop %}
-<div id="parent-div">will be replaced</div>
+<div id="pop-container">
+	<div id="pop-div" hx-target="this">will be replaced</div>
+</div>
 
 {% endblock %}

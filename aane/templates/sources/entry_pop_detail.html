@@ -4,8 +4,11 @@
 {% block entry_pop_detail %}
   <div class="slim-info">
     <p class="slimpop-close">
-      &larr; previous | <a href="jrussell-popped-prince.html">next &rarr;</a>
-      <a href="jrussell-acct-bk.html"><span class="close"></span></a>
+      &larr; previous | 
+      <a href="jrussell-popped-prince.html">next &rarr;</a>
+
+      <a hx-target="#pop-div" hx-swap="delete"><span class="close"></span></a>
+
     </p>
 
     <h1 class="slim-title">{{ sourceentry.volume.primary_source.title|safe }}</h1>
@@ -61,7 +64,7 @@
   
   <div id="openseadragon1" style=" height: 80vh; background-color: #EEE;"></div> 
   
-  <script src="{% static 'js/openseadragon.min.js' %}"></script>
+  <!-- <script src="{% static 'js/openseadragon.min.js' %}"></script> -->
   <script type="text/javascript">
     var viewer = OpenSeadragon({
       id: "openseadragon1",
