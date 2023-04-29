@@ -7,7 +7,17 @@
       &larr; previous | 
       <a href="jrussell-popped-prince.html">next &rarr;</a>
 
-      <a hx-target="#pop-div" hx-swap="delete"><span class="close"></span></a>
+      <a hx-target="#close-button" hx-swap="outerHTML">
+        {% comment %} Need to find solution for hx-get {% endcomment %}
+        <span 
+          id="close-button" 
+          class="close"    
+          hx-get="/sources/entry/994/" 
+          hx-trigger="click"
+          hx-swap="outerHTML"          
+          >
+        </span>
+      </a>
 
     </p>
 

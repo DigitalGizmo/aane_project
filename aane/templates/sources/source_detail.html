@@ -54,7 +54,7 @@
 		</h3>
 
 		<table
-			hx-target="#pop-div"
+			hx-target="#slimpop-container"
 			hx-swap="outerHTML"
 		>
 			<tr>
@@ -201,5 +201,8 @@
 {% endblock content %}
 
 {% block pop %}
-	<div id="pop-div">will be replaced</div>
+<div id="slimpop-overlay" class="hidden">
+	<div id="slimpop-container" hx-target="this">will be replaced</div>
+</div>
 {% endblock %}
+

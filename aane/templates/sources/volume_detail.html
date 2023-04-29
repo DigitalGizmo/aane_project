@@ -82,7 +82,7 @@
 	<p class="small"><a href="#top">top of page</a></p>
 	<button hx-get="/sources/entry/994/"
 		hx-trigger="click"
-		hx-target="#pop-div"
+		hx-target="#slimpop-container"
 		hx-swap="outerHTML"
 	>
 		Get detail
@@ -91,8 +91,8 @@
 {% endblock content %}
 
 {% block pop %}
-<div id="pop-container">
-	<div id="pop-div" hx-target="this">will be replaced</div>
+<div id="slimpop-overlay" class="hidden">
+	<div id="slimpop-container" hx-target="this">will be replaced</div>
 </div>
 
 {% endblock %}
