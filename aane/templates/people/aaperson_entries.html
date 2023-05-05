@@ -1,16 +1,13 @@
-{% extends "base.html" %}
+{% extends "basic_page.html" %}
 {% load static %}
 
-{% block head_title %}AAERNE - African Americans{% endblock %}
+{% block head_title %} {{ aaperson.name|safe }}{% endblock %}
 
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Details
 	{% endblock %}
 
- {% block page_title %}AAERNE - African American Person Details{% endblock %}
-
 {% block content %}
-
 	<h1>{{ aaperson.name|safe }}</h1>
 
 	<dl>
@@ -40,23 +37,17 @@
 	<br clear="left" />
 
 
-		<div class='full-bio'>
-			<h3>Bio</h3>
-			{{ aaperson.bio.html|safe }}
-		</div>
+	<div class='full-bio'>
+		<h3>Bio</h3>
+		{{ aaperson.bio.html|safe }}
+	</div>
 	
-
-
-
 	<h2>Primary Source Entries for {{ aaperson.name|safe }}</h2>
 
-
-	{% comment %} {% for source in aaperson.person_entries %}
-		list of sources
-	{% endfor %} {% endcomment %}
-
-
-	<table>
+	<table
+		hx-target="#slimpop-container"
+		hx-swap="outerHTML"	
+	>
 		<tr>
 			<th>Entry</th>
 			<th>Source</th>
@@ -66,8 +57,17 @@
 		{% for entry in aaperson.person_entries %}
 		<tr>
 			<td class="xlrg">
-				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+				{% if entry.image_status > 5 %} 
+					&bull; 
+					<a hx-get="/sources/entry/{{entry.id}}/">
+						{{ entry.entry_text|safe }}
+					</a>
+				{% else %}
+					&nbsp; {{ entry.entry_text|safe }}
+				{% endif %}
+				
 			</td>
+
 			<td class="medlrg"><em>{{ entry.primary_source }}</em></td>
 			<td class="medlrg">{{ entry.volume.title }}</td>
 			<td class="med">{% firstof entry.low_year "--" %} 
@@ -78,5 +78,10 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
-<p class="faint">aaperson_entries.html</p>
 {% endblock content %}
+
+{% block pop %}
+<div id="slimpop-overlay" class="hidden">
+	<div id="slimpop-container" hx-target="this">will be replaced</div>
+</div>
+{% endblock %}

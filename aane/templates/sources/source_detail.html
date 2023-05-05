@@ -149,7 +149,10 @@
 		<tr>
 			<td class="xlrg">
 				{% if entry.image_status > 5 %} 
-					&bull; <a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+					&bull; 
+					<a hx-get="/sources/entry/{{entry.id}}/">
+						{{ entry.entry_text|safe }}
+					</a>
 				{% else %}
 					&nbsp; {{ entry.entry_text|safe }}
 				{% endif %}
