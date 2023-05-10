@@ -66,25 +66,33 @@ class EntryDetailView(generic.DetailView):
         context = super(EntryDetailView, self).get_context_data(**kwargs)
         # Get this entry object
         entry_object = super(EntryDetailView, self).get_object()
-        # Get the percentage from top
-        view_percent_top = 0
-        if entry_object.percent_top:
-            view_percent_top = entry_object.percent_top
-        view_percent_height = 8
-        if entry_object.percent_left:
-            view_percent_left = entry_object.percent_left
-        view_percent_width = 100
-        if entry_object.percent_height:
-            view_percent_height = entry_object.percent_height
-        view_percent_left = 0
-        if entry_object.percent_right:
-            view_percent_width = entry_object.percent_right
+
+        entry_ids = [30,41,45,50]
+        # initial_index = 2
+        initial_index = entry_ids[2]
+        print('index: ' + str(initial_index))
+        # # Get the percentage from top
+        # view_percent_top = 0
+        # if entry_object.percent_top:
+        #     view_percent_top = entry_object.percent_top
+        # view_percent_height = 8
+        # if entry_object.percent_left:
+        #     view_percent_left = entry_object.percent_left
+        # view_percent_width = 100
+        # if entry_object.percent_height:
+        #     view_percent_height = entry_object.percent_height
+        # view_percent_left = 0
+        # if entry_object.percent_right:
+        #     view_percent_width = entry_object.percent_right
         # Add updated variable to context
         context.update({
-            'view_percent_top': view_percent_top,
-            'view_percent_left': view_percent_left,
-            'view_percent_width': view_percent_width,
-            'view_percent_height': view_percent_height,
+            'entry_ids': entry_ids,
+            'initial_index': initial_index
+            # 'view_percent_top': view_percent_top,
+            # 'view_percent_left': view_percent_left,
+            # 'view_percent_width': view_percent_width,
+            # 'view_percent_height': view_percent_height,
+
             })
         return context    
         

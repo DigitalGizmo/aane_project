@@ -5,7 +5,14 @@
   <div class="slim-info">
     <p class="slimpop-close">
       &larr; previous | 
-      <a href="jrussell-popped-prince.html">next &rarr;</a>
+
+      <a href="#">next &rarr; </a>
+      {% comment %} 
+      having trouble getting the index number
+      <a hx-get="/sources/entry/{{entry_ids[initial_index]}}/">
+        next &rarr;
+        {% endcomment %} 
+
 
       <a hx-target="#close-button" hx-swap="outerHTML">
         {% comment %} Need to find solution for hx-get {% endcomment %}

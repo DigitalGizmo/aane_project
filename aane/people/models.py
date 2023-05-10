@@ -78,7 +78,7 @@ class OPerson(PersonModel):
     OPerson Other/ Owner - inherits PersonModel
     """
     ROLE = (
-        ('owner','owner'),
+        ('owner','enslaver'),
         ('user','user'),
         ('service_provider', 'service_provider'),
     )

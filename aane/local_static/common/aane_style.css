@@ -186,8 +186,8 @@ ul.unstyledlist li	{ line-height: 1.5em;}
 
 .small	{	font-size: .75em; }
 .faint	{color: #bbb; margin-top: 4em;}
-.breadcrumbs    {font-size: .8em; margin-top: -28px; font-weight: 200 !important; color: white;}
-.breadcrumbs a:visited, .breadcrumbs a:link {color: white; font-weight: 200 !important;}
+.breadcrumbs    {font-size: .8em; margin-top: -28px; font-weight: 400 !important; color: white;}
+.breadcrumbs a:visited, .breadcrumbs a:link {color: white; font-weight: 400 !important;}
 
 /*style for links*/
 section a:link		{	color: #29439C; text-decoration: none;	}

@@ -1,16 +1,13 @@
-{% extends "base.html" %}
+{% extends "basic_page.html" %}
 {% load static %}
 
-{% block head_title %}AAERNE - African Americans{% endblock %}
+{% block head_title %}{{ operson.name|safe }}{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'people:operson_index'%}">Other People/Owners  </a> > Other Person/Owner  Details
+		<a href="/">Home</a> > <a href="{% url 'people:operson_index'%}">Other People/Enslavers  </a> > Other Person/Enslaver  Details
 	{% endblock %}
  
- {% block page_title %}AAERNE - Other Person / Owner Details{% endblock %}
-
 {% block content %}
-
 	<h1>{{ operson.name|safe  }}</h1>
 
 	<dl>
@@ -23,7 +20,7 @@
 		<dd>
 			{% firstof operson.birth_year "--" %}, {% firstof operson.death_year "--" %} 
 		</dd>
-		<dt>role</dt><dd>{{ operson.role }}</dd>
+		<dt>role</dt><dd>{{ operson.get_role_display }}</dd>
 		<dt>race</dt><dd>{{ operson.race }}</dd>
 	</dl>
 	<br clear="left" />
@@ -36,7 +33,11 @@
 	<h2>Enslaved persons:</h2>
 	<ul class="unstyledlist">
 		{% for aaperson in operson.aaperson_set.all %}
-			<li>{{ aaperson.name|safe }}</li>
+			<li>
+				<a href="{% url 'people:aaperson_entries' aaperson.id %}">{{ aaperson.name|safe }}
+				</a>
+
+			</li>
 		{% endfor %}
 	</ul>
 		<p class="small"><a href="#top">top of page</a></p>

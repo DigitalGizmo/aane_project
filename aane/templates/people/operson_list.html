@@ -29,10 +29,10 @@
 				</a>
 			</td>
 			<td class="med">{{ operson.title|safe }}</td>
-			<td class="med">{{ operson.role }}</td>
+			<td class="med">{{ operson.get_role_display }}</td>
 			<td class="med">{{ operson.race }}</td>
-			<td class="med">{{ operson.birth }}</td>
-			<td class="med">{{ operson.death }}</td>
+			<td class="med">{% firstof operson.birth_year " " %}</td>
+			<td class="med">{% firstof operson.death_year " " %}</td>
 			<td class="sm">{{ operson.id }}</td>
 			<td class="xlrg">
 				{% for aaperson in operson.aaperson_set.all %}
