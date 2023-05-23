@@ -147,6 +147,11 @@ ul.horiz li	{float: left; margin-right: 2em;}
 p, blockquote {	font-size: 1em; line-height: 1.75em; font-weight: 200;	}
 li {	font-size: 1em; line-height: 1.2em;	}
 
+/* Don addition */
+.entry-text {
+    font-weight: 400;
+}
+
 table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
 
 table 	{ width: 100%;	}

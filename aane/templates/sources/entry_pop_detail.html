@@ -33,7 +33,7 @@
     
     <div class="slim-entry">
       <h4>Entry</h4>
-      <p>{{ sourceentry.entry_text|safe }}</p>
+      <p class="entry-text">{{ sourceentry.entry_text|safe }}</p>
     </div>
 
     <div class="slim-details">
@@ -54,11 +54,8 @@
           {% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
         </dd>
 
-        <dt>File:</dt>
+        <dt>Scan Number:</dt>
         <dd>{{ sourceentry.image_name }}</dd>
-
-        <dt>Entry:</dt>
-        <dd>{{ sourceentry.entry_text|safe }}</dd>
 
         <dt>Monetary Transaction:</dt>
         <dd>
