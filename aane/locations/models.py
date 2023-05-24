@@ -17,7 +17,7 @@ class Town(models.Model):
     # note = models.TextField(blank=True, default='')   
 
     def __str__(self):
-        return self.title
+        return self.title + ", " + self.state.abbr
 
     class Meta:
         ordering = ['title']  
