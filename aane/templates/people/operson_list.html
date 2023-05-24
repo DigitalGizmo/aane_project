@@ -20,6 +20,7 @@
 			<th>Birth</th>
 			<th>Death</th>
 			<th>ID</th>
+			<th>Location(s)</th>
 			<th>Enslaved Person(s)</th>
 		</tr>
 		{% for operson in operson_list %}
@@ -34,6 +35,12 @@
 			<td class="med">{% firstof operson.birth_year " " %}</td>
 			<td class="med">{% firstof operson.death_year " " %}</td>
 			<td class="sm">{{ operson.id }}</td>
+			<td>
+				{% for location in operson.locations.all %}
+				  {{ location.title }} &nbsp;
+				{% endfor %}
+			  </td>
+		
 			<td class="xlrg">
 				{% for aaperson in operson.aaperson_set.all %}
 					{{ aaperson.name|safe }},

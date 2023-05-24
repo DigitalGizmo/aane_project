@@ -22,6 +22,7 @@
       <th>Known?</th>
       <th>Enslaved?</th>
       <th>Enslaver(s)</th>
+      <th>Location(s)</th>
       <th>Entries</th>
       <th>ID</th>
     </tr>
@@ -53,6 +54,11 @@
       <td>
         {% for owner in aaperson.owners.all %}
           {{ owner.name|safe }};
+        {% endfor %}
+      </td>
+      <td>
+        {% for location in aaperson.locations.all %}
+          {{ location.title }},
         {% endfor %}
       </td>
       <td class="sm">{{ aaperson.person_entries.count }}</td>

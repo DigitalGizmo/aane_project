@@ -22,6 +22,12 @@
 		</dd>
 		<dt>role</dt><dd>{{ operson.get_role_display }}</dd>
 		<dt>race</dt><dd>{{ operson.race }}</dd>
+		<dt>location(s)</dt>
+		<dd>
+			{% for location in operson.locations.all %}
+				{{ location.title }} &nbsp;
+			{% endfor %}
+		</dd>
 	</dl>
 	<br clear="left" />
 
