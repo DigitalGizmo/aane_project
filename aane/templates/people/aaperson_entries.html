@@ -35,7 +35,7 @@
 		<dt>location(s)</dt>
 		<dd>
 			{% for location in aaperson.locations.all %}
-				{{ location.title }} &nbsp;
+				{{ location.title }}, {{ location.state.abbr}} &nbsp;
 			{% endfor %}
 		</dd>
 		<dt>place of origin</dt><dd>{{ aaperson.place_of_origin }}</dd>

@@ -58,7 +58,7 @@
       </td>
       <td>
         {% for location in aaperson.locations.all %}
-          {{ location.title }},
+          {{ location.title }}, {{ location.state.abbr}} &nbsp;
         {% endfor %}
       </td>
       <td class="sm">{{ aaperson.person_entries.count }}</td>

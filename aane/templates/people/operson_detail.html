@@ -25,7 +25,7 @@
 		<dt>location(s)</dt>
 		<dd>
 			{% for location in operson.locations.all %}
-				{{ location.title }} &nbsp;
+				{{ location.title }}, {{ location.state.abbr}} &nbsp;
 			{% endfor %}
 		</dd>
 	</dl>

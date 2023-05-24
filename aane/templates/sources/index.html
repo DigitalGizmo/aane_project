@@ -57,7 +57,7 @@
 
 			<td class="sm-top">{{ primarysource.source_type }}</td>
 			<td class="sm-top">{{ primarysource.source_classification|safe }}</td>
-			<td class="sm-top">{{ primarysource.location}}</td>
+			<td class="sm-top">{{ primarysource.location.title}}, {{ primarysource.location.state.abbr}}</td>
 			<td class="sm-top">{{ primarysource.entries_count}}</td>
 		</tr>
 		{% endfor %}
