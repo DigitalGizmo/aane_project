@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.db import models
-#from people.models import AAPerson
+# from locations.models import Town
 import people.models
 
 """
@@ -34,9 +34,11 @@ class PrimarySource(models.Model):
         max_length=32, choices=SOURCE_CLASSIFICATION)
     source_type = models.ForeignKey('SourceType', default=1, 
         on_delete=models.PROTECT)
+    # location = models.ForeignKey('locations.Town', default=10,
+    #                              on_delete=models.PROTECT, 
+    #                              )
     title = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
-    location = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
     year_start = models.IntegerField('Year', blank=True, null=True, 
         help_text='Start year if range')
