@@ -10,11 +10,11 @@
 {% block content %}
 	<h1>{{ primarysource.title|safe }}</h1>
 	<dl>
+		<dt>Location:</dt>
+		<dd>{{ primarysource.location }}</dd>
+
 		<dt>Description:</dt>
 		<dd>{{ primarysource.description }}</dd>
-
-		{% comment %} <dt>PVMA call number:</dt>
-		<dd>{{ primarysource.pvma_call_num }}</dd> {% endcomment %}
 	</dl>
 
   <p>Table of contents</p>

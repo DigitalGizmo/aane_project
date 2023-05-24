@@ -15,6 +15,7 @@
 
 			<th>Type</th>
 			<th>Classification</th>
+			<th>Location</th>
 			<th>Count</th>
 		</tr>
 		{% for primarysource in primarysource_list %}
@@ -56,6 +57,7 @@
 
 			<td class="sm-top">{{ primarysource.source_type }}</td>
 			<td class="sm-top">{{ primarysource.source_classification|safe }}</td>
+			<td class="sm-top">{{ primarysource.location}}</td>
 			<td class="sm-top">{{ primarysource.entries_count}}</td>
 		</tr>
 		{% endfor %}
