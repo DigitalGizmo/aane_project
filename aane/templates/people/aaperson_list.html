@@ -56,7 +56,7 @@
           {{ owner.name|safe }};
         {% endfor %}
       </td>
-      <td>
+      <td class="medplus">
         {% for location in aaperson.locations.all %}
           {{ location.title }}, {{ location.state.abbr}} &nbsp;
         {% endfor %}
