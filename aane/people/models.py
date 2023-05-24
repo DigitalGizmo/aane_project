@@ -23,7 +23,7 @@ class PersonModel(models.Model):
     full_bio = QuillField(blank=True, default='')
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
-    location = models.ManyToManyField('locations.Town', blank=True)
+    locations = models.ManyToManyField('locations.Town', blank=True)
 
     class Meta:
         abstract = True
