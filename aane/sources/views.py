@@ -1,12 +1,15 @@
 from multiprocessing import context
-import re
+# import re
 from django.shortcuts import get_object_or_404, render
-from .models import PrimarySource, SourceEntry, Volume
-from people.models import AAPerson
 # new
-from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
+# from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
 from django.urls import reverse_lazy, reverse
-from django.views import generic
+# from django.views import generic
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormMixin
+from .models import PrimarySource, SourceEntry, Volume
+from .forms import SourceSearchForm
+from people.models import AAPerson
 
 """
 def index(request):
@@ -14,10 +17,36 @@ def index(request):
     return render(request, 'sources/index.html', {'research_object_list': research_object_list})
 """
 
-class SourceListView(generic.ListView):
+class SourceListView(FormMixin, ListView):
     model = PrimarySource
     context_object_name = 'primarysource_list'
     template_name = 'sources/index.html'
+    # For search and filter
+    form_class = SourceSearchForm
+
+    def get_form_kwargs(self):
+        return {
+            'initial': self.get_initial(), # won't be using this
+            'prefix': self.get_prefix(),  # don't know what this is
+            'data': self.request.GET # or self.init_data # None  # will add my data here
+        }
+
+    def get(self, request,*args, **kwargs):
+        self.object_list = self.get_queryset()
+        form = self.get_form(self.get_form_class())
+
+        if form.is_valid():
+            type_list = form.cleaned_data['sourceTypes']
+
+            if len(type_list) > 0 :
+                for idx, val in enumerate(type_list):
+                    self.object_list = self.object_list.filter(type_list__slug=type_list[idx])
+
+        # remove any duplicates
+        self.object_list = self.object_list.distinct()
+
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
 
 """""
 Mistakenly started - really wanted entries per volume.
@@ -29,7 +58,7 @@ But this may come in handy later
 #     template_name = 'sources/volume_index.html'
 
 # this displays the Source's Entries as well
-class SourceDetailView(generic.DetailView):
+class SourceDetailView(DetailView):
     model = PrimarySource
     template_name = 'sources/source_detail.html'
 
@@ -52,11 +81,11 @@ class SourceDetailView(generic.DetailView):
 
 
 # New July 2022 - per volume detail
-class VolumeDetailView(generic.DetailView):
+class VolumeDetailView(DetailView):
     model = Volume
     template_name = 'sources/volume_detail.html'
 
-class EntryDetailView(generic.DetailView):
+class EntryDetailView(DetailView):
     model = SourceEntry 
     # template_name = 'sources/entry_detail.html'
     template_name = 'sources/entry_pop_detail.html'
