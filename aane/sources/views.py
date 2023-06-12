@@ -1,8 +1,7 @@
 from multiprocessing import context
 # import re
 from django.shortcuts import get_object_or_404, render
-# new
-# from django.http import HttpResponseRedirect, HttpResponse # HttpResponse is temporary
+from django.db.models import Q
 from django.urls import reverse_lazy, reverse
 # from django.views import generic
 from django.views.generic import ListView, DetailView
@@ -39,8 +38,20 @@ class SourceListView(FormMixin, ListView):
             type_list = form.cleaned_data['sourceTypes']
 
             if len(type_list) > 0 :
-                for idx, val in enumerate(type_list):
-                    self.object_list = self.object_list.filter(type_list__slug=type_list[idx])
+                # per undocumented .add method for Q objects
+                # https://bradmontgomery.net/blog/adding-q-objects-in-django/
+                # Get initial (0), then add
+                qquery = Q(source_type__slug=type_list[0])
+
+                for type_choice in type_list[1:]:
+                    qquery.add((Q(source_type__slug=type_choice)), 'OR' ) 
+
+                self.object_list = self.object_list.filter(qquery)
+
+
+
+                # for idx, val in enumerate(type_list):
+                #     self.object_list = self.object_list.filter(source_type__slug=type_list[idx])
 
         # remove any duplicates
         self.object_list = self.object_list.distinct()
