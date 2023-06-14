@@ -4,7 +4,10 @@
 {% block head_title %}Sources{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'sources:index'%}">Primary Sources </a> > Source Detail
+		<a href="/">Home</a> > 
+		<!-- <a href="{% url 'sources:index'%}">Primary Sources </a>  -->
+		<a onclick="history.back()">Primary Sources </a> 
+		> Source Detail
 	{% endblock %}
 
 {% block content %}

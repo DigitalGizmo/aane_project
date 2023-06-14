@@ -35,8 +35,12 @@ class SourceListView(FormMixin, ListView):
         form = self.get_form(self.get_form_class())
 
         if form.is_valid():
+            q = form.cleaned_data['q']
             type_list = form.cleaned_data['sourceTypes']
 
+            if q:
+                self.object_list = self.object_list.filter(Q(title__icontains=q) )
+                #  | Q(narrative__icontains=q)
             if len(type_list) > 0 :
                 # per undocumented .add method for Q objects
                 # https://bradmontgomery.net/blog/adding-q-objects-in-django/
@@ -57,6 +61,7 @@ class SourceListView(FormMixin, ListView):
         self.object_list = self.object_list.distinct()
 
         context = self.get_context_data(form=form)
+        context['result_count'] = len(self.object_list)
         return self.render_to_response(context)
 
 """""
