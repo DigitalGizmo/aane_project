@@ -349,3 +349,126 @@ blue: #29439C, dark blue: #2D3F72, bright blue: #3372FF-*/
 	float: left;
 	width: 5em;
 }
+
+.home-more {
+	padding: 1em;
+	margin: 1em;    
+}
+.home-more p {	
+    font-size: 1em; 
+    line-height: 1.5em; 
+    font-weight: 400;	
+}
+
+.more-link {
+    font-weight: 300;
+    color: #bc9906;
+}
+
+.more-link:hover{
+	/* color: #D35C0B; */
+    color: #bc9906;
+}
+
+/* From Impressions */
+#paging {
+    margin: 0.8em 0;
+  }
+  
+#paging li {
+display: inline;
+padding: 2px;
+}
+
+.previous {
+    float: left;
+    display: block;
+    margin-right: 3.5786636068%;
+    width: 22.3160022949%;
+}
+.previous:last-child {
+margin-right: 0;
+}
+
+.page-numbers {
+    float: left;
+    display: block;
+    margin-right: 3.5786636068%;
+    width: 48.2106681966%;
+    text-align: center;
+}
+
+.page-numbers:last-child {
+margin-right: 0;
+}
+
+.next {
+float: left;
+display: block;
+margin-right: 3.5786636068%;
+width: 22.3160022949%;
+text-align: right;
+}
+.next:last-child {
+margin-right: 0;
+}
+
+.page-nav, .page-nav--disabled, .page-nav--selected {
+display: inline;
+}
+
+.page-nav, .page-nav--selected {
+margin-right: 0.4em;
+padding: 0 2px;
+}
+.page-nav a:hover, .page-nav--selected a:hover {
+text-decoration: none;
+}
+.page-nav a::before, .page-nav--selected a::before {
+content: "\02666";
+color: #b3aa98;
+font-size: 0.8em;
+padding-right: 0.8em;
+}
+
+.next-link, .prev-link {
+border: none;
+}
+.next-link a:hover, .prev-link a:hover {
+text-decoration: underline;
+}
+
+.page-nav--selected {
+background-color: #b3aa98;
+color: #b12b00;
+padding: 0 3px;
+}
+
+.page-nav--disabled {
+color: #999;
+}
+
+
+
+/* 
+#paging li.document-paging--page::after {
+content: " |";
+}
+#paging li.last::after {
+content: none;
+}
+#paging a:link {
+text-decoration: underline;
+}
+#paging a:hover {
+background-color: #b3aa98;
+}
+
+.document-paging--title {
+float: left;
+margin: 2px 4px 0 0.0625em;
+}
+
+.page-nav--selected {
+background-color: rgba(179, 170, 152, 0.5);
+} */

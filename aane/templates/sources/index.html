@@ -13,18 +13,18 @@
 		<form action="{% url 'sources:index' %}" method="GET" id="search-form" name="menu">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}
-		  <!-- <input type="hidden" name="page" value="{{ page_number }}"/> -->
+		  <input type="hidden" name="page" value="{{ page_number }}"/>
 	  
-		  <h2>Showing: {{ result_count }} sources</h2>
-		  <h4 class="heading">View by Source Type</h4>
+		  <h4 class="heading">Filter by Type</h4>
 	  
 		  {{ form.sourceTypes }}
 
 		  <h4 class="heading">Search Source Titles</h4>
-		  <input type="search" name="q" value="{{ form.q.value }}" id="id_q" 
+		  <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
 			placeholder="Search" class="search-field"/>
 
 		  <input type="submit" value="Go" />
+		  <p>Showing: {{ result_count }} sources</p>
 		  <span id="clear"><a href="#">clear search</a></span>
 		</form>
 	  </section>
@@ -35,7 +35,7 @@
 			<th>Type</th>
 			<th>Classification</th>
 			<th>Location</th>
-			<th>Count</th>
+			<th># Entries</th>
 		</tr>
 		{% for primarysource in primarysource_list %}
 		<tr>
@@ -44,34 +44,8 @@
 				<a href="{% url 'sources:source_detail' primarysource.id %}">
 					{{ primarysource.title|safe }}
 				</a>
+				<!-- volume sublist removed -->
 
-				<ul class="volume-sublist">
-					{% for volume in primarysource.volume_set.all %}
-					<li class="source-volumes">
-
-						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
-
-							<span class="date-span">
-								{{ volume.year_start}}{% if volume.month_start %}-{{ volume.two_digit_month_start }}{% if volume.day_start %}-{{ volume.two_digit_day_start }}
-								{% endif %}
-								{% endif %} 
-							</span>
-						</a>
-							
-						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
-							<span class="date-span">
-								{{ volume.year_end}}{% if volume.month_end %}-{{ volume.two_digit_month_end }}{% if volume.day_end %}-{{ volume.two_digit_day_end }}
-								{% endif %}
-								{% endif %} 
-							</span>
-						</a>
-
-						<a href="{% url 'sources:source_detail' primarysource.id %}#{{ volume.id }}">
-							{{ volume.title|safe }}&nbsp;
-						</a>
-					</li>
-					{% endfor %}				
-				</ul>
 			</td>
 
 			<td class="sm-top">{{ primarysource.source_type }}</td>
@@ -82,6 +56,48 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
+
+	<nav id="paging">
+		<ul class="previous">
+		  {% if page_obj.has_previous %}
+			<li class="prev-link">
+			  <a href="?page={{ page_obj.previous_page_number }}">&lArr; prev</a>
+			</li>
+		  {% else %}
+			<li class="page-nav--disabled prev-link">&lArr; prev</li>
+		  {% endif %}
+		</ul>
+	
+	
+		<ul class="page-numbers">
+		  {% for page_number in paginator.page_range %}
+			{% if page_number == page_obj.number %}
+			  <li class="page-nav--selected">{{ page_number }}</li>
+			{% else %}
+			  <li class="page-nav">
+				<a href="?page={{ page_number }}">{{ page_number }}</a>
+			  </li>
+			{% endif %}
+		  {% endfor %}
+		</ul>
+	
+		<ul class="next">
+		  {% if page_obj.has_next %}
+			<li class="next-link">
+			  <a href="?page={{ page_obj.next_page_number }}">next &rArr;</a>
+			</li>
+		  {% else %}
+			<li class="page-nav--disabled next-link">next &rArr;</li>
+		  {% endif %}
+	
+		</ul>
+	  </nav><!--/paging -->
+	
+
+
+
+
+	<p>Seach all entries?</p>
 	<p class="faint">sources/index.html</p>
 
 {% endblock content %}

@@ -21,6 +21,7 @@ class SourceListView(FormMixin, ListView):
     context_object_name = 'primarysource_list'
     template_name = 'sources/index.html'
     # For search and filter
+    paginate_by=32
     form_class = SourceSearchForm
 
     def get_form_kwargs(self):

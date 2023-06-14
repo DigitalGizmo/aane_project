@@ -8,7 +8,13 @@
 	<h3>Evidence from 18th Century Massachusetts</h3>
 
 	<p>
-		This database includes nearly 3,000 African American-related entries from the 18th century in Western Massachusetts. Emphasis is on Deerfield, Massachusetts where, by the mid-18th century, 38% of households included the enslaved.  The earliest record dates to 1695.
+		This database includes nearly 3,000 African American-related entries from the 18th century in Western Massachusetts. Emphasis is on Deerfield, Massachusetts where, by the mid-18th century, 38% of households included the enslaved.  The earliest record dates to 1695. 
+		<a 	class="more-link"
+			hx-target="#slimpop-container"
+			hx-swap="outerHTML"
+			hx-get="{% static 'home_more.html' %}">
+			More..
+		</a>
 	</p>
 
 	<nav>
@@ -19,7 +25,10 @@
 		<a href="{% url 'people:operson_index' %}" class="operson"><span>Browse by Person</span>Whites:<br>Enslavers &amp; Others</a>
 	</nav>
 </div>
-
-
 {% endblock page %}
 
+{% block pop %}
+<div id="slimpop-overlay" class="hidden">
+	<div id="slimpop-container" hx-target="this">will be replaced</div>
+</div>
+{% endblock %}
