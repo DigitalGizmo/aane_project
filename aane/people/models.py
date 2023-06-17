@@ -60,7 +60,7 @@ class AAPerson(PersonModel):
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
 
     class Meta:
-        ordering = ['known_status', 'freed_status', 'name']
+        ordering = ['name'] #'known_status', 'freed_status', 
         verbose_name = "African American"
     	
     # return list of entries for given person

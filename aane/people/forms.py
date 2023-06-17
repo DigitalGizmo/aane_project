@@ -1,15 +1,13 @@
 from django import forms
-from .models import SourceType
+from .models import AAPerson
 
-
-class SourceSearchForm(forms.Form):
+class PersonSearchForm(forms.Form):
     q = forms.CharField(max_length=100, required=False)
     page = forms.IntegerField(required=False)
 
     # get evidence type list directly from the database
-    sourceTypes = forms.MultipleChoiceField(
-        choices = SourceType.objects.all().values_list('slug', 
-            'title').order_by('title'),
+    freedStatus = forms.MultipleChoiceField(
+        choices = AAPerson.FREED_STATUS,
         widget  = forms.CheckboxSelectMultiple,
         required=False,
     )

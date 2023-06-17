@@ -16,6 +16,9 @@ class SourceType(models.Model):
     title = models.CharField(max_length=64)
     note = models.TextField(blank=True, default='')   
 
+    class Meta:
+        ordering = ['title']  
+
     def __str__(self):
         return self.title
 

@@ -1,0 +1,38 @@
+{% if is_paginated %}
+{# JavaScript will change class="page-nav" click to form submission  id="paging #}
+<nav id="paging">
+    <ul class="previous">
+      {% if page_obj.has_previous %}
+        <li class="prev-link">
+          <a href="?page={{ page_obj.previous_page_number }}">&lArr; prev</a>
+        </li>
+      {% else %}
+        <li class="page-nav--disabled prev-link">&lArr; prev</li>
+      {% endif %}
+    </ul>
+
+
+    <ul class="page-numbers">
+      {% for page_number in paginator.page_range %}
+        {% if page_number == page_obj.number %}
+          <li class="page-nav--selected">{{ page_number }}</li>
+        {% else %}
+          <li class="page-nav">
+            <a href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <ul class="next">
+      {% if page_obj.has_next %}
+        <li class="next-link">
+          <a href="?page={{ page_obj.next_page_number }}">next &rArr;</a>
+        </li>
+      {% else %}
+        <li class="page-nav--disabled next-link">next &rArr;</li>
+      {% endif %}
+
+    </ul>
+</nav><!--/paging -->
+{% endif %}

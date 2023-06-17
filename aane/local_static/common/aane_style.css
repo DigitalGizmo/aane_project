@@ -350,24 +350,29 @@ blue: #29439C, dark blue: #2D3F72, bright blue: #3372FF-*/
 	width: 5em;
 }
 
-.home-more {
-	padding: 1em;
-	margin: 1em;    
-}
-.home-more p {	
-    font-size: 1em; 
-    line-height: 1.5em; 
-    font-weight: 400;	
+.home-blurb {
+    font-weight: 300;
 }
 
 .more-link {
-    font-weight: 300;
+    font-weight: 400;
     color: #bc9906;
 }
 
 .more-link:hover{
 	/* color: #D35C0B; */
     color: #bc9906;
+}
+
+.home-more {
+	padding: 1em;
+	margin: 1em;    
+}
+
+.home-more p {	
+    font-size: 1em; 
+    line-height: 1.5em; 
+    font-weight: 400;	
 }
 
 /* From Impressions */
