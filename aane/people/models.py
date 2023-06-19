@@ -44,7 +44,7 @@ class AAPerson(PersonModel):
     )
     FREED_STATUS = (
         (1,'enslaved'),
-        (2,'transition'),
+        (2,'enslaved, then free'),
         (3,'always free'),
     )
     alt_name_spelling = models.CharField(max_length=32, blank=True, default='')

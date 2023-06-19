@@ -70,7 +70,7 @@
         {% endif %}
       </td>
       <td class="med">{{ aaperson.get_known_status_display }}</td>
-      <td class="med">{{ aaperson.get_freed_status_display }}</td>
+      <td class="medplus">{{ aaperson.get_freed_status_display }}</td>
       <td>
         {% for owner in aaperson.owners.all %}
           {{ owner.name|safe }};
