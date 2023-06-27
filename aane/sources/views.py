@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from .models import PrimarySource, SourceEntry, Volume
-from .forms import SourceSearchForm
+from .forms import SourceSearchForm, EntrySearchForm
 from people.models import AAPerson
 
 """
@@ -141,7 +141,61 @@ class EntryDetailView(DetailView):
 
             })
         return context    
-        
+
+
+class EntryListView(FormMixin, ListView): # FormMixin, 
+    model = SourceEntry
+    context_object_name = 'sourceentry_list'
+    template_name = 'sources/entries_all.html'
+    # For search and filter
+    paginate_by=32
+    form_class = EntrySearchForm
+
+    def get_form_kwargs(self):
+        return {
+            'initial': self.get_initial(), # won't be using this
+            'prefix': self.get_prefix(),  # don't know what this is
+            'data': self.request.GET # or self.init_data # None  # will add my data here
+        }
+
+    def get(self, request,*args, **kwargs):
+        self.object_list = self.get_queryset()
+        form = self.get_form(self.get_form_class())
+
+        if form.is_valid():
+            q = form.cleaned_data['q']
+            # type_list = form.cleaned_data['sourceTypes']
+            print("got to form valid")
+
+            if q:
+                print("got to if q")
+
+                self.object_list = self.object_list.filter(Q(entry_text__icontains=q) )
+                #  | Q(narrative__icontains=q)
+            # if len(type_list) > 0 :
+            #     # per undocumented .add method for Q objects
+            #     # https://bradmontgomery.net/blog/adding-q-objects-in-django/
+            #     # Get initial (0), then add
+            #     qquery = Q(source_type__slug=type_list[0])
+
+            #     for type_choice in type_list[1:]:
+            #         qquery.add((Q(source_type__slug=type_choice)), 'OR' ) 
+
+            #     self.object_list = self.object_list.filter(qquery)
+
+
+
+                # for idx, val in enumerate(type_list):
+                #     self.object_list = self.object_list.filter(source_type__slug=type_list[idx])
+
+        # remove any duplicates
+        self.object_list = self.object_list.distinct()
+
+        context = self.get_context_data(form=form)
+        context['result_count'] = len(self.object_list)
+        return self.render_to_response(context)
+
+
 # class EntryCreateView(generic.CreateView):
 #     model = SourceEntry
 #     #fields = ['entry_text']

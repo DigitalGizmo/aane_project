@@ -13,7 +13,6 @@ urlpatterns = [
     # path(r'entry/update/<int:pk>/', views.EntryUpdateView.as_view(), name='entry_update'),
     # path(r'entry/<int:pk>/delete/', views.EntryDeleteView.as_view(), name='entry_delete'),
 
-    #temp
     path('entry/<int:pk>/', views.EntryDetailView.as_view(), name='entry_detail'),
-    # path('entries/', views.EntryListView.as_view(), name='all_entries'),
+    path('entries/', views.EntryListView.as_view(), name='all_entries'),
 ]
