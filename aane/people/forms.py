@@ -11,3 +11,17 @@ class PersonSearchForm(forms.Form):
         widget  = forms.CheckboxSelectMultiple,
         required=False,
     )
+
+    # order by
+    # sortOrder = forms.CharField(max_length=24, required=False)
+    SORT_CHOICES = (('name','name'), 
+                ('birth_year','birth'), 
+                ('death_year','death'),
+                ('first_appearance_year','first rec'),
+                ('last_appearance_year','last rec'),
+                )
+    sortOrder = forms.ChoiceField(
+        choices = SORT_CHOICES,
+        widget  = forms.Select,
+        required=False,
+    )

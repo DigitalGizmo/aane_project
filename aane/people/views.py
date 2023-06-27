@@ -35,6 +35,7 @@ class AAPersonListView(FormMixin, generic.ListView):
         if form.is_valid():
             q = form.cleaned_data['q']
             freed_status_list = form.cleaned_data['freedStatus']
+            sortOrder = form.cleaned_data['sortOrder']
 
             if q:
                 self.object_list = self.object_list.filter(Q(name__icontains=q) )
@@ -50,9 +51,12 @@ class AAPersonListView(FormMixin, generic.ListView):
                     qquery.add((Q(freed_status=freed_choice )), 'OR' ) 
 
                 self.object_list = self.object_list.filter(qquery)
-
-
-
+            
+            # Optional sort
+            if sortOrder:
+                self.object_list = self.object_list.order_by(sortOrder)
+                # self.object_list = self.object_list.order_by(sortOrder_list[0])
+                #  | Q(narrative__icontains=q)
 
 
         # remove any duplicates
