@@ -16,6 +16,7 @@ class SourceSearchForm(forms.Form):
 
 class EntrySearchForm(forms.Form):
     q = forms.CharField(max_length=100, required=False)
+    year = forms.CharField(max_length=100, required=False)
     page = forms.IntegerField(required=False)
 
     # # get evidence type list directly from the database

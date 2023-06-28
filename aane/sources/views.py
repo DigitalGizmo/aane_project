@@ -164,6 +164,7 @@ class EntryListView(FormMixin, ListView): # FormMixin,
 
         if form.is_valid():
             q = form.cleaned_data['q']
+            year = form.cleaned_data['year']
             # type_list = form.cleaned_data['sourceTypes']
             print("got to form valid")
 
@@ -172,6 +173,17 @@ class EntryListView(FormMixin, ListView): # FormMixin,
 
                 self.object_list = self.object_list.filter(Q(entry_text__icontains=q) )
                 #  | Q(narrative__icontains=q)
+
+
+            if year:
+                print("got to if year")
+
+                self.object_list = self.object_list.filter(Q(low_year__icontains=year) )
+                #  | Q(narrative__icontains=q)
+
+
+
+
             # if len(type_list) > 0 :
             #     # per undocumented .add method for Q objects
             #     # https://bradmontgomery.net/blog/adding-q-objects-in-django/

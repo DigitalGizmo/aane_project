@@ -24,6 +24,10 @@
 		  <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
 			placeholder="Search" class="search-field"/>
 
+		  <h4 class="heading">Filter by year</h4>
+		  <input type="search" name="year" value="{{ form.year.value|default_if_none:'' }}" id="id_q" 
+			placeholder="Search" class="search-field"/>
+
 		  <input type="submit" value="Go" />
 		  <p>Showing: {{ result_count }} sources</p>
 		</form>
@@ -35,6 +39,7 @@
     >
         <tr>
             <th>Entry</th>
+            <th>Source</th>
             <th>Date</th>
             <th>AA Name</th>
             <th>Enslaver</th>
@@ -57,6 +62,18 @@
                 {% else %}
                     &nbsp; {{ entry.entry_text|safe }}
                 {% endif %}
+            </td>
+            <td  class="lrg">
+                <a href="{% url 'sources:source_detail' entry.primary_source.id %}">
+                    {{ entry.primary_source.title }},
+                </a>
+                <a href="{% url 'sources:source_detail' entry.primary_source.id %}#{{entry.volume.id}}">
+                {% if entry.volume.title %}
+                    {{ entry.volume.title }}
+                {% else %}
+                    {{ entry.volume.year_start }}-{{ entry.volume.year_end }}
+                {% endif  %}
+                </a>
             </td>
             <td class="medplus">{% firstof entry.low_year "--" %} 
                 {% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
