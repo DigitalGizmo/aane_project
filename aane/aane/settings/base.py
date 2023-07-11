@@ -79,6 +79,8 @@ WSGI_APPLICATION = 'aane.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# print("db_pass: ", get_secret("DB_PASS"))
+
 DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
@@ -86,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'aanedata',
         'USER': 'aanedata_user',
-        'PASSWORD': 'lucy$Terry',
+        'PASSWORD': get_secret("DB_PASS"),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
