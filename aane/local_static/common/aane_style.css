@@ -251,7 +251,11 @@ section a:hover		{	color: #96801A ;text-decoration: underline;	}
 	grid-template-columns: 45% 45%;
 	grid-auto-rows: auto;
 	grid-column-gap: 5%;
-    padding: 2em 3em;
+    /* padding: 2em 3em; */
+    padding: 1em 3em 0em;
+    /* don adding */
+    /* position: absolute;
+    height: 20vh; */
 }
 
 .slimpop-close {
@@ -452,6 +456,11 @@ padding: 0 3px;
 .page-nav--disabled {
 color: #999;
 }
+
+/* Don adding for zoom */
+/* .dragon-wrapper {
+    height: 50vh;
+} */
 
 
 

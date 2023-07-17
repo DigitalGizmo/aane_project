@@ -4,9 +4,9 @@
 {% block entry_pop_detail %}
   <div class="slim-info">
     <p class="slimpop-close">
-      &larr; previous | 
+      <!-- &larr; previous |  -->
 
-      <a href="#">next &rarr; </a>
+      <!-- <a href="#">next &rarr; </a> -->
       {% comment %} 
       having trouble getting the index number
       <a hx-get="/sources/entry/{{entry_ids[initial_index]}}/">
@@ -73,15 +73,21 @@
   
         </dd>
       </dl>
+      <p><a class="to-top" href="#">return to top</a></p>
     </div><!-- /slim-details -->
   </div><!-- /slim-info -->
   
-  <div id="openseadragon1" style=" height: 80vh; background-color: #EEE;"></div> 
+  <!-- <div class="dragon-wrapper"> -->
+    <div id="openseadragon1" style=" height: 80vh; background-color: #EEE;"></div> 
+    <!-- <div id="openseadragon1" style="width: 800px; height: 600px; background-color: #EEE;"></div>  -->
+  <!-- </div> -->
   
   <!-- <script src="{% static 'js/openseadragon.min.js' %}"></script> -->
   <script type="text/javascript">
     var viewer = OpenSeadragon({
       id: "openseadragon1",
+      // clickToZoom: false,
+      // pinchToZoom: false,
       minZoomImageRatio: 0.8,
       maxZoomLevel: 1.3,
       prefixUrl: "{% static 'js/images/' %}",

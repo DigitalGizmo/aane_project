@@ -29,7 +29,11 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 """
 
+import os
+
 """
+# fix for populate() isn't reentrant - run this to kill, the put
+# back to normal
 def application(environ, start_response):
     if environ['mod_wsgi.process_group'] != '': 
         import signal
@@ -37,7 +41,6 @@ def application(environ, start_response):
     return ["killed"]
 """
 
-import os
 
 from django.core.wsgi import get_wsgi_application
 

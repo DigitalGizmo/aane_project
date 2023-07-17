@@ -45,3 +45,17 @@
     $('#search-form').find('[type=hidden][name=page]').val(href_split[1])
     $('#search-form').submit()
   });
+
+// new for aane
+
+$(document).on("click", ".to-top", function(event){
+  console.log('got to go to top');
+  event.preventDefault();
+  document.getElementById('slimpop-container').scrollTo(0, 0);
+  // get the page number from href
+  // var chosen_href = $(event.target).closest('li').children('a').attr('href');
+  // page number = href_split[1]  
+  // alert('in page nav. page num: ' + href_split[1]); 
+  // set the page number in the hidden field
+
+});
