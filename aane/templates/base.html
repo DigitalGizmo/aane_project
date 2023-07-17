@@ -32,11 +32,12 @@
 <footer>
 	<nav>
 		<ul>
-			<li><a href="">About This Project</a></li>
-			<li><a href="">About This Database</a></li>
-			<li><a href="">Funders</a></li>
-			<li><a href="https://deerfield-ma.org/">About PVMA</a></li>
-			<li><a href="">Contact Us</a></li>
+			<li><a href="{% url 'about:project' %}">About This Project</a></li>
+			<li><a href="{% url 'about:database' %}">About This Database</a></li>
+			<li><a href="{% url 'about:funders' %}">Funders</a></li>
+			<li><a href="https://deerfield-ma.org/" 
+          target="_blank">About PVMA</a></li>
+			<li><a href="{% url 'about:contact' %}">Contact Us</a></li>
 		</ul>
 	</nav>
 </footer>

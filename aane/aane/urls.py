@@ -30,6 +30,7 @@ urlpatterns = [
        name='graphql'),
     path('sources/', include('sources.urls', namespace="sources")),
     path('people/', include('people.urls', namespace="people")),
+    path('about/', include('about.urls', namespace="about")),
 
     path('admin/', admin.site.urls),
 ]

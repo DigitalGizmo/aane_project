@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
     'locations.apps.LocationsConfig',
+    'about.apps.AboutConfig',
     'django_quill',
     'django_htmx',
     # 'graphene_django',
