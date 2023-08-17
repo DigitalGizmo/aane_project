@@ -99,8 +99,8 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
     ]
     list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
-        'low_year', 'month_day', 'page_num', 'image_name', 'data_status',
-        'image_status',) #  'aa_id', 'operson_id',
+        'low_year', 'month_day', 'aa_id', 'page_num', 'image_name', 'scan_date',
+        'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'volume', 'primary_source']  
     search_fields = ['entry_text']
     formfield_overrides = {

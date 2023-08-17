@@ -15,6 +15,7 @@ class PersonSearchForm(forms.Form):
     # order by
     # sortOrder = forms.CharField(max_length=24, required=False)
     SORT_CHOICES = (('name','name'), 
+                ('last_name','last name'), 
                 ('birth_year','birth'), 
                 ('death_year','death'),
                 ('first_appearance_year','first rec'),
