@@ -1,0 +1,117 @@
+{% extends "basic_page.html" %}
+{% load static %}
+
+{% block head_title %}AAERNE - African Americans{% endblock %}
+
+{% block breadcrumbs %}
+  <a href="/">Home</a> > African American People
+{% endblock %}
+
+
+{% block content %}
+  <h1>African Americans</h1>
+  <!-- Sorted by (known, enslaver only known, unknown), (enslaved, became freed, always free), then Name. -->
+  
+	<section class="control-panel">
+		<form action="{% url 'people:aaperson_zero' %}" method="GET" id="search-form" name="menu">
+		  {# csrf_token #} 
+		  {# JS for item selection will change method to post (and will change action) #}
+		  <input type="hidden" name="page" value="{{ page_number }}"/>
+      
+		  <h4 class="heading">Filter by Freed Status</h4>
+		  {{ form.freedStatus }}
+      
+		  <h4 class="heading">Search Names</h4>
+		  <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
+			placeholder="Search" class="search-field"/>
+      
+		  <h4 class="heading">Sort by</h4>
+      {{ form.sortOrder}}
+
+      <input type="submit" value="Go" />
+		  <p>Showing: {{ result_count }} people</p>
+		  <span id="clear"><a href="#">clear search</a></span>
+		</form>
+  </section>  
+  
+  <table>
+    <tr>
+      {% comment %} <th>Edit</th> {% endcomment %}
+      <th>Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Birth</th>
+      <th>Death</th>
+      <th>First Rec</th>
+      <th>Last Rec</th>
+      <th>Known?</th>
+      <th>Enslaved?</th>
+      <th>Enslaver(s)</th>
+      <th>Location(s)</th>
+      <th>Entries</th>
+      <th>Edit</th>
+    </tr>
+    {% for aaperson in aaperson_list %}
+      {% if aaperson.person_entries.count < 1 %}
+      <!-- person_entries.count == "0" -->
+      <tr>
+        {% comment %} <td class="sm"> {% endcomment %}
+          <!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
+          {% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
+        </td> {% endcomment %}
+        <td class="medlrg">
+          <a href="{% url 'people:aaperson_entries' aaperson.id %}">
+            {{ aaperson.name|safe }}
+          </a>
+        </td>
+        <td class="medplus">{{ aaperson.first_name|safe }}</td>
+        <td class="medplus">{{ aaperson.last_name|safe }}</td>
+        <td class="sm">
+          {% if aaperson.birth_year %}
+            {{ aaperson.birth_year }}
+          {% endif %}
+        </td>
+        <td class="sm">
+          {% if aaperson.death_year %} 
+            {{ aaperson.death_year }}
+          {% endif %}
+        </td>
+        <td class="sm">
+          {% if aaperson.first_appearance_year %}
+            {{ aaperson.first_appearance_year }}
+          {% endif %}
+        </td>
+        <td class="sm">
+          {% if aaperson.last_appearance_year %} 
+            {{ aaperson.last_appearance_year }}
+          {% endif %}
+        </td>
+        <td class="med">{{ aaperson.get_known_status_display }}</td>
+        <td class="medplus">{{ aaperson.get_freed_status_display }}</td>
+        <td>
+          {% for owner in aaperson.owners.all %}
+            {{ owner.name|safe }};
+          {% endfor %}
+        </td>
+        <td class="medplus">
+          {% for location in aaperson.locations.all %}
+            {{ location.title }}, {{ location.state.abbr}} &nbsp;
+          {% endfor %}
+        </td>
+        <td class="sm">{{ aaperson.person_entries.count }}</td>
+        <td class="sm">
+          <a href="http://aane.deerfield-ma.org/admin/people/aaperson/{{aaperson.id}}/change/"
+            target="_edit"> {{ aaperson.id }}</a>
+        </td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+  
+  {% include '_list_pagination.html' %}
+
+  <p class="small"><a href="#top">top of page</a></p>
+  <p class="faint">aaperson_list.html</p>
+
+
+{% endblock content %}

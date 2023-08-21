@@ -8,11 +8,44 @@
 	{% endblock %}
 
 {% block content %}
-<h1>About This Database</h1>
+<section class="about">
 
-<p>
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+	<h1>About This Database</h1>
+
+	<p>The African Americans in Rural New England Online Database/website is the result of a collaboration effort between museum staff, volunteers, historians, web developers, and computer science students from MCLA.  While the basic web database was created in 2015, the process began much earlier.   
+	</p>
+
+	<p>
+	Initial research for the database began in 2000, when graduate students and a library volunteer transcribed 2,000 entries from primary sources onto index cards. These index cards were then entered into an Excel spreadsheet.  Which, in turn, these data were used to populate the initial AANE database developed by Don Button, a web programmer.  
+	</p>
+
+	<h2>Data Structure</h2>
+
+	<p>during our analysis, we examined how data was stored both at the source level and the per-entry level. We identified the need to create a specific layer for the Volumes within each source. This way, important metadatacould be recorded at the per/volume level instead of being duplicated for each entry, specifically the accession and PVMA record numbers. </p>
+
+	<p>With the new volume structure in place, we imported a few hundred entries that were entered in Excel since the original database creation. Additionally, we introduced a new field for Source Type (e.g., Account, Day Book, Vital Records) and populated it accordingly.</p>
+
+	<p>In our Content Management System (Django) system, we reorganized and simplified the entry forms. We also improved the clarity of field labels and added hints for better understanding. To enhance navigation, we included columns of metadata and implemented filters to facilitate browsing through the source entries. </p>
+
+	<p>Regarding the Front End, we determined that JPEG2000 was the most suitable format for the image scans of the primary source books. We established a system for processing, storing, and uploading these images for use on the website. We also made progress on displaying the images at various sizes and croppings using the JPEG2000 API.</p>
+
+	<p>Furthermore, we made several refinements to the display of entries on the website. Entries were now grouped by volume under each specific source, and links were provided to access the image and detailed information for each entry from either the source lists of entries or the per person lists of entries. </p>
+
+	<p>Finally, we enhanced the entry lists and detail views by adding currency amounts for the transactions involving African Americans found in various 18th-century account books.</p>
+
+	<p>The project’s student interns Paolo Kareh, Roland Bruso, and Marie Balen, from Massachusetts College of Liberal Arts dedicated approximately 420 hours to working on the African American online relational database project. Over the course of 10 months, they provided continuous support and contributed to various aspects of the project.</p>
+
+	<p>Their tasks included network support, troubleshooting, and preparing and uploading primary source images to be included in the final version of the database. This work allowed them to enhance their SQL skills significantly. They received the images in TIFF format and were responsible for converting them to the JPEG2000 format, resizing them appropriately, and ensuring they were uploaded correctly to the database server</p>
+
+	<p>In addition to their technical duties, they actively participated in weekly Zoom project team meetings. This involvement allowed them to understand and incorporate the requirements of the project historian, researcher, scanner, and website programmer to create a cohesive and user-friendly website.</p>
+
+	<p>Furthermore, they were also engaged in troubleshooting and diagnosing issues with the project's high-resolution scanner, which had to be replaced twice due to internal hardware defects. This hands-on experience proved valuable for their learning and problem-solving skills. </p>
+
+	<p>Paolo and Roland were instrumental in the development and implementation of the database structure and naming conventions for fields. They actively participated in discussions and provided valuable input for the development of queries, filters, and indexes, making it easier for researchers to obtain lists and views based on specific criteria such as person, source type, keyword, and date.</p>
+
+	<p>Overall, their dedicated work as student interns significantly contributed to the success and functionality of the African American online relational database project. </p>
+
+</section>
 
 
 {% endblock content %}

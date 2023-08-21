@@ -457,6 +457,10 @@ padding: 0 3px;
 color: #999;
 }
 
+/* Don added */
+.about p {
+	font-weight: 400;
+}
 /* Don adding for zoom */
 /* .dragon-wrapper {
     height: 50vh;

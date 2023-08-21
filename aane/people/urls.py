@@ -18,5 +18,5 @@ urlpatterns = [
     path('opersons/', views.OPersonListView.as_view(), name='operson_index'),
     path('operson/<int:pk>/', views.OPersonDetailView.as_view(), 
     				name='operson_detail'),
-
+    path('team/zero', views.AAPersonZeroListView.as_view(), name='aaperson_zero'),
 ]

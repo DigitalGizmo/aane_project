@@ -66,6 +66,68 @@ class AAPersonListView(FormMixin, generic.ListView):
         context['result_count'] = len(self.object_list)
         return self.render_to_response(context)
 
+class AAPersonZeroListView(FormMixin, generic.ListView):
+    """Team page to research zero entries
+    """
+    model = AAPerson
+    # context_object_name = 'aaperson_list'
+    template_name = 'people/aaperson_team.html'
+
+    # For search and filter
+    paginate_by=40
+    form_class = PersonSearchForm
+
+    def get_form_kwargs(self):
+        return {
+            'initial': self.get_initial(), # won't be using this
+            'prefix': self.get_prefix(),  # don't know what this is
+            'data': self.request.GET # or self.init_data # None  # will add my data here
+        }
+
+    def get(self, request,*args, **kwargs):
+        self.object_list = self.get_queryset()
+        form = self.get_form(self.get_form_class())
+
+        # Filter for just zeros?
+        # No, can't filter by property
+        # self.object_list = self.object_list.filter(Q(person_entries__count__eq=0) )
+
+
+        if form.is_valid():
+            q = form.cleaned_data['q']
+            freed_status_list = form.cleaned_data['freedStatus']
+            sortOrder = form.cleaned_data['sortOrder']
+
+            if q:
+                self.object_list = self.object_list.filter(Q(name__icontains=q) )
+                #  | Q(narrative__icontains=q)
+
+            if len(freed_status_list) > 0 :
+                # per undocumented .add method for Q objects
+                # https://bradmontgomery.net/blog/adding-q-objects-in-django/
+                # Get initial (0), then add
+                qquery = Q(freed_status=freed_status_list[0])
+
+                for freed_choice in freed_status_list[1:]:
+                    qquery.add((Q(freed_status=freed_choice )), 'OR' ) 
+
+                self.object_list = self.object_list.filter(qquery)
+            
+            # Optional sort
+            if sortOrder:
+                self.object_list = self.object_list.order_by(sortOrder)
+                # self.object_list = self.object_list.order_by(sortOrder_list[0])
+                #  | Q(narrative__icontains=q)
+
+
+        # remove any duplicates
+        self.object_list = self.object_list.distinct()
+
+        context = self.get_context_data(form=form)
+        context['result_count'] = len(self.object_list)
+        return self.render_to_response(context)
+
+
 class AAPersonDetailView(generic.DetailView):
     model = AAPerson
     #template_name = 'people/aaperson_detail.html' # default
