@@ -166,14 +166,13 @@ class EntryListView(FormMixin, ListView): # FormMixin,
             q = form.cleaned_data['q']
             year = form.cleaned_data['year']
             # type_list = form.cleaned_data['sourceTypes']
+            sortOrder = form.cleaned_data['sortOrder']
             print("got to form valid")
 
             if q:
                 print("got to if q")
-
                 self.object_list = self.object_list.filter(Q(entry_text__icontains=q) )
                 #  | Q(narrative__icontains=q)
-
 
             if year:
                 print("got to if year")
@@ -181,6 +180,9 @@ class EntryListView(FormMixin, ListView): # FormMixin,
                 self.object_list = self.object_list.filter(Q(low_year__icontains=year) )
                 #  | Q(narrative__icontains=q)
 
+            # Optional sort
+            if sortOrder:
+                self.object_list = self.object_list.order_by(sortOrder)
 
 
 

@@ -28,6 +28,9 @@
 		  <input type="search" name="year" value="{{ form.year.value|default_if_none:'' }}" id="id_q" 
 			placeholder="Search" class="search-field"/>
 
+          <h4 class="heading">Sort by</h4>
+            {{ form.sortOrder}}
+      
 		  <input type="submit" value="Go" />
 		  <p>Showing: {{ result_count }} sources</p>
 		</form>
