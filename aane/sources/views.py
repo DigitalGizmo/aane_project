@@ -143,10 +143,12 @@ class EntryDetailView(DetailView):
         return context    
 
 
-class EntryListView(FormMixin, ListView): # FormMixin, 
+class EntryListView(FormMixin, ListView): # FormMixin,
+    """Shows all entries
+    """ 
     model = SourceEntry
     context_object_name = 'sourceentry_list'
-    template_name = 'sources/entries_all.html'
+    # template_name = 'sources/entries_all.html'
     # For search and filter
     paginate_by=32
     form_class = EntrySearchForm
@@ -166,6 +168,7 @@ class EntryListView(FormMixin, ListView): # FormMixin,
             q = form.cleaned_data['q']
             year = form.cleaned_data['year']
             # type_list = form.cleaned_data['sourceTypes']
+            noAaId = form.cleaned_data['noAaId']
             sortOrder = form.cleaned_data['sortOrder']
             print("got to form valid")
 
@@ -184,23 +187,8 @@ class EntryListView(FormMixin, ListView): # FormMixin,
             if sortOrder:
                 self.object_list = self.object_list.order_by(sortOrder)
 
-
-
-            # if len(type_list) > 0 :
-            #     # per undocumented .add method for Q objects
-            #     # https://bradmontgomery.net/blog/adding-q-objects-in-django/
-            #     # Get initial (0), then add
-            #     qquery = Q(source_type__slug=type_list[0])
-
-            #     for type_choice in type_list[1:]:
-            #         qquery.add((Q(source_type__slug=type_choice)), 'OR' ) 
-
-            #     self.object_list = self.object_list.filter(qquery)
-
-
-
-                # for idx, val in enumerate(type_list):
-                #     self.object_list = self.object_list.filter(source_type__slug=type_list[idx])
+            if len(noAaId) > 0 :
+                self.object_list = self.object_list.filter(Q(aa_id__isnull=True) )
 
         # remove any duplicates
         self.object_list = self.object_list.distinct()

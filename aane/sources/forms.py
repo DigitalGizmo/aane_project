@@ -33,6 +33,13 @@ class EntrySearchForm(forms.Form):
         required=False,
     )
 
+    AAID_CHOICES = ((99999,'Only with no aa id'), )
+    # get evidence type list directly from the database
+    noAaId = forms.MultipleChoiceField(
+        choices = AAID_CHOICES,
+        widget  = forms.CheckboxSelectMultiple,
+        required=False,
+    )
 
     # # get evidence type list directly from the database
     # sourceTypes = forms.MultipleChoiceField(

@@ -14,5 +14,8 @@ urlpatterns = [
     # path(r'entry/<int:pk>/delete/', views.EntryDeleteView.as_view(), name='entry_delete'),
 
     path('entry/<int:pk>/', views.EntryDetailView.as_view(), name='entry_detail'),
-    path('entries/', views.EntryListView.as_view(), name='all_entries'),
+    path('entries/', 
+         views.EntryListView.as_view(template_name="sources/entries_all.html"), name='all_entries'),
+    path('team/entries/', 
+         views.EntryListView.as_view(template_name="sources/entries_team.html"), name='team_entries'),
 ]
