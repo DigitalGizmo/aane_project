@@ -12,7 +12,8 @@
   <h1>African Americans</h1>
   <!-- Sorted by (known, enslaver only known, unknown), (enslaved, became freed, always free), then Name. -->
   
-	<section class="control-panel">
+	<section class="control-panel team">
+    <p><a href="{% url 'team_home' %}">Team Home</a></p>
 		<form action="{% url 'people:aaperson_zero' %}" method="GET" id="search-form" name="menu">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}

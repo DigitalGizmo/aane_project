@@ -13,7 +13,8 @@
 {% block content %}
 	<h1> Team Entries</h1>
 
-    <section class="control-panel">
+    <section class="control-panel team">
+        <p><a href="{% url 'team_home' %}">Team Home</a></p>
 		<form action="{% url 'sources:team_entries' %}" method="GET" id="search-form" name="menu">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}

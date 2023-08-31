@@ -466,7 +466,10 @@ color: #999;
     height: 50vh;
 } */
 
-
+/* For team */
+.team {
+    background-color: #fff6c8;
+}
 
 /* 
 #paging li.document-paging--page::after {

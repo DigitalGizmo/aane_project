@@ -25,6 +25,7 @@ from . import views
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
+    path('team/', views.TeamView.as_view(), name='team_home'),
     path('graphql/', 
        csrf_exempt(GraphQLView.as_view(graphiql=True)), 
        name='graphql'),
