@@ -29,7 +29,7 @@ class PersonModel(models.Model):
         abstract = True
 
     def __str__(self):
-        return self.name
+        return str(self.id) + " " + self.name
 
 
 class AAPerson(PersonModel):
