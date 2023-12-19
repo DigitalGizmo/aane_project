@@ -250,3 +250,7 @@ class EntryScanImport(models.Model):
     other_image_source = models.CharField(max_length=128, blank=True, default='')
     scan_name = models.CharField(max_length=128, blank=True, null=True)
     scan_note = models.TextField(blank=True, default='')
+
+class AAIDImport(models.Model):
+    entry_id = models.IntegerField()
+    aa_id = models.IntegerField()

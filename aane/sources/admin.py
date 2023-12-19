@@ -103,7 +103,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         'low_year', 'month_day', 'aa_id', 'page_num', 'image_name', 'scan_date',
         'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'volume', 'primary_source']  
-    search_fields = ['entry_text']
+    search_fields = ['entry_text', 'image_name']
     filter_horizontal = ['aa_ids']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
