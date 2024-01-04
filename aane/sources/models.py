@@ -218,7 +218,8 @@ class SourceEntry(models.Model):
         help_text='Data Status')
     image_status = models.IntegerField('image', default=0, choices=IMAGE_STATUS,
         help_text='Image Status')
-    aa_ids = models.ManyToManyField('people.AAPerson', blank=True)
+    aa_persons = models.ManyToManyField('people.AAPerson', 
+        related_name='aa_persons', blank=True)
 
     class Meta:
         ordering = ['primary_source', 'volume', 'low_year', 

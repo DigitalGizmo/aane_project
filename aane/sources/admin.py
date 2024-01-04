@@ -65,7 +65,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
             'volume','primary_source', 
             'entry_text', ('event', 'transaction_note'),
             ('aa_id', 'operson_id'),
-            'aa_ids', 
+            # 'aa_persons', 
             ('name_note', 'data_status'), 'notes',
             ]}
         ),
@@ -104,7 +104,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'volume', 'primary_source']  
     search_fields = ['entry_text', 'image_name']
-    filter_horizontal = ['aa_ids']
+    # filter_horizontal = ['aa_persons']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
