@@ -64,10 +64,17 @@ class AAPerson(PersonModel):
         verbose_name = "African American"
     	
     # return list of entries for given person
+    # Will be obsolete when sources.aa_persons is fully implemented
+    # @property
+    # def person_entries(self):
+    #     person_entry_list = SourceEntry.objects.filter(aa_id=self.pk)
+    #     return person_entry_list
+
+    # Just for the aaperson list number of entries per
     @property
-    def person_entries(self):
-        person_entry_list = SourceEntry.objects.filter(aa_id=self.pk)
-        return person_entry_list
+    def person_entries_count(self):
+        aaperson_entry_list = self.aa_persons
+        return aaperson_entry_list.count()
 
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):

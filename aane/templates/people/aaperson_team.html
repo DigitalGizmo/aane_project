@@ -53,7 +53,8 @@
       <th>Edit</th>
     </tr>
     {% for aaperson in aaperson_list %}
-      {% if aaperson.person_entries.count < 1 %}
+       <!-- if aaperson.person_entries.count < 1 -->
+      {% if aaperson.person_entries_count < 1 %}
       <!-- person_entries.count == "0" -->
       <tr>
         {% comment %} <td class="sm"> {% endcomment %}
@@ -99,7 +100,7 @@
             {{ location.title }}, {{ location.state.abbr}} &nbsp;
           {% endfor %}
         </td>
-        <td class="sm">{{ aaperson.person_entries.count }}</td>
+        <td class="sm">{{ aaperson.person_entries_count }}</td>
         <td class="sm">
           <a href="http://aane.deerfield-ma.org/admin/people/aaperson/{{aaperson.id}}/change/"
             target="_edit"> {{ aaperson.id }}</a>

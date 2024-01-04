@@ -61,7 +61,8 @@
 			<th>Date</th>
 			<th>temp id</th>
 		</tr>
-		{% for entry in aaperson.person_entries %}
+		<!-- for entry in aaperson.person_entries -->
+		{% for entry in aaperson.aa_persons.all %}
 		<tr>
 			<td class="xlrg">
 				{% if entry.image_status > 5 %} 
@@ -85,13 +86,6 @@
 		</tr>
 		{% endfor %}
 	</table>
-	<div>
-		test entries: 
-		{% for entry in aaperson.aaid.all %}
-			entry: {{entry.id}}
-
-		{% endfor %}
-	</div>
 	<p class="small"><a href="#top">top of page</a></p>
 {% endblock content %}
 
