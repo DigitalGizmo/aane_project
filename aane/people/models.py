@@ -29,7 +29,11 @@ class PersonModel(models.Model):
         abstract = True
 
     def __str__(self):
-        return str(self.id) + " " + self.name
+        birth = " "
+        if self.birth_year: birth = str(self.birth_year)
+        death = " "
+        if self.death_year: death = str(self.death_year)
+        return str(self.id) + " " + self.name + " " + birth + " - " + death
 
 
 class AAPerson(PersonModel):

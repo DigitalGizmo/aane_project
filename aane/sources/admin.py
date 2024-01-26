@@ -99,9 +99,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
                 'clarified',  ], 'classes': ['collapse']
         }),
     ]
-    list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
-        'low_year', 'month_day', 'aa_id', 'page_num', 'image_name', 'scan_date',
-        'data_status', 'image_status',) #  'aa_id', 'operson_id',
+    list_display = ('entry_text', 'leg_id', 'vol_title', 'short_pvma',
+        'low_year', 'month_day', 'leg_aa', 'aa_s', 'page_num', 'image_name', 
+        'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'volume', 'primary_source']  
     search_fields = ['entry_text', 'image_name']
     filter_horizontal = ['aa_persons']
@@ -118,13 +118,27 @@ class SourceEntryAdmin(admin.ModelAdmin):
             return display_date
     month_day.short_description = 'Mo. Day' 
 
+    def aa_s(self, obj):
+        aa_list = ""
+        for aa in obj.aa_persons.all():
+            aa_list += aa.name + ", "
+        return aa_list
+
     def short_pvma(self, obj):
         return obj.pvma_call_num
     short_pvma.short_description = 'pvma'  
 
     def vol_title(self, obj):
         return obj.volume
-    vol_title.short_description = 'vol'  
+    vol_title.short_description = 'vol' 
+
+    def leg_aa(self, obj):
+        return obj.aa_id
+    leg_aa.short_description = 'leg aa'
+
+    def leg_id(self, obj):
+        return obj.legacy_id
+    leg_id.short_description = 'leg id'
 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
 admin.site.register(Volume, VolumeAdmin)
