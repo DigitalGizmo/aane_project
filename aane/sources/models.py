@@ -170,7 +170,7 @@ class SourceEntry(models.Model):
     clarified = models.CharField(max_length=255, blank=True, default='',
         help_text='was for editor interpretation of entry text')
     event = models.CharField(max_length=128, blank=True, default='')
-    aa_id = models.IntegerField(blank=True, null=True)
+    aa_id = models.IntegerField('legacy aa_id', blank=True, null=True)
     aa_id_legacy = models.IntegerField(blank=True, null=True,
         help_text="Legacy aa_id unaltered")
     operson_id = models.IntegerField(

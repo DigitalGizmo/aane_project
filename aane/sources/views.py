@@ -188,7 +188,8 @@ class EntryListView(FormMixin, ListView): # FormMixin,
                 self.object_list = self.object_list.order_by(sortOrder)
 
             if len(noAaId) > 0 :
-                self.object_list = self.object_list.filter(Q(aa_id__isnull=True) )
+                # self.object_list = self.object_list.filter(Q(aa_id__isnull=True) )
+                self.object_list = self.object_list.filter(Q(aa_persons__isnull=True))
 
         # remove any duplicates
         self.object_list = self.object_list.distinct()
