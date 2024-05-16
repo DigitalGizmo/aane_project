@@ -3,14 +3,18 @@ from django.db import models
 
 
 
-# class CommonEditHistory(models.Model):
+class CommonEditHistory(models.Model):
  
-#     editor = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.PROTECT,
-#     )    
-#     created = models.DateTimeField(auto_now_add=True)
-#     note = models.TextField(blank=True, default='')
+    editor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+    )    
+    date_edited = models.DateTimeField(auto_now_add=True)
+    note = models.TextField(blank=True, default='')
 
-#     class Meta:
-#         abstract = True
+    # @property
+    # def active_users(self):
+    #     return self.editor.filter(user__is_active=True)
+
+    class Meta:
+        abstract = True

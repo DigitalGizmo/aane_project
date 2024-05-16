@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
 from .models import PrimarySource, SourceEntry, SourceType, Volume
+#, SourceEntryEditHistory
 from calendar import month_abbr
 
 """
@@ -58,6 +59,14 @@ class SourceTypeAdmin(admin.ModelAdmin):
     ]
     list_display = ('slug', 'title')
 
+# class SourceEntryEditHistoryInline(admin.StackedInline):
+#     model = SourceEntryEditHistory
+#     extra = 1
+#     fields = [('editor', 'date_edited'), 'note'] # 'active_users',
+#     readonly_fields = ('date_edited',)
+
+#     # def active_users(self, obj):
+#     #     return obj.editor
 
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -109,6 +118,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
     }
+    # inlines = [SourceEntryEditHistoryInline]
 
     def month_day(self, obj):
         if (obj.low_month):

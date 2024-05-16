@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 import people.models
+from sitewide.models import CommonEditHistory
 
 """
 class SourceCollection(models.Model):
@@ -239,6 +240,11 @@ class SourceEntry(models.Model):
 
     def __str__(self):
         return self.entry_text
+
+class SourceEntryEditHistory(CommonEditHistory):
+    source_entry = models.ForeignKey('SourceEntry', related_name='source_entries',
+                on_delete=models.CASCADE)
+
 
 class VolumeIdImport(models.Model):
     legacy_id = models.IntegerField(blank=True, null=True)
