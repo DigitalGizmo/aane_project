@@ -45,6 +45,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = (
     'people.apps.PeopleConfig',
     'sources.apps.SourcesConfig',
+    'sitewide.apps.SitewideConfig',
     'locations.apps.LocationsConfig',
     'about.apps.AboutConfig',
     'django_quill',
