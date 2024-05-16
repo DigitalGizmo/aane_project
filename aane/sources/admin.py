@@ -2,8 +2,7 @@ from dataclasses import fields
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
-from .models import PrimarySource, SourceEntry, SourceType, Volume
-#, SourceEntryEditHistory
+from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
 from calendar import month_abbr
 
 """
@@ -59,14 +58,14 @@ class SourceTypeAdmin(admin.ModelAdmin):
     ]
     list_display = ('slug', 'title')
 
-# class SourceEntryEditHistoryInline(admin.StackedInline):
-#     model = SourceEntryEditHistory
-#     extra = 1
-#     fields = [('editor', 'date_edited'), 'note'] # 'active_users',
-#     readonly_fields = ('date_edited',)
+class SourceEntryEditHistoryInline(admin.StackedInline):
+    model = SourceEntryEditHistory
+    extra = 1
+    fields = [('editor', 'date_edited'), 'note'] # 'active_users',
+    readonly_fields = ('date_edited',)
 
-#     # def active_users(self, obj):
-#     #     return obj.editor
+    # def active_users(self, obj):
+    #     return obj.editor
 
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -85,16 +84,12 @@ class SourceEntryAdmin(admin.ModelAdmin):
             'scan_note',
             ] #, 'classes': ['collapse']
         }),
-        ('Entry Highlight', {'fields': [
-            ('percent_top', 'percent_height'), 
-            ('percent_left', 'percent_right'), 
-            ], 'classes': ['collapse']
-        }),
         ('Date Info', {'fields': [
             ('low_year', 'low_month', 'low_day'), 
             ('upr_year', 'upr_month', 'upr_day'),
             ('date_status', 'date_range'), 'date_note',  
-            ], 'classes': ['collapse']
+            ]
+            # , 'classes': ['collapse']
         }),
         ('Monetary Transaction', {'fields': [
             'dollars', 'pounds', 'shillings', 'pence', 'farthing'
@@ -107,6 +102,12 @@ class SourceEntryAdmin(admin.ModelAdmin):
         ('Obsolete info', {'fields': [
                 'clarified',  ], 'classes': ['collapse']
         }),
+
+        # ('Entry Highlight', {'fields': [
+        #     ('percent_top', 'percent_height'), 
+        #     ('percent_left', 'percent_right'), 
+        #     ], 'classes': ['collapse']
+        # }),
     ]
     list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_id', 'aa_names', 'page_num', 'image_name', 
@@ -118,7 +119,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
     }
-    # inlines = [SourceEntryEditHistoryInline]
+    inlines = [SourceEntryEditHistoryInline]
 
     def month_day(self, obj):
         if (obj.low_month):
