@@ -32,6 +32,7 @@ class PersonModel(models.Model):
     death_year = models.IntegerField(blank=True, null=True)
     locations = models.ManyToManyField('locations.Town', blank=True)
     research_status = models.IntegerField(default=2, choices=RESEARCH_STATUS)
+    note = models.TextField(blank=True, default='')   
 
     class Meta:
         abstract = True
