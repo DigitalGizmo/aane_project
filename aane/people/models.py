@@ -14,6 +14,13 @@ class PersonModel(models.Model):
         ('female','female'),
         ('unknown', 'unknown'),
     )
+    RESEARCH_STATUS = (
+        (0,'delete'),
+        (1,'inactive'),
+        (2,'research'),
+        (3,'problematic'),
+        (4,'approved'),
+    )    
     name = models.CharField(max_length=64)
     first_name = models.CharField(max_length=32, blank=True, default='')
     last_name = models.CharField(max_length=32, blank=True, default='')
@@ -24,6 +31,7 @@ class PersonModel(models.Model):
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
     locations = models.ManyToManyField('locations.Town', blank=True)
+    research_status = models.IntegerField(default=0, choices=RESEARCH_STATUS)
 
     class Meta:
         abstract = True
