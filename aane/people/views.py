@@ -33,13 +33,17 @@ class AAPersonListView(FormMixin, generic.ListView):
         form = self.get_form(self.get_form_class())
 
         if form.is_valid():
-            q = form.cleaned_data['q']
+            for_name = form.cleaned_data['for_name']
+            in_bio = form.cleaned_data['in_bio']
             freed_status_list = form.cleaned_data['freedStatus']
             sortOrder = form.cleaned_data['sortOrder']
 
-            if q:
-                self.object_list = self.object_list.filter(Q(name__icontains=q) )
+            if for_name:
+                self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
+
+            if in_bio:
+                self.object_list = self.object_list.filter(Q(bio__icontains=in_bio) )
 
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects

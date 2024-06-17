@@ -2,7 +2,8 @@ from django import forms
 from .models import AAPerson
 
 class PersonSearchForm(forms.Form):
-    q = forms.CharField(max_length=100, required=False)
+    for_name = forms.CharField(max_length=100, required=False)
+    in_bio = forms.CharField(max_length=100, required=False)
     page = forms.IntegerField(required=False)
 
     # get evidence type list directly from the database
