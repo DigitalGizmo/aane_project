@@ -98,12 +98,12 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
 
 
         if form.is_valid():
-            q = form.cleaned_data['q']
+            for_name= form.cleaned_data['for_name']
             freed_status_list = form.cleaned_data['freedStatus']
             sortOrder = form.cleaned_data['sortOrder']
 
-            if q:
-                self.object_list = self.object_list.filter(Q(name__icontains=q) )
+            if for_name:
+                self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
 
             if len(freed_status_list) > 0 :
