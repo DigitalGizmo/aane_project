@@ -17,9 +17,10 @@ class PersonModel(models.Model):
     RESEARCH_STATUS = (
         (0,'delete'),
         (1,'inactive'),
-        (2,'research'),
-        (3,'problematic'),
-        (5,'approved'),
+        (2,'needs research'),
+        (3,'in progress'),
+        # (4,'problematic'),
+        (6,'publishable'),
     )    
     name = models.CharField(max_length=64)
     first_name = models.CharField(max_length=32, blank=True, default='')
