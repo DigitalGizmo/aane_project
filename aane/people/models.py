@@ -33,7 +33,9 @@ class PersonModel(models.Model):
     death_year = models.IntegerField(blank=True, null=True)
     locations = models.ManyToManyField('locations.Town', blank=True)
     research_status = models.IntegerField(default=2, choices=RESEARCH_STATUS)
-    note = models.TextField(blank=True, default='')   
+    note = models.TextField(blank=True, default='')
+    is_birth_circa = models.BooleanField(default=False)  
+    is_death_circa = models.BooleanField(default=False)  
 
     class Meta:
         abstract = True
@@ -61,13 +63,14 @@ class AAPerson(PersonModel):
         (2,'enslaved, then free'),
         (3,'always free'),
     )
-    alt_name_spelling = models.CharField(max_length=32, blank=True, default='')
+    alt_name_spelling = models.CharField(max_length=128, blank=True, default='')
     freed_name = models.CharField(max_length=32, blank=True, default='')
     first_appearance_year = models.IntegerField(blank=True, null=True)
     last_appearance_year = models.IntegerField(blank=True, null=True)
     free_start_year = models.IntegerField(blank=True, null=True)
-    owner_id = models.IntegerField(blank=True, null=True)
-    place_of_origin = models.CharField(max_length=64, blank=True, default='')
+    owner_id = models.IntegerField('Legacy owner ID', blank=True, null=True)
+    place_of_origin = models.CharField('Birthplace, if known',
+        max_length=64, blank=True, default='')
     owners = models.ManyToManyField('people.OPerson', verbose_name='Owner(s)', 
         blank=True)
     known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
