@@ -34,8 +34,8 @@ class PersonModel(models.Model):
     locations = models.ManyToManyField('locations.Town', blank=True)
     research_status = models.IntegerField(default=2, choices=RESEARCH_STATUS)
     note = models.TextField(blank=True, default='')
-    is_birth_circa = models.BooleanField(default=False)  
-    is_death_circa = models.BooleanField(default=False)  
+    is_birth_circa = models.BooleanField('circa', default=False)  
+    is_death_circa = models.BooleanField('circa', default=False)  
 
     class Meta:
         abstract = True

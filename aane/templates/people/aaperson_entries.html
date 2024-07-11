@@ -17,8 +17,19 @@
 	
 		<dt>birth, death year</dt>
 		<dd>
-			{% firstof aaperson.birth_year "--" %}, 
-			{% firstof aaperson.death_year "--" %} 
+      {% if aaperson.birth_year %}
+        {% if aaperson.is_birth_circa %}
+          circa 
+        {% endif %}
+        {{aaperson.birth_year}}
+      {% else %} -- {% endif %}
+      ,
+      {% if aaperson.death_year %}
+        {% if aaperson.is_death_circa %}
+          circa 
+        {% endif %}
+        {{aaperson.death_year}}
+      {% else %} -- {% endif %}
 		</dd>
 		<dt>first, last year in records</dt>
 		<dd>

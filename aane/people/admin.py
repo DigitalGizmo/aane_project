@@ -5,13 +5,14 @@ from .models import AAPerson, OPerson
 class AAPersonAdmin(admin.ModelAdmin):
     fields = ['name', ('first_name','last_name'), 
               ('alt_name_spelling', 'freed_name'), 
-              ('gender', 'freed_status'),
-            ('birth_year', 'death_year', 'free_start_year'), 
+              ('gender', 'freed_status', 'free_start_year'),
+            ('birth_year', 'is_birth_circa','death_year', 'is_death_circa'), 
             ('research_status', 'known_status'), 
             'bio', 'note', 'owners', 'locations',  
-            ('owner_id', 'place_of_origin'),
+            ('place_of_origin', 'owner_id'),
             ('first_appearance_year', 'last_appearance_year'), 
             ]
+    readonly_fields = ('owner_id',)
     list_display = ('name', 'id', 'owner_id', 'first_name', 'last_name', 
                     'alt_name_spelling', 'research_status', 'freed_status', 
                     'free_start_year', 'birth_year', 'death_year')
