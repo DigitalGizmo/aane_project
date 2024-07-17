@@ -8,8 +8,8 @@ class AAPersonAdmin(admin.ModelAdmin):
               ('gender', 'freed_status', 'free_start_year'),
             ('birth_year', 'is_birth_circa','death_year', 'is_death_circa'), 
             ('research_status', 'known_status'), 
-            'bio', 'note', 'owners', 'locations',  
-            ('place_of_origin', 'owner_id'),
+            'bio', 'note', 'owners', 'owner_id', 'locations',  
+            'place_of_origin',
             ('first_appearance_year', 'last_appearance_year'), 
             ]
     readonly_fields = ('owner_id',)

@@ -38,6 +38,9 @@ class AAPersonListView(FormMixin, generic.ListView):
             freed_status_list = form.cleaned_data['freedStatus']
             sortOrder = form.cleaned_data['sortOrder']
 
+            # Remove inactive entries
+            self.object_list = self.object_list.filter(Q(research_status__gt=1) )
+
             if for_name:
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)

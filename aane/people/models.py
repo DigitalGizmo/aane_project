@@ -71,7 +71,7 @@ class AAPerson(PersonModel):
     owner_id = models.IntegerField('Legacy owner ID', blank=True, null=True)
     place_of_origin = models.CharField('Birthplace, if known',
         max_length=64, blank=True, default='')
-    owners = models.ManyToManyField('people.OPerson', verbose_name='Owner(s)', 
+    owners = models.ManyToManyField('people.OPerson', verbose_name='Enslaver(s)', 
         blank=True)
     known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
