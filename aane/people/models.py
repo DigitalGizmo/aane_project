@@ -62,6 +62,7 @@ class AAPerson(PersonModel):
         (1,'enslaved'),
         (2,'enslaved, then free'),
         (3,'always free'),
+        (4,'unknown')
     )
     alt_name_spelling = models.CharField(max_length=128, blank=True, default='')
     freed_name = models.CharField(max_length=32, blank=True, default='')
