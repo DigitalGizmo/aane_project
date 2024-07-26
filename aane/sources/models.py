@@ -175,8 +175,7 @@ class SourceEntry(models.Model):
     aa_id_legacy = models.IntegerField(blank=True, null=True,
         help_text="Legacy aa_id unaltered")
     operson_id = models.IntegerField(
-        'Enslaver ID', blank=True, null=True, 
-        help_text="blank if free. If unknown, choose the special 'Unknow Owner'")
+        'Legacy Enslaver ID', blank=True, null=True)
     name_note = models.CharField(max_length=64, 
         blank=True, default='', help_text='If person ID is not known')
     date_status = models.IntegerField(default=0, choices=DATE_STATUS)
@@ -221,7 +220,7 @@ class SourceEntry(models.Model):
         help_text='Image Status')
     aa_persons = models.ManyToManyField('people.AAPerson', 
         related_name='aa_persons', blank=True)
-    operson_fk_id = models.ForeignKey('people.OPerson', on_delete=models.PROTECT,
+    operson_fk = models.ForeignKey('people.OPerson', on_delete=models.PROTECT,
     verbose_name='Enslaver', null=True, blank=True)
 
     class Meta:
