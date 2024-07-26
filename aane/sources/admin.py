@@ -73,7 +73,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
             'volume','primary_source', 
             'entry_text', ('event', 'transaction_note'),
             'aa_id', 'aa_persons', 
-            ( 'operson_id'), # 'operson_fk_id',
+            ('operson_fk', 'operson_id'),
             ('name_note', 'data_status'), 'notes',
             ]}
         ),

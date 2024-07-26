@@ -130,6 +130,6 @@ class OPerson(PersonModel):
     original_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        ordering = ["pk"]
+        ordering = ["last_name"]
         verbose_name = "Others/Enslavers"
 
