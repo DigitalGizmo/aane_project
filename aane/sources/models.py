@@ -175,7 +175,7 @@ class SourceEntry(models.Model):
     aa_id_legacy = models.IntegerField(blank=True, null=True,
         help_text="Legacy aa_id unaltered")
     operson_id = models.IntegerField(
-        'Owner ID', blank=True, null=True, 
+        'Enslaver ID', blank=True, null=True, 
         help_text="blank if free. If unknown, choose the special 'Unknow Owner'")
     name_note = models.CharField(max_length=64, 
         blank=True, default='', help_text='If person ID is not known')
@@ -221,6 +221,8 @@ class SourceEntry(models.Model):
         help_text='Image Status')
     aa_persons = models.ManyToManyField('people.AAPerson', 
         related_name='aa_persons', blank=True)
+    operson_fk_id = models.ForeignKey('people.OPerson', on_delete=models.PROTECT,
+    verbose_name='Enslaver', null=True, blank=True)
 
     class Meta:
         ordering = ['primary_source', 'volume', 'low_year', 

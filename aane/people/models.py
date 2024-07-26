@@ -58,6 +58,12 @@ class AAPerson(PersonModel):
         (3,'unknown'),
         (9,'discard'),
     )
+    CONFIDENCE = (
+        (1,'confirmed identity'),
+        (2,'only enslaver known'),
+        (3,'indeterminate'),
+        (4,'possible duplicate'),
+    )
     FREED_STATUS = (
         (1,'enslaved'),
         (2,'enslaved, then free'),
@@ -76,6 +82,8 @@ class AAPerson(PersonModel):
         blank=True)
     known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
+    confidence = models.IntegerField('Confidence Level',choices=CONFIDENCE, 
+                                     blank=True, null=True)
 
     class Meta:
         ordering = ['name'] #'known_status', 'freed_status', 
