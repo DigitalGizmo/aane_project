@@ -111,9 +111,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
     ]
     readonly_fields = ('aa_id', 'operson_id')
     list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
-        'low_year', 'month_day', 'aa_id', 'aa_names', 'page_num', 'image_name', 
+        'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',
-    list_filter  = ['image_status', 'data_status', 'volume', 'primary_source']  
+    list_filter  = ['image_status', 'data_status', 'primary_source', 'volume']  
     search_fields = ['entry_text', 'image_name']
     filter_horizontal = ['aa_persons']
     formfield_overrides = {
