@@ -233,7 +233,8 @@ class SourceEntry(models.Model):
     
     @property
     def o_person(self):
-        return people.models.OPerson.objects.get(pk=self.operson_id)
+        # Updated July 2024 to reference the foreign key operson
+        return people.models.OPerson.objects.get(pk=self.operson_fk_id)
     
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
