@@ -53,7 +53,7 @@
       <th>Death</th>
       <th>First Rec</th>
       <th>Last Rec</th>
-      <th>Known?</th>
+      <th>Confidence</th>
       <th>Enslaved?</th>
       <th>Enslaver(s)</th>
       <th>Location(s)</th>
@@ -93,11 +93,13 @@
           {{ aaperson.last_appearance_year }}
         {% endif %}
       </td>
-      <td class="med">{{ aaperson.get_known_status_display }}</td>
+      <td class="med">{{ aaperson.get_confidence_display }}</td>
       <td class="medplus">{{ aaperson.get_freed_status_display }}</td>
       <td>
         {% for owner in aaperson.owners.all %}
-          {{ owner.name|safe }};
+          <a href="{% url 'people:operson_detail' owner.id %}">
+            {{ owner.name|safe }};
+          </a>
         {% endfor %}
       </td>
       <td class="medplus">

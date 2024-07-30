@@ -85,9 +85,7 @@
 				{% else %}
 					&nbsp; {{ entry.entry_text|safe }}
 				{% endif %}
-				
 			</td>
-
 			<td class="medlrg">
         <a href="{% url 'sources:source_detail' entry.primary_source.id %}">
           <em>{{ entry.primary_source }}</em>
@@ -102,8 +100,12 @@
         {% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
         {% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
-      <td class="medlrg">{{ entry.operson_fk.last_name }}, 
-        {{ entry.operson_fk.first_name }}
+      <td class="medlrg">
+        {% if entry.operson_fk_id %}
+          <a href="{% url 'people:operson_detail' entry.operson_fk_id %}">
+            {{ entry.operson_fk.last_name }}, {{ entry.operson_fk.first_name }}
+          </a>
+        {% endif %} 
       </td>
 			<td class="xsm">{{entry.id}}</td>
 		</tr>

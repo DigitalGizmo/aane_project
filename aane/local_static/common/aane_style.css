@@ -195,9 +195,12 @@ ul.unstyledlist li	{ line-height: 1.5em;}
 .breadcrumbs a:visited, .breadcrumbs a:link {color: white; font-weight: 400 !important;}
 
 /*style for links*/
-section a:link		{	color: #29439C; text-decoration: none;	}
-section a:visited	{	color: #2D3F72; text-decoration: none;	}
+/* section a:link		{	color: #29439C; text-decoration: none;	}
+section a:visited	{	color: #2D3F72; text-decoration: none;	} */
 section a:hover		{	color: #96801A ;text-decoration: underline;	}
+
+section a:link		{	color: #405ab3; text-decoration: none;	}
+section a:visited	{	color: #695a9f; text-decoration: none;	}
 
 
 /* styles for modal window */

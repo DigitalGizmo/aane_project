@@ -7,12 +7,12 @@ class AAPersonAdmin(admin.ModelAdmin):
               ('alt_name_spelling', 'freed_name'), 
               ('gender', 'freed_status', 'free_start_year'),
             ('birth_year', 'is_birth_circa','death_year', 'is_death_circa'), 
-            ('research_status', 'known_status'), 
+            ('research_status', 'confidence', 'known_status'), 
             'bio', 'note', 'owners', 'owner_id', 'locations',  
             'place_of_origin',
             ('first_appearance_year', 'last_appearance_year'), 
             ]
-    readonly_fields = ('owner_id',)
+    readonly_fields = ('owner_id', 'known_status')
     list_display = ('name', 'id', 'owner_id', 'first_name', 'last_name', 
                     'alt_name_spelling', 'research_status', 'freed_status', 
                     'free_start_year', 'birth_year', 'death_year')
