@@ -40,7 +40,7 @@
 		<dt>enslaver(s)</dt>
 		<dd>
 			{% for owner in aaperson.owners.all %}
-				{{ owner.name|safe }},
+				{{ owner.name|safe }}; 
 			{% endfor %}
 		</dd>
 		<dt>location(s)</dt>
