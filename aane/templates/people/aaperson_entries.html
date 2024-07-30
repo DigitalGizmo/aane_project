@@ -36,7 +36,16 @@
 			{% firstof aaperson.first_appearance_year "--" %}, 
 			{% firstof aaperson.last_appearance_year "--" %} 
 		</dd>
-		<dt>year freed</dt><dd>{% firstof aaperson.free_start_year "--" %}</dd>
+		<dt>confidence level</dt>
+    <dd>{{ aaperson.get_confidence_display }}</dd>
+
+		<dt>freed satus (year freed)</dt>
+    <dd>
+      {{aaperson.get_freed_status_display}}
+      {% if aaperson.free_start_year %}
+        ({{aaperson.free_start_year}})
+      {% endif %}
+    </dd>
 		<dt>enslaver(s)</dt>
 		<dd>
 			{% for owner in aaperson.owners.all %}
@@ -49,7 +58,8 @@
 				{{ location.title }}, {{ location.state.abbr}} &nbsp;
 			{% endfor %}
 		</dd>
-		<dt>place of origin</dt><dd>{{ aaperson.place_of_origin }}</dd>
+		<dt>place of origin</dt>
+    <dd>{{ aaperson.place_of_origin }}</dd>
 	</dl>
 	<br clear="left" />
 

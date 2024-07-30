@@ -79,7 +79,9 @@
 						&bull; 
 						<!-- <a href="/sources/entry/{{entry.id}}/"> -->
 						<a hx-get="/sources/entry/{{entry.id}}/">
-							{{ entry.entry_text|safe }}
+							<span class="hx-link">
+                {{ entry.entry_text|safe }}
+              </span> 
 						</a>
 					{% else %}
 						&nbsp; {{ entry.entry_text|safe }}
