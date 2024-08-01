@@ -71,8 +71,8 @@ class AAPerson(PersonModel):
         (4,'unknown')
     )
     TIER = (
-        ('0','wide'),
-        ('1','core'),
+        (0,'other people'),
+        (1,'core people'),
     )
     alt_name_spelling = models.CharField(max_length=128, blank=True, default='')
     freed_name = models.CharField(max_length=32, blank=True, default='')

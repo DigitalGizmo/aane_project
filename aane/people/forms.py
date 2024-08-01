@@ -27,3 +27,10 @@ class PersonSearchForm(forms.Form):
         widget  = forms.Select,
         required=False,
     )
+
+    # get evidence type list directly from the database
+    tiers = forms.MultipleChoiceField(
+        choices = AAPerson.TIER,
+        widget  = forms.RadioSelect,
+        required=False,
+    )

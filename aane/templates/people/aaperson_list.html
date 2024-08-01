@@ -13,35 +13,44 @@
   <!-- Sorted by (known, enslaver only known, unknown), 
    (enslaved, became freed, always free), then Name. -->
   
-	<section class="control-panel">
-		<form action="{% url 'people:aaperson_index' %}" method="GET" id="search-form" 
-      name="menu">
+   <form action="{% url 'people:aaperson_index' %}" method="GET" id="search-form" 
+   name="menu">
+    <section class="control-panel">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}
 		  <input type="hidden" name="page" value="{{ page_number }}"/>
-      
-		  <h4 class="heading">Filter by Freed Status</h4>
-		  {{ form.freedStatus }}
-      
-		  <h4 class="heading">Search Names</h4>
-		  <input type="search" name="for_name" 
-      value="{{ form.for_name.value|default_if_none:'' }}" id="id_for_name" 
-      placeholder="Search" class="search-field"/>
-      
-		  <h4 class="heading">Search Biographies</h4>
-      <input type="search" name="in_bio" 
-        value="{{ form.in_bio.value|default_if_none:'' }}" id="id_in_bio" 
-			  placeholder="Search" class="search-field"/>
-      
 
+      <div class="control-left">
+        <h4 class="heading">Filter by Freed Status</h4>
+        {{ form.freedStatus }}
+      </div>
+
+      <div class="control-mid">
+        <h4 class="heading">Search Names</h4>
+        <input type="search" name="for_name" 
+        value="{{ form.for_name.value|default_if_none:'' }}" id="id_for_name" 
+        placeholder="Search" class="search-field"/>
+        
+        <h4 class="heading">Search Biographies</h4>
+        <input type="search" name="in_bio" 
+          value="{{ form.in_bio.value|default_if_none:'' }}" id="id_in_bio" 
+          placeholder="Search" class="search-field"/>
         <h4 class="heading">Sort by</h4>
-      {{ form.sortOrder}}
+        {{ form.sortOrder}}
+        <input type="submit" value="Go" />
+        <span id="clear"><a href="#">clear search</a></span>
+      </div>
+      
+      <div class="control-right">
 
-      <input type="submit" value="Go" />
-		  <p>Showing: {{ result_count }} people</p>
-		  <span id="clear"><a href="#">clear search</a></span>
-		</form>
-  </section>  
+        <!-- <h4 class="heading">Core or wide</h4>
+        {{ form.tiers }} -->
+
+        <p>Showing: {{ result_count }} people</p>
+      </div>
+    </section>  
+  </form>
+  <hr>
   
   <table>
     <tr>
