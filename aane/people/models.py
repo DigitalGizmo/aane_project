@@ -71,8 +71,8 @@ class AAPerson(PersonModel):
         (4,'unknown')
     )
     TIER = (
+        ('0','wide'),
         ('1','core'),
-        ('2','wide'),
     )
     alt_name_spelling = models.CharField(max_length=128, blank=True, default='')
     freed_name = models.CharField(max_length=32, blank=True, default='')
@@ -88,8 +88,7 @@ class AAPerson(PersonModel):
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
     confidence = models.IntegerField('Confidence Level',choices=CONFIDENCE, 
                                      blank=True, null=True)
-    tier = models.IntegerField('Tier',choices=TIER, 
-                                     blank=True, null=True)
+    tier = models.IntegerField(default=0, choices=TIER)
 
     class Meta:
         ordering = ['name'] #'known_status', 'freed_status', 
