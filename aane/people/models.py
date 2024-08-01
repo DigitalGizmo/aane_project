@@ -70,6 +70,10 @@ class AAPerson(PersonModel):
         (3,'always free'),
         (4,'unknown')
     )
+    TIER = (
+        ('1','core'),
+        ('2','wide'),
+    )
     alt_name_spelling = models.CharField(max_length=128, blank=True, default='')
     freed_name = models.CharField(max_length=32, blank=True, default='')
     first_appearance_year = models.IntegerField(blank=True, null=True)
@@ -83,6 +87,8 @@ class AAPerson(PersonModel):
     known_status = models.IntegerField(default=0, choices=KNOWN_STATUS)
     freed_status = models.IntegerField(default=0, choices=FREED_STATUS)
     confidence = models.IntegerField('Confidence Level',choices=CONFIDENCE, 
+                                     blank=True, null=True)
+    tier = models.IntegerField('Tier',choices=TIER, 
                                      blank=True, null=True)
 
     class Meta:
@@ -113,8 +119,9 @@ class OPerson(PersonModel):
     """
     ROLE = (
         ('owner','enslaver'),
-        ('user','user'),
-        ('service_provider', 'service_provider'),
+        ('user', 'service consumer'),
+        ('service_provider', 'service provider'),
+        ('former', 'former enslaver'),
     )
     RACE = (
         ('white','white'),

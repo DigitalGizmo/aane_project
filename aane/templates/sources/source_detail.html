@@ -71,6 +71,7 @@
 				<th>&nbsp;s</th>
 				<th>&nbsp;p</th>
 				<th>&nbsp;f</th>
+				<th class="faint">id</th>
 			</tr>
 			{% for entry in volume.sourceentry_set.all %}
 			<tr>
@@ -129,6 +130,9 @@
 				<td class="xsm">
 					{% if entry.farthing %} {{ entry.farthing }}{% endif %}
 				</td>			
+				<td class="xsm faint">
+					{{ entry.id }}
+				</td>			
 			</tr>
 			{% endfor %}
 		</table>
@@ -152,6 +156,7 @@
 			<th>&nbsp;s</th>
 			<th>&nbsp;p</th>
 			<th>&nbsp;f</th>
+			<th>id</th>
 		</tr>
 		{% for entry in entries_no_vol %}
 		<tr>
@@ -218,6 +223,9 @@
 			</td>			
 			<td class="xsm">
 				{% if entry.farthing %} {{ entry.farthing }}{% endif %}
+			</td>			
+			<td class="xsm faint">
+				{{ entry.farthing }}
 			</td>			
 		</tr>
 		{% endfor %}
