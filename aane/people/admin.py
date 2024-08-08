@@ -19,7 +19,7 @@ class AAPersonAdmin(admin.ModelAdmin):
                     'free_start_year', 'birth_year', 'death_year')
     search_fields = ['name']
     filter_horizontal = ['owners', 'locations']
-    list_filter  = ['research_status', 'freed_status'] 
+    list_filter  = ['tier', 'research_status', 'freed_status'] 
 
 admin.site.register(AAPerson, AAPersonAdmin)
 
