@@ -40,7 +40,7 @@
 	<ul class="unstyledlist">
 		{% for aaperson in operson.aaperson_set.all %}
 			<li>
-				<a href="{% url 'people:aaperson_entries' aaperson.id %}">{{ aaperson.name|safe }}
+				<a href="{% url 'people:aaperson_detail' aaperson.id %}">{{ aaperson.name|safe }}
 				</a>
 
 			</li>

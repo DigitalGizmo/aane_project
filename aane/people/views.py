@@ -139,12 +139,6 @@ class AAPersonDetailView(generic.DetailView):
     model = AAPerson
     #template_name = 'people/aaperson_detail.html' # default
 
-class AAPersonEntriesDetailView(generic.DetailView):
-    model = AAPerson
-    template_name = 'people/aaperson_entries.html' 
-    # includes list of entries for this peson as defined 
-    # in AAPerson model.
-
 class OPersonListView(generic.ListView):
     model = OPerson
     # context_object_name = 'operson_list'
