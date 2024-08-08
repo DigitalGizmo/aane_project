@@ -142,15 +142,8 @@ class AAPersonDetailView(generic.DetailView):
 class AAPersonEntriesDetailView(generic.DetailView):
     model = AAPerson
     template_name = 'people/aaperson_entries.html' 
-    # includes list of entries for this peson as defined in AAPerson model.
-
-class AAPersonUpdateView(generic.UpdateView):
-    model = AAPerson
-    #template_name = 'people/aaperson_form.html' 
-
-class AAPersonCreateView(generic.CreateView):
-    model = AAPerson
-    template_name = 'people/aaperson_create.html' 
+    # includes list of entries for this peson as defined 
+    # in AAPerson model.
 
 class OPersonListView(generic.ListView):
     model = OPerson
