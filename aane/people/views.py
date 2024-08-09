@@ -33,7 +33,7 @@ class AAPersonListView(FormMixin, generic.ListView):
         form = self.get_form(self.get_form_class())
 
         if form.is_valid():
-            tier_value = form.cleaned_data['tier_value']
+            tier_value = form.cleaned_data['tier']
             for_name = form.cleaned_data['for_name']
             in_bio = form.cleaned_data['in_bio']
             freed_status_list = form.cleaned_data['freedStatus']

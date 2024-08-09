@@ -144,7 +144,7 @@ h4 {
 }
 ul.horiz li	{float: left; margin-right: 2em;}
 /*style for basic text elements*/
-p, blockquote {	font-size: 1em; line-height: 1.75em; font-weight: 200;	}
+p, blockquote {	font-size: 1em; line-height: 1.75em;	}
 li {	font-size: 1em; line-height: 1.2em;	}
 
 /* Don addition */

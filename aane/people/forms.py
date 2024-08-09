@@ -5,7 +5,7 @@ class PersonSearchForm(forms.Form):
     for_name = forms.CharField(max_length=100, required=False)
     in_bio = forms.CharField(max_length=100, required=False)
     page = forms.IntegerField(required=False)
-    tier_value = forms.IntegerField(required=False)
+    tier = forms.IntegerField(required=False)
 
     # get evidence type list directly from the database
     freedStatus = forms.MultipleChoiceField(
