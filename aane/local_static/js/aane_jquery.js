@@ -29,6 +29,22 @@ $(document).ready(function(){
     $('#search-form').submit()   
   });
 
+  $(document).on("click", ".tier-core", function(event){
+    event.preventDefault();
+    console.log('setting tier to: ' + 1)
+    document.getElementById('tier').value="1";
+    $('#search-form').submit()   
+  })
+
+  $(document).on("click", ".tier-others", function(event){
+    event.preventDefault();
+    console.log('setting tier to: ' + 0)
+    document.getElementById('tier').value="0";
+    $('#search-form').submit()   
+  })
+
+    // ------- MISC ------
+
   // Zoom scroll to top -- possibly temporary
   $(document).on("click", ".to-top", function(event){
     console.log('got to go to top');

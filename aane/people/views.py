@@ -33,6 +33,7 @@ class AAPersonListView(FormMixin, generic.ListView):
         form = self.get_form(self.get_form_class())
 
         if form.is_valid():
+            tier_value = form.cleaned_data['tier_value']
             for_name = form.cleaned_data['for_name']
             in_bio = form.cleaned_data['in_bio']
             freed_status_list = form.cleaned_data['freedStatus']
@@ -41,7 +42,14 @@ class AAPersonListView(FormMixin, generic.ListView):
             # Remove inactive entries
             self.object_list = self.object_list.filter(Q(research_status__gt=1) )
 
+            # Select Tier
+            if tier_value is None:
+                self.object_list = self.object_list.filter(Q(tier=1) )
+            else: 
+                self.object_list = self.object_list.filter(Q(tier=tier_value) )
+
             if for_name:
+                print('for_name: ' + for_name)
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
 

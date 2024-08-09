@@ -49,7 +49,9 @@
 		<dt>enslaver(s)</dt>
 		<dd>
 			{% for owner in aaperson.owners.all %}
+      <a href="{% url 'people:operson_detail' owner.id %}">
 				{{ owner.name|safe }}; 
+      </a>
 			{% endfor %}
 		</dd>
 		<dt>location(s)</dt>
