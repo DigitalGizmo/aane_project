@@ -9,11 +9,11 @@
 
 
 {% block content %}
-  <h1>African Americans in the Record</h1>
+  <h1>Other African Americans</h1>
   <!-- Sorted by (known, enslaver only known, unknown), 
    (enslaved, became freed, always free), then Name. -->
   
-   <form action="{% url 'people:aaperson_index' %}" method="GET" id="search-form" 
+   <form action="{% url 'people:aaperson_other' %}" method="GET" id="search-form" 
    name="menu">
     <section class="control-panel">
 		  {# csrf_token #} 
@@ -42,21 +42,10 @@
       </div>
       
       <div class="control-right">
-
-         <!-- <h4 class="heading">Core or wide</h4> -->
-        <!-- {{ form.tiers }} -->
-
-        <input type="hidden" name="tier" id="tier"
-        value="{{ form.tier.value|default_if_none:'' }}" />
-
-        <!-- <p><a class="tier-others" href="/">Show others</a></p>
-        <p><a class="tier-core" href="/">Show core people</a></p> -->
-
         <p>Showing: {{ result_count }} people</p>
-        <p> See also: 
-          <a href="{% url 'people:aaperson_other' %}">
-            Other African Americans
-          </a> -- who were in the area during this period, and later, but for which we don't have the records.
+        <p> Go back to: 
+          <a href="{% url 'people:aaperson_index' %}">African Americans
+          </a> in our records.
         </p>
 
       </div>
@@ -64,31 +53,42 @@
   </form>
   <hr>
   
-  <table>
+  <!-- <table>
     <tr>
       <th>Name</th>
-      <th>First Name</th>
-      <th>Last Name</th>
       <th>Birth</th>
       <th>Death</th>
-      <th>First Rec</th>
-      <th>Last Rec</th>
-      <th>Confidence</th>
       <th>Enslaved?</th>
       <th>Enslaver(s)</th>
       <th>Location(s)</th>
       <th>Entries</th>
       <th>ID</th>
-    </tr>
+    </tr> -->
+    <ul>
+
+
     {% for aaperson in aaperson_list %}
-    <tr>
+
+    <li>
+      <a href="{% url 'people:aaperson_detail' aaperson.id %}">
+        {{ aaperson.name|safe }}
+      </a>
+      {% if aaperson.birth_year %}
+        {{ aaperson.birth_year }}
+      {% endif %}
+      -
+      {% if aaperson.death_year %} 
+        {{ aaperson.death_year }}
+      {% endif %}      
+    </li>
+
+    <!-- <tr>
+
       <td class="medlrg">
         <a href="{% url 'people:aaperson_detail' aaperson.id %}">
           {{ aaperson.name|safe }}
         </a>
       </td>
-      <td class="medplus">{{ aaperson.first_name|safe }}</td>
-      <td class="medplus">{{ aaperson.last_name|safe }}</td>
       <td class="sm">
         {% if aaperson.birth_year %}
           {{ aaperson.birth_year }}
@@ -99,17 +99,7 @@
           {{ aaperson.death_year }}
         {% endif %}
       </td>
-      <td class="sm">
-        {% if aaperson.first_appearance_year %}
-          {{ aaperson.first_appearance_year }}
-        {% endif %}
-      </td>
-      <td class="sm">
-        {% if aaperson.last_appearance_year %} 
-          {{ aaperson.last_appearance_year }}
-        {% endif %}
-      </td>
-      <td class="med">{{ aaperson.get_confidence_display }}</td>
+
       <td class="medplus">{{ aaperson.get_freed_status_display }}</td>
       <td>
         {% for owner in aaperson.owners.all %}
@@ -125,7 +115,10 @@
       </td>
       <td class="sm">{{ aaperson.person_entries_count }}</td>
       <td class="sm">{{ aaperson.id }}</td>
-    </tr>
+    </tr> -->
+
+  </ul>
+
     {% endfor %}
   </table>
   

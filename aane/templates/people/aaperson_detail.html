@@ -4,7 +4,12 @@
 {% block head_title %} {{ aaperson.name|safe }}{% endblock %}
 
 	{% block breadcrumbs %}
-		<a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a> > Person Details
+    {% if aaperson.tier %}
+      <a href="/">Home</a> > <a href="{% url 'people:aaperson_index'%}">AA People </a>
+    {% else %}
+      <a href="/">Home</a> > <a href="{% url 'people:aaperson_other'%}"> Other AA People </a>
+    {% endif %} 
+    > Person Details
 	{% endblock %}
 
 {% block content %}
@@ -71,6 +76,7 @@
 		{{ aaperson.bio.html|safe }}
 	</div>
 	
+  {% if aaperson.aa_persons.all %}
 	<h2>Primary Source Entries for {{ aaperson.name|safe }}</h2>
 
 	<table
@@ -124,6 +130,8 @@
 		{% endfor %}
 	</table>
 	<p class="small"><a href="#top">top of page</a></p>
+
+  {% endif %}
 {% endblock content %}
 
 {% block pop %}

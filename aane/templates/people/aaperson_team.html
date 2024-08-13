@@ -62,7 +62,7 @@
           {% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
         </td> {% endcomment %}
         <td class="medlrg">
-          <a href="{% url 'people:aaperson_entries' aaperson.id %}">
+          <a href="{% url 'people:aaperson_detail' aaperson.id %}">
             {{ aaperson.name|safe }}
           </a>
         </td>

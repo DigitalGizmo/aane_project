@@ -15,7 +15,7 @@ def aa_index(request):
 class AAPersonListView(FormMixin, generic.ListView):
     model = AAPerson
     # context_object_name = 'aaperson_list'
-    #template_name = 'people/aaperson_index.html'
+    #template_name = 'people/aaperson_list.html'
 
     # For search and filter
     paginate_by=40
@@ -80,6 +80,74 @@ class AAPersonListView(FormMixin, generic.ListView):
         context = self.get_context_data(form=form)
         context['result_count'] = len(self.object_list)
         return self.render_to_response(context)
+
+
+class AAPersonOtherListView(FormMixin, generic.ListView):
+    model = AAPerson
+    # context_object_name = 'aaperson_list'
+    template_name = 'people/aaperson_other.html'
+
+    # For search and filter
+    paginate_by=40
+    form_class = PersonSearchForm
+
+    def get_form_kwargs(self):
+        return {
+            'initial': self.get_initial(), # won't be using this
+            'prefix': self.get_prefix(),  # don't know what this is
+            'data': self.request.GET # or self.init_data # None  # will add my data here
+        }
+
+    def get(self, request,*args, **kwargs):
+        self.object_list = self.get_queryset()
+        form = self.get_form(self.get_form_class())
+
+        if form.is_valid():
+            # tier_value = form.cleaned_data['tier']
+            for_name = form.cleaned_data['for_name']
+            in_bio = form.cleaned_data['in_bio']
+            freed_status_list = form.cleaned_data['freedStatus']
+            sortOrder = form.cleaned_data['sortOrder']
+
+            # Remove inactive entries
+            self.object_list = self.object_list.filter(Q(research_status__gt=1) )
+
+            # Select Tier
+            self.object_list = self.object_list.filter(Q(tier=0) )
+
+            if for_name:
+                print('for_name: ' + for_name)
+                self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
+                #  | Q(narrative__icontains=q)
+
+            if in_bio:
+                self.object_list = self.object_list.filter(Q(bio__icontains=in_bio) )
+
+            if len(freed_status_list) > 0 :
+                # per undocumented .add method for Q objects
+                # https://bradmontgomery.net/blog/adding-q-objects-in-django/
+                # Get initial (0), then add
+                qquery = Q(freed_status=freed_status_list[0])
+
+                for freed_choice in freed_status_list[1:]:
+                    qquery.add((Q(freed_status=freed_choice )), 'OR' ) 
+
+                self.object_list = self.object_list.filter(qquery)
+            
+            # Optional sort
+            if sortOrder:
+                self.object_list = self.object_list.order_by(sortOrder)
+                # self.object_list = self.object_list.order_by(sortOrder_list[0])
+                #  | Q(narrative__icontains=q)
+
+
+        # remove any duplicates
+        self.object_list = self.object_list.distinct()
+
+        context = self.get_context_data(form=form)
+        context['result_count'] = len(self.object_list)
+        return self.render_to_response(context)
+
 
 class AAPersonZeroListView(FormMixin, generic.ListView):
     """Team page to research zero entries
