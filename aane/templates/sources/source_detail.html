@@ -97,7 +97,7 @@
 					{% if entry.aa_persons.all %}
 						{% for aa in entry.aa_persons.all %}
 							{% if aa.known_status == 1 %}<strong>{% endif %}
-							<a href="/people/aaperson/entries/{{ aa.id }}/">{{ aa.name }}, </a>
+							<a href="/people/aaperson/{{ aa.id }}/">{{ aa.name }}, </a>
 							{% if aa.known_status == 1 %}</strong>{% endif %}
 						{% endfor %}
 					{% else %}
@@ -177,7 +177,7 @@
 			<td class="medplus">
 				{% if entry.aa_person %}
 					{% if entry.aa_person.known_status == 1 %}<strong>{% endif %}
-					<a href="/people/aaperson/entries/{{ entry.aa_person.id }}/">{{ entry.aa_person.name }}</a>
+					<a href="/people/aaperson/{{ entry.aa_person.id }}/">{{ entry.aa_person.name }}</a>
 					{% if entry.aa_person.known_status == 1 %}</strong>{% endif %}
 
 				{% else %}
@@ -189,7 +189,7 @@
 				{% if entry.aa_persons.all %}
 					{% for aa in entry.aa_persons.all %}
 						{% if aa.known_status == 1 %}<strong>{% endif %}
-						<a href="/people/aaperson/entries/{{ aa.id }}/">{{ aa.name }}, </a>
+						<a href="/people/aaperson/{{ aa.id }}/">{{ aa.name }}, </a>
 						{% if aa.known_status == 1 %}</strong>{% endif %}
 					{% endfor %}
 				{% else %}
