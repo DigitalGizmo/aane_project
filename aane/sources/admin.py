@@ -71,8 +71,9 @@ class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
             'volume','primary_source', 
-            'entry_text', ('event', 'transaction_note'),
-            'aa_id', 'aa_persons', 
+            'entry_text', 'event',
+            ('aa_id', 'transaction_note'),
+            'aa_persons', 
             ('operson_fk', 'operson_id'),
             ('name_note', 'data_status'), 'notes',
             ]}
@@ -109,7 +110,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         #     ], 'classes': ['collapse']
         # }),
     ]
-    readonly_fields = ('aa_id', 'operson_id')
+    readonly_fields = ('aa_id', 'operson_id', 'transaction_note')
     list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',

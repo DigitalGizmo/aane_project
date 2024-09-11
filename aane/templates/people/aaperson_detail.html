@@ -44,7 +44,7 @@
 		<dt>confidence level</dt>
     <dd>{{ aaperson.get_confidence_display }}</dd>
 
-		<dt>freed satus (year freed)</dt>
+		<dt>freed status (year freed)</dt>
     <dd>
       {{aaperson.get_freed_status_display}}
       {% if aaperson.free_start_year %}
@@ -88,7 +88,7 @@
 			<th>Source</th>
 			<th>Vol Name</th>
 			<th>Date</th>
-			<th>Enslaver</th>
+			<!-- <th>Enslaver</th> -->
 			<th>entry id</th>
 		</tr>
 		<!-- for entry in aaperson.person_entries -->
@@ -118,13 +118,13 @@
         {% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}
         {% if entry.low_day %} {{ entry.low_day }}{% endif %}
 			</td>
-      <td class="medlrg">
+      <!-- <td class="medlrg">
         {% if entry.operson_fk_id %}
           <a href="{% url 'people:operson_detail' entry.operson_fk_id %}">
             {{ entry.operson_fk.last_name }}, {{ entry.operson_fk.first_name }}
           </a>
         {% endif %} 
-      </td>
+      </td> -->
 			<td class="xsm">{{entry.id}}</td>
 		</tr>
 		{% endfor %}

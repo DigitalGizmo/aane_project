@@ -64,8 +64,7 @@
 				<th>Entry</th>
 				<th>Date</th>
 				<th>AA Name(s)</th>
-				<th>Enslaver</th>
-				<!-- <th>Imagex</th> -->
+				<!-- <th>Enslaver</th> -->
 				<th>$</th>
 				<th>&nbsp;&pound;</th>
 				<th>&nbsp;s</th>
@@ -104,17 +103,13 @@
 						<span class="faint">{{ entry.name_note }}, </span>
 					{% endif %}					
 				</td>
-				<td class="medplus">
+				<!-- <td class="medplus">
 					{% if entry.o_person %}
 						<a href="/people/operson/{{ entry.o_person.id }}/">{{ entry.o_person.name }}</a></td>
 					{% else %}
 						<span class="faint">--</span>
 					{% endif %}
-				</td>
-				<!-- <td class="sm">
-					{% if entry.image_status > 5 %} &check; {% endif %}
-					{% if entry.image_status > 6 %} &check; {% endif %}
-				</td>			 -->
+				</td> -->
 				<td class="xsm">
 					{% if entry.dollars %} {{ entry.dollars }}{% endif %}
 				</td>					
