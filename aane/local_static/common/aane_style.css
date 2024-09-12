@@ -476,6 +476,14 @@ color: #999;
     background-color: #fff6c8;
 }
 
+/* Don for entry interpretive note */
+.interpretive-note p {
+  font-size: 1em;
+  /* font-weight: 300; */
+  line-height: 1.2em;
+  margin-bottom: 0.75em;
+}
+
 /* Don for People menu side-by-side 
 From lucy moment-scroll. control-panel was not defined there */
 .control-panel {

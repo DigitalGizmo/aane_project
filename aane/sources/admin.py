@@ -2,8 +2,8 @@ from dataclasses import fields
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
-# from tinymce.widgets import TinyMCE
-# from tinymce import models as tinymce_models
+from tinymce.widgets import TinyMCE
+from tinymce import models as tinymce_models
 from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
 from calendar import month_abbr
 
@@ -73,7 +73,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
             'volume','primary_source', 
-            'entry_text', # 'interpretive_note',
+            'entry_text', 'interpretive_note',
             'event',
             ('aa_id', 'transaction_note'),
             'aa_persons', 
@@ -123,7 +123,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':80})},
-        # tinymce_models.HTMLField: {"widget": TinyMCE()},
+        tinymce_models.HTMLField: {"widget": TinyMCE()},
     }
     inlines = [SourceEntryEditHistoryInline]
 

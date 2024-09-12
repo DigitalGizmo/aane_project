@@ -35,10 +35,12 @@
       <h4>Entry</h4>
       <p class="entry-text">{{ sourceentry.entry_text|safe }}</p>
 
-     <!-- if sourceentry.interpretive_note 
+     {% if sourceentry.interpretive_note %} 
         <h4>Note</h4>
-        {{ sourceentry.interpretive_note|safe }}
-     endif -->
+        <div class="interpretive-note">
+          {{ sourceentry.interpretive_note|safe }}
+        </div>
+     {% endif %}
     </div>
 
     <div class="slim-details">

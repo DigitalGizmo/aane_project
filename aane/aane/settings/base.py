@@ -149,3 +149,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # GRAPHENE = {
 #     "SCHEMA": "aane.schema.schema"
 # }
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": "300px",
+    "width": "960px",
+    "menubar": "false",
+    "plugins": "lists link visualblocks code paste code help wordcount spellchecker",
+    "toolbar": "undo redo | bold italic |  fontsizeselect | outdent indent |  numlist bullist | pagebreak | charmap emoticons | "
+    "save |  link anchor codesample | code",
+    # underline strikethrough 
+    "custom_undo_redo_levels": 10,
+    # "language": "es_ES",  # To force a specific language instead of the Django current language.
+}
