@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'about.apps.AboutConfig',
     'django_quill',
     'django_htmx',
+    'tinymce',
     # 'graphene_django',
     'corsheaders',
     'django.contrib.admin',

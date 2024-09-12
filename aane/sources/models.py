@@ -1,5 +1,7 @@
 from django.urls import reverse
 from django.db import models
+from tinymce import models as tinymce_models
+# from tinymce.models import HTMLField
 import people.models
 from sitewide.models import CommonEditHistory
 
@@ -168,6 +170,7 @@ class SourceEntry(models.Model):
     volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
         null=True, blank=True)
     entry_text = models.CharField(max_length=255)
+    interpretive_note = tinymce_models.HTMLField(blank=True, default='')
     clarified = models.CharField(max_length=255, blank=True, default='',
         help_text='was for editor interpretation of entry text')
     event = models.CharField(max_length=128, blank=True, default='')
