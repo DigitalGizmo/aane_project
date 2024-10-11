@@ -2,6 +2,7 @@ from dataclasses import fields
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
+from django import forms
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
 from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
@@ -148,6 +149,12 @@ class SourceEntryAdmin(admin.ModelAdmin):
     def vol_title(self, obj):
         return obj.volume
     vol_title.short_description = 'vol' 
+
+    # From Claude - to make entry_text input wider
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name == 'entry_text':
+            kwargs['widget'] = forms.TextInput(attrs={'size': '90'})
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
 admin.site.register(Volume, VolumeAdmin)
