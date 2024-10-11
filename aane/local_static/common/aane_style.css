@@ -1,5 +1,5 @@
 body {
-	background-image: url('https://dev.digitalgizmo.com/aane-model/images/bkgrnd.jpg');
+	background-image: url('/static/bg_images/bkgrnd.jpg');
 	font-family: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
 	font-size: medium;
 	color: #333333;
@@ -25,7 +25,7 @@ body {
 }
 
 .landing nav {
-	background-image: url('https://dev.digitalgizmo.com/aane-model/images/landing-inset.jpg');
+	background-image: url('/static/bg_images/landing-inset.jpg');
 	background-size: contain;
 	background-repeat: no-repeat;
 	height: 40vw;
