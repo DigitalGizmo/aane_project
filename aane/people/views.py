@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.views.generic.edit import FormMixin
 from .models import AAPerson, OPerson
 from .forms import PersonSearchForm
@@ -168,18 +168,16 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
         }
 
     def get(self, request,*args, **kwargs):
-        self.object_list = self.get_queryset()
+
+
+        # self.object_list = self.get_queryset()
+        # Courtesy of Claue 3.5
+        self.object_list = self.model.objects.annotate(
+            source_count=Count('aa_persons')
+        )
         form = self.get_form(self.get_form_class())
 
-        # Filter for just zeros?
-        # No, can't filter by property
-
-        # print('test: ' + self.object_list[0].name + ' count: ' + str(self.object_list[0].aa_persons.count()))
-
-        # self.object_list[0].aa_persons.count()
-
-        # self.object_list = self.object_list.filter(Q(aa_persons__count__eq=0) )
-
+        self.object_list = self.object_list.filter(Q(source_count__gte=5))
 
         if form.is_valid():
             for_name= form.cleaned_data['for_name']
