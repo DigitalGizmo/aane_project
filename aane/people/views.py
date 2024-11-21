@@ -173,7 +173,12 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
 
         # Filter for just zeros?
         # No, can't filter by property
-        # self.object_list = self.object_list.filter(Q(person_entries__count__eq=0) )
+
+        # print('test: ' + self.object_list[0].name + ' count: ' + str(self.object_list[0].aa_persons.count()))
+
+        # self.object_list[0].aa_persons.count()
+
+        # self.object_list = self.object_list.filter(Q(aa_persons__count__eq=0) )
 
 
         if form.is_valid():

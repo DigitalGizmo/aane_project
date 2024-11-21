@@ -1,7 +1,7 @@
 {% extends "basic_page.html" %}
 {% load static %}
 
-{% block head_title %}AAERNE - African Americans{% endblock %}
+{% block head_title %}Team aa-people{% endblock %}
 
 {% block breadcrumbs %}
   <a href="/">Home</a> > African American People
@@ -54,13 +54,9 @@
     </tr>
     {% for aaperson in aaperson_list %}
        <!-- if aaperson.person_entries.count < 1 -->
-      {% if aaperson.person_entries_count < 1 %}
+       <!-- if aaperson.person_entries_count < 1  -->
       <!-- person_entries.count == "0" -->
       <tr>
-        {% comment %} <td class="sm"> {% endcomment %}
-          <!-- a href="{ url 'people:aaperson_update' aaperson.id }">edit</a -->
-          {% comment %} <a href="/admin/people/aaperson/{{aaperson.id}}/" target="admin">edit</a>
-        </td> {% endcomment %}
         <td class="medlrg">
           <a href="{% url 'people:aaperson_detail' aaperson.id %}">
             {{ aaperson.name|safe }}
@@ -106,7 +102,7 @@
             target="_edit"> {{ aaperson.id }}</a>
         </td>
       </tr>
-      {% endif %}
+       <!-- endif  -->
     {% endfor %}
   </table>
   
