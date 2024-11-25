@@ -49,9 +49,20 @@ class OPersonAdmin(admin.ModelAdmin):
             ('year_lower', 'year_upper'), 'research_status',
             'bio', 'note', 'locations']
     list_display = ('name', 'id', 'first_name', 'last_name', 'title', 
-                    'research_status', 'birth_year', 'death_year', 'year_lower')
+                    'research_status', 'get_locations', 'birth_year', 
+                    'death_year', 'year_lower')
     filter_horizontal = ['locations']
     search_fields = ['name']
     list_filter  = ['research_status'] 
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.annotate(
+            first_location=models.Min('locations__title')
+        )
+    @admin.display(description='Town',ordering='first_location')
+    def get_locations(self, obj):
+        return ", ".join([str(location) for location in obj.locations.all()])
+
 
 admin.site.register(OPerson, OPersonAdmin)
