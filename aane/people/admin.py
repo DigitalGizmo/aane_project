@@ -1,5 +1,9 @@
+from typing import Any
 from django.contrib import admin
+from django.db import models
+from django.http.request import HttpRequest
 from .models import AAPerson, OPerson
+from locations.models import Town
 
 
 class AAPersonAdmin(admin.ModelAdmin):
@@ -14,12 +18,26 @@ class AAPersonAdmin(admin.ModelAdmin):
             ('first_appearance_year', 'last_appearance_year'), 
             ]
     readonly_fields = ('owner_id', 'known_status')
-    list_display = ('name', 'id', 'owner_id', 'first_name', 'last_name', 
-                    'alt_name_spelling', 'research_status', 'freed_status', 
+    list_display = ('name', 'id', 'first_name', 'last_name', 
+                    'alt_name_spelling', 'research_status', 
+                    'get_locations', 'freed_status', 
                     'free_start_year', 'birth_year', 'death_year')
     search_fields = ['name']
     filter_horizontal = ['owners', 'locations']
     list_filter  = ['tier', 'research_status', 'freed_status'] 
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.annotate(
+            first_location=models.Min('locations__title')
+        )
+    @admin.display(description='Town',ordering='first_location')
+    def get_locations(self, obj):
+        return ", ".join([str(location) for location in obj.locations.all()])
+
+    # defined in Person model
+    # def get_ordering(self, request):
+    #     return ['first_location']
 
 admin.site.register(AAPerson, AAPersonAdmin)
 

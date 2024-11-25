@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from django_quill.fields import QuillField
+from django.contrib import admin
 from sources.models import SourceEntry
 
 
@@ -39,6 +40,17 @@ class PersonModel(models.Model):
 
     class Meta:
         abstract = True
+
+    # Courtesy of Clause 3.5 Sonnet
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.annotate(
+            first_location=models.Min('locations__title')
+        ).order_by('first_location')
+    
+    @admin.display(description='Locations', ordering='first_location')
+    def get_locations(self):
+        return ", ".join([str(location) for location in self.locations.all()])
 
     def __str__(self):
         birth = " "
