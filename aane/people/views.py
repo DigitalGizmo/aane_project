@@ -177,7 +177,7 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
         )
         form = self.get_form(self.get_form_class())
 
-        self.object_list = self.object_list.filter(Q(source_count__gte=5))
+        self.object_list = self.object_list.filter(Q(source_count=0))
 
         if form.is_valid():
             for_name= form.cleaned_data['for_name']
