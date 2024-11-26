@@ -184,15 +184,41 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
             freed_status_list = form.cleaned_data['freedStatus']
             sortOrder = form.cleaned_data['sortOrder']
             has_source_entries = form.cleaned_data['hasSourceEntries']
+            tier_value = form.cleaned_data['tierLevel']
+            research_value = form.cleaned_data['researchLevel']
 
 
             # has entries or not
             if has_source_entries:
-                if has_source_entries == 0:
+                print(' has source entries value: ' + str(has_source_entries))
+                if int(has_source_entries[0]) == 0:
                     self.object_list = self.object_list.filter(Q(source_count=0) )
                 else:
                     self.object_list = self.object_list.filter(Q(source_count__gt=0) )
 
+            # has entries or not
+            # if has_source_entries:
+            # print(' has source entries value: ' + str(has_source_entries))
+            # if has_source_entries == 1:
+            #     self.object_list = self.object_list.filter(Q(source_count=0) )
+            # elif has_source_entries == 2:
+            #     self.object_list = self.object_list.filter(Q(source_count__gt=0) )
+
+            # Tier
+            if tier_value:
+                print(' tier value: ' + str(tier_value))
+                if int(tier_value[0]) == 0:
+                    self.object_list = self.object_list.filter(Q(tier=0) )
+                else:
+                    self.object_list = self.object_list.filter(Q(tier=1) )
+
+            # Research
+            if research_value:
+                # print(' research value: ' + str(research_value))
+                if int(research_value[0]) == 0:
+                    self.object_list = self.object_list.filter(Q(research_status__lte=1) )
+                else:
+                    self.object_list = self.object_list.filter(Q(research_status__gte=2) )
 
 
             if for_name:

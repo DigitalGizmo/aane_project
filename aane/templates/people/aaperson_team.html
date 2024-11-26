@@ -23,6 +23,10 @@
       <div class="control-left">
         <h4 class="heading">Filter by Freed Status</h4>
         {{ form.freedStatus }}
+
+        <p>Showing: {{ result_count }} people</p>
+        <span id="clear"><a href="#">clear search</a></span>
+        
       </div>
 
       <div class="control-mid">
@@ -33,15 +37,18 @@
         <h4 class="heading">Sort by</h4>
         {{ form.sortOrder}}
         <input type="submit" value="Go" />
-        <p>Showing: {{ result_count }} people</p>
-        <span id="clear"><a href="#">clear search</a></span>
+
+        <p>tier</p>
+        {{form.tierLevel}}
 
       </div>
 
       <div class="control-right">
-          <p>With or without entries</p>
+          <p>With or without entries (temp: neither for all)</p>
           {{form.hasSourceEntries}}
 
+          <p>research status</p>
+          {{form.researchLevel}}
       </div>
 
 

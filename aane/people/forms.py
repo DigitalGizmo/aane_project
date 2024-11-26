@@ -34,11 +34,39 @@ class PersonSearchForm(forms.Form):
         (0,'With no source entries'), 
         (1, 'With source entries'), 
         )
+    # ENTRIES_CHOICES = (
+    # (0,'All'), 
+    # (1,'With no source entries'), 
+    # (2, 'With source entries'), 
+    # )
     hasSourceEntries = forms.MultipleChoiceField(
         choices = ENTRIES_CHOICES,
         widget  = forms.CheckboxSelectMultiple,
         required=False,
     )
+
+
+    TIER_CHOICES = (
+        (0,'Other'), 
+        (1,'Core'), 
+        )
+    tierLevel = forms.MultipleChoiceField(
+        choices = TIER_CHOICES,
+        widget  = forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+    RESEARCH_CHOICES = (
+        (0,'Inactive '), 
+        (1,'Active'), 
+        )
+    researchLevel = forms.MultipleChoiceField(
+        choices = RESEARCH_CHOICES,
+        widget  = forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+
     # # get evidence type list directly from the database
     # tiers = forms.MultipleChoiceField(
     #     choices = AAPerson.TIER,
