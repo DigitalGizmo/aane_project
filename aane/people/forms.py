@@ -29,6 +29,16 @@ class PersonSearchForm(forms.Form):
         required=False,
     )
 
+    # get evidence type list directly from the database
+    ENTRIES_CHOICES = (
+        (0,'With no source entries'), 
+        (1, 'With source entries'), 
+        )
+    hasSourceEntries = forms.MultipleChoiceField(
+        choices = ENTRIES_CHOICES,
+        widget  = forms.CheckboxSelectMultiple,
+        required=False,
+    )
     # # get evidence type list directly from the database
     # tiers = forms.MultipleChoiceField(
     #     choices = AAPerson.TIER,

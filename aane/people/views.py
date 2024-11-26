@@ -177,12 +177,23 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
         )
         form = self.get_form(self.get_form_class())
 
-        self.object_list = self.object_list.filter(Q(source_count=0))
+        # self.object_list = self.object_list.filter(Q(source_count=0))
 
         if form.is_valid():
             for_name= form.cleaned_data['for_name']
             freed_status_list = form.cleaned_data['freedStatus']
             sortOrder = form.cleaned_data['sortOrder']
+            has_source_entries = form.cleaned_data['hasSourceEntries']
+
+
+            # has entries or not
+            if has_source_entries:
+                if has_source_entries == 0:
+                    self.object_list = self.object_list.filter(Q(source_count=0) )
+                else:
+                    self.object_list = self.object_list.filter(Q(source_count__gt=0) )
+
+
 
             if for_name:
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
