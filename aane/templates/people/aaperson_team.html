@@ -25,7 +25,7 @@
         {{ form.freedStatus }}
 
         <p>Showing: {{ result_count }} people</p>
-        <span id="clear"><a href="#">clear search</a></span>
+        <span id="clear"><a href="{% url 'people:aaperson_zero' %}">clear search</a></span>
         
       </div>
 
@@ -38,17 +38,25 @@
         {{ form.sortOrder}}
         <input type="submit" value="Go" />
 
-        <p>tier</p>
-        {{form.tierLevel}}
+        <fieldset>
+          <legend>Teir: Core or Other</legend>          
+          {{form.tierLevel}}
+        </fieldset>
+        <p>Temporarily, these act like radio buttons -- only one at a time.</p>
 
       </div>
 
       <div class="control-right">
-          <p>With or without entries (temp: neither for all)</p>
-          {{form.hasSourceEntries}}
+          <fieldset>
+            <legend>With or without entries</legend>          
+            {{form.hasSourceEntries}}
+          </fieldset>
 
-          <p>research status</p>
-          {{form.researchLevel}}
+          <fieldset>
+            <legend>Research Status</legend>          
+            {{form.researchLevel}}
+          </fieldset>
+
       </div>
 
 

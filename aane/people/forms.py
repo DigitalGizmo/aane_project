@@ -61,7 +61,9 @@ class PersonSearchForm(forms.Form):
         (1,'Active'), 
         )
     researchLevel = forms.MultipleChoiceField(
-        choices = RESEARCH_CHOICES,
+        # choices = RESEARCH_CHOICES,
+        choices = AAPerson.RESEARCH_STATUS,
+        # choices = AAPerson._meta.get_field('research_status').choices,
         widget  = forms.CheckboxSelectMultiple,
         required=False,
     )

@@ -215,10 +215,11 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
             # Research
             if research_value:
                 # print(' research value: ' + str(research_value))
-                if int(research_value[0]) == 0:
-                    self.object_list = self.object_list.filter(Q(research_status__lte=1) )
-                else:
-                    self.object_list = self.object_list.filter(Q(research_status__gte=2) )
+                self.object_list = self.object_list.filter(Q(research_status=int(research_value[0])) )
+                # if int(research_value[0]) == 0:
+                #     self.object_list = self.object_list.filter(Q(research_status__lte=1) )
+                # else:
+                #     self.object_list = self.object_list.filter(Q(research_status__gte=2) )
 
 
             if for_name:
