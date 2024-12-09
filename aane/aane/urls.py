@@ -23,17 +23,19 @@ from django.views.decorators.csrf import csrf_exempt
 # from .schema import schema
 from . import views
 
+
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('team/', views.TeamView.as_view(), name='team_home'),
     # path('graphql/', 
     #    csrf_exempt(GraphQLView.as_view(graphiql=True)), 
     #    name='graphql'),
+    path('api-auth/', include('rest_framework.urls')),
     path('sources/', include('sources.urls', namespace="sources")),
     path('people/', include('people.urls', namespace="people")),
     path('about/', include('about.urls', namespace="about")),
-
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 

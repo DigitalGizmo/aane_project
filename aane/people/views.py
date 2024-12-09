@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.db.models import Q, Count
+from rest_framework import viewsets
 from django.views.generic.edit import FormMixin
 from .models import AAPerson, OPerson
 from .forms import PersonSearchForm
+from .serializers import AAPersonSerializer
 
 """
 def aa_index(request):
@@ -258,6 +260,14 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
 class AAPersonDetailView(generic.DetailView):
     model = AAPerson
     #template_name = 'people/aaperson_detail.html' # default
+
+class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
+    # queryset = AAPerson.objects.filter(bio='{"delta":"","html":""}').order_by('id')
+    queryset = AAPerson.objects.filter(~Q(bio='{"delta":"","html":""}')).order_by('id')
+    # queryset.add(~Q(bio=''), 'AND' )
+    # queryset = AAPerson.objects.all().order_by('id')
+    serializer_class = AAPersonSerializer
+    lookup_field = 'name'
 
 class OPersonListView(generic.ListView):
     model = OPerson

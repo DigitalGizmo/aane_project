@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'django_htmx',
     'tinymce',
     # 'graphene_django',
+    'rest_framework',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
