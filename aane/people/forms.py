@@ -14,6 +14,12 @@ class PersonSearchForm(forms.Form):
         required=False,
     )
 
+    researchLevel = forms.MultipleChoiceField(
+        choices = AAPerson.RESEARCH_STATUS,
+        widget  = forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
     # order by
     # sortOrder = forms.CharField(max_length=24, required=False)
     SORT_CHOICES = (('name','name'), 
@@ -34,17 +40,11 @@ class PersonSearchForm(forms.Form):
         (0,'With no source entries'), 
         (1, 'With source entries'), 
         )
-    # ENTRIES_CHOICES = (
-    # (0,'All'), 
-    # (1,'With no source entries'), 
-    # (2, 'With source entries'), 
-    # )
     hasSourceEntries = forms.MultipleChoiceField(
         choices = ENTRIES_CHOICES,
         widget  = forms.CheckboxSelectMultiple,
         required=False,
     )
-
 
     TIER_CHOICES = (
         (0,'Other'), 
@@ -56,17 +56,6 @@ class PersonSearchForm(forms.Form):
         required=False,
     )
 
-    RESEARCH_CHOICES = (
-        (0,'Inactive '), 
-        (1,'Active'), 
-        )
-    researchLevel = forms.MultipleChoiceField(
-        # choices = RESEARCH_CHOICES,
-        choices = AAPerson.RESEARCH_STATUS,
-        # choices = AAPerson._meta.get_field('research_status').choices,
-        widget  = forms.CheckboxSelectMultiple,
-        required=False,
-    )
 
 
     # # get evidence type list directly from the database

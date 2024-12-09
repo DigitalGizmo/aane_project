@@ -182,10 +182,10 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
         if form.is_valid():
             for_name= form.cleaned_data['for_name']
             freed_status_list = form.cleaned_data['freedStatus']
+            research_values = form.cleaned_data['researchLevel']
             sortOrder = form.cleaned_data['sortOrder']
             has_source_entries = form.cleaned_data['hasSourceEntries']
             tier_value = form.cleaned_data['tierLevel']
-            research_value = form.cleaned_data['researchLevel']
 
 
             # has entries or not
@@ -212,19 +212,18 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
                 else:
                     self.object_list = self.object_list.filter(Q(tier=1) )
 
-            # Research
-            if research_value:
-                # print(' research value: ' + str(research_value))
-                self.object_list = self.object_list.filter(Q(research_status=int(research_value[0])) )
-                # if int(research_value[0]) == 0:
-                #     self.object_list = self.object_list.filter(Q(research_status__lte=1) )
-                # else:
-                #     self.object_list = self.object_list.filter(Q(research_status__gte=2) )
-
-
             if for_name:
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
+
+            # # Research
+            # if research_value:
+            #     # print(' research value: ' + str(research_value))
+            #     self.object_list = self.object_list.filter(Q(research_status=int(research_value[0])) )
+            #     # if int(research_value[0]) == 0:
+            #     #     self.object_list = self.object_list.filter(Q(research_status__lte=1) )
+            #     # else:
+            #     #     self.object_list = self.object_list.filter(Q(research_status__gte=2) )
 
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects
@@ -236,7 +235,20 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
                     qquery.add((Q(freed_status=freed_choice )), 'OR' ) 
 
                 self.object_list = self.object_list.filter(qquery)
-            
+
+            if len(research_values) > 0 :
+                # per undocumented .add method for Q objects
+                # https://bradmontgomery.net/blog/adding-q-objects-in-django/
+                # Get initial (0), then add
+                print(' - research_values[0]: ' + str(research_values[0]))
+                qquery = Q(research_status=research_values[0])
+
+                for research_choice in research_values[1:]:
+                    print(' - research_values[1]: ' + str(research_values[1]))
+                    qquery.add((Q(research_status=research_choice )), 'OR' ) 
+
+                self.object_list = self.object_list.filter(qquery)
+
             # Optional sort
             if sortOrder:
                 self.object_list = self.object_list.order_by(sortOrder)
