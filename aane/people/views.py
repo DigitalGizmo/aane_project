@@ -216,15 +216,6 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
 
-            # # Research
-            # if research_value:
-            #     # print(' research value: ' + str(research_value))
-            #     self.object_list = self.object_list.filter(Q(research_status=int(research_value[0])) )
-            #     # if int(research_value[0]) == 0:
-            #     #     self.object_list = self.object_list.filter(Q(research_status__lte=1) )
-            #     # else:
-            #     #     self.object_list = self.object_list.filter(Q(research_status__gte=2) )
-
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects
                 # https://bradmontgomery.net/blog/adding-q-objects-in-django/
