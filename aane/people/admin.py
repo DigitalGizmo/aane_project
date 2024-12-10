@@ -2,6 +2,8 @@ from typing import Any
 from django.contrib import admin
 from django.db import models
 from django.http.request import HttpRequest
+from tinymce.widgets import TinyMCE
+from tinymce import models as tinymce_models
 from .models import AAPerson, OPerson
 from locations.models import Town
 
@@ -13,8 +15,8 @@ class AAPersonAdmin(admin.ModelAdmin):
             ('birth_year', 'is_birth_circa','death_year', 
              'is_death_circa', 'tier'), 
             ('research_status', 'confidence', 'known_status'), 
-            'bio', 'note', 'owners', 'owner_id', 'locations',  
-            'place_of_origin',
+            'bio', 'bio_html', 'note', 'owners', 'owner_id',  
+            'locations','place_of_origin',
             ('first_appearance_year', 'last_appearance_year'), 
             ]
     readonly_fields = ('owner_id', 'known_status')
