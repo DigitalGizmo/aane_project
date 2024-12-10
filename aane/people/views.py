@@ -264,6 +264,7 @@ class AAPersonDetailView(generic.DetailView):
 class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
     # queryset = AAPerson.objects.filter(bio='{"delta":"","html":""}').order_by('id')
     queryset = AAPerson.objects.filter(~Q(bio='{"delta":"","html":""}')).order_by('id')
+    # queryset = AAPerson.objects.all().order_by('id')
     # queryset.add(~Q(bio=''), 'AND' )
     # queryset = AAPerson.objects.all().order_by('id')
     serializer_class = AAPersonSerializer

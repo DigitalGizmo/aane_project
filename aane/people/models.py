@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from django_quill.fields import QuillField
+from tinymce import models as tinymce_models
 from django.contrib import admin
 from sources.models import SourceEntry
 
@@ -30,6 +31,7 @@ class PersonModel(models.Model):
     bio = QuillField(blank=True, default='')
     bio_plain_text = models.TextField(blank=True, default='')
     full_bio = QuillField(blank=True, default='')
+    bio_html = tinymce_models.HTMLField(blank=True, default='')
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
     locations = models.ManyToManyField('locations.Town', blank=True)
