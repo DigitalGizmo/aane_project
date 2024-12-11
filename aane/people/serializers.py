@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AAPerson
+from .models import AAPerson, OPerson
 
 
 # class RelatedSerializer(serializers.ModelSerializer):
@@ -28,6 +28,17 @@ class AAPersonSerializer(serializers.HyperlinkedModelSerializer):
     # more_text = FieldQuillSerializer()
     class Meta:
         model = AAPerson
+        fields = [
+            'id',
+            'name',
+            'bio'          
+        ]
+        lookup_field = 'name'
+
+class OPersonSerializer(serializers.HyperlinkedModelSerializer):
+    bio = FieldQuillSerializer()
+    class Meta:
+        model = OPerson
         fields = [
             'id',
             'name',

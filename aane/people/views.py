@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from django.views.generic.edit import FormMixin
 from .models import AAPerson, OPerson
 from .forms import PersonSearchForm
-from .serializers import AAPersonSerializer
+from .serializers import AAPersonSerializer, OPersonSerializer
 
 """
 def aa_index(request):
@@ -268,6 +268,11 @@ class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
     # queryset.add(~Q(bio=''), 'AND' )
     # queryset = AAPerson.objects.all().order_by('id')
     serializer_class = AAPersonSerializer
+    lookup_field = 'name'
+
+class OPersonViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = OPerson.objects.filter(~Q(bio='{"delta":"","html":""}')).order_by('id')
+    serializer_class = OPersonSerializer
     lookup_field = 'name'
 
 class OPersonListView(generic.ListView):
