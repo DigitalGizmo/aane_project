@@ -17,7 +17,7 @@
 			<th>Race</th>
 			<th>Birth</th>
 			<th>Death</th>
-			<th>ID</th>
+			<!-- <th>ID</th> -->
 			<th>Location(s)</th>
 			<!-- <th>Enslaved Person(s)</th> -->
 		</tr>
@@ -32,7 +32,7 @@
 			<td class="med">{{ operson.race }}</td>
 			<td class="med">{% firstof operson.birth_year " " %}</td>
 			<td class="med">{% firstof operson.death_year " " %}</td>
-			<td class="med">{{ operson.id }}</td>
+			<!-- <td class="med">{{ operson.id }}</td> -->
 			<td class="medplus">
 				{% for location in operson.locations.all %}
 				  {{ location.title }}, {{ location.state.abbr}} &nbsp;

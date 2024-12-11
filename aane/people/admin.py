@@ -49,7 +49,7 @@ class OPersonAdmin(admin.ModelAdmin):
               ('gender', 'role', 'race'), 
             ('birth_year', 'death_year'), 
             ('year_lower', 'year_upper'), 'research_status',
-            'bio', 'note', 'locations']
+            'bio_html', 'note', 'locations']
     list_display = ('name', 'id', 'first_name', 'last_name', 'title', 
                     'research_status', 'get_locations', 'birth_year', 
                     'death_year', 'year_lower')
