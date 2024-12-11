@@ -152,7 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # }
 
 TINYMCE_DEFAULT_CONFIG = {
-    "height": "500px",
+    "height": "350px",
     "width": "960px",
     "menubar": "false",
     "plugins": "lists link visualblocks code code help wordcount", 

@@ -19,7 +19,7 @@
 			<th>Death</th>
 			<th>ID</th>
 			<th>Location(s)</th>
-			<th>Enslaved Person(s)</th>
+			<!-- <th>Enslaved Person(s)</th> -->
 		</tr>
 		{% for operson in operson_list %}
 		<tr>
@@ -39,11 +39,11 @@
 				{% endfor %}
 			  </td>
 		
-			<td class="xlrg">
+			<!-- <td class="xlrg"> 
 				{% for aaperson in operson.aaperson_set.all %}
-					{{ aaperson.name|safe }},
+					 {{ aaperson.name|safe }},
 				{% endfor %}
-			</td>	
+			 </td>	 -->
 		</tr>
 		{% endfor %}
 	</table>
