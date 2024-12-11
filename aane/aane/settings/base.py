@@ -152,13 +152,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # }
 
 TINYMCE_DEFAULT_CONFIG = {
-    "height": "300px",
+    "height": "500px",
     "width": "960px",
     "menubar": "false",
-    "plugins": "lists link visualblocks code paste code help wordcount spellchecker",
-    "toolbar": "undo redo | bold italic |  fontsizeselect | outdent indent |  numlist bullist | pagebreak | charmap emoticons | "
-    "save |  link anchor codesample | code",
-    # underline strikethrough 
+    "plugins": "lists link visualblocks code code help wordcount", 
+    # These require paid plugins:  paste spellchecker
+    "toolbar": "undo redo | bold italic superscript |  fontsizeselect | outdent indent |  numlist bullist | pagebreak | charmap emoticons | "
+    "save |   codesample | code",
+    # underline strikethrough link anchor
     "custom_undo_redo_levels": 10,
     # "language": "es_ES",  # To force a specific language instead of the Django current language.
 }

@@ -31,7 +31,7 @@ class PersonModel(models.Model):
     bio = QuillField(blank=True, default='')
     bio_plain_text = models.TextField(blank=True, default='')
     full_bio = QuillField(blank=True, default='')
-    bio_html = tinymce_models.HTMLField(blank=True, default='')
+    bio_html = tinymce_models.HTMLField('bio text', blank=True, default='')
     birth_year = models.IntegerField(blank=True, null=True)
     death_year = models.IntegerField(blank=True, null=True)
     locations = models.ManyToManyField('locations.Town', blank=True)

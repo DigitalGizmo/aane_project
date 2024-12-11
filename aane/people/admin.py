@@ -15,7 +15,7 @@ class AAPersonAdmin(admin.ModelAdmin):
             ('birth_year', 'is_birth_circa','death_year', 
              'is_death_circa', 'tier'), 
             ('research_status', 'confidence', 'known_status'), 
-            'bio', 'bio_html', 'note', 'owners', 'owner_id',  
+            'bio_html', 'note', 'owners', 'owner_id',  
             'locations','place_of_origin',
             ('first_appearance_year', 'last_appearance_year'), 
             ]
