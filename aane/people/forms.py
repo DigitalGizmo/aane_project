@@ -37,8 +37,8 @@ class PersonSearchForm(forms.Form):
 
     # get evidence type list directly from the database
     ENTRIES_CHOICES = (
-        (0,'With no source entries'), 
-        (1, 'With source entries'), 
+        (0,'No source entries OR'), 
+        (1,'Has source entries'), 
         )
     hasSourceEntries = forms.MultipleChoiceField(
         choices = ENTRIES_CHOICES,

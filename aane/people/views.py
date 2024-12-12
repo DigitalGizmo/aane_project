@@ -170,8 +170,6 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
         }
 
     def get(self, request,*args, **kwargs):
-
-
         # self.object_list = self.get_queryset()
         # Courtesy of Claue 3.5
         self.object_list = self.model.objects.annotate(
@@ -187,36 +185,27 @@ class AAPersonZeroListView(FormMixin, generic.ListView):
             research_values = form.cleaned_data['researchLevel']
             sortOrder = form.cleaned_data['sortOrder']
             has_source_entries = form.cleaned_data['hasSourceEntries']
-            tier_value = form.cleaned_data['tierLevel']
-
-
-            # has entries or not
-            if has_source_entries:
-                print(' has source entries value: ' + str(has_source_entries))
-                if int(has_source_entries[0]) == 0:
-                    self.object_list = self.object_list.filter(Q(source_count=0) )
-                else:
-                    self.object_list = self.object_list.filter(Q(source_count__gt=0) )
-
-            # has entries or not
-            # if has_source_entries:
-            # print(' has source entries value: ' + str(has_source_entries))
-            # if has_source_entries == 1:
-            #     self.object_list = self.object_list.filter(Q(source_count=0) )
-            # elif has_source_entries == 2:
-            #     self.object_list = self.object_list.filter(Q(source_count__gt=0) )
-
-            # Tier
-            if tier_value:
-                print(' tier value: ' + str(tier_value))
-                if int(tier_value[0]) == 0:
-                    self.object_list = self.object_list.filter(Q(tier=0) )
-                else:
-                    self.object_list = self.object_list.filter(Q(tier=1) )
+            tier_values = form.cleaned_data['tierLevel']
 
             if for_name:
                 self.object_list = self.object_list.filter(Q(name__icontains=for_name) )
                 #  | Q(narrative__icontains=q)
+
+            if len(has_source_entries) > 0:
+                print(' has source entries value: ' + str(has_source_entries))
+                if int(has_source_entries[0]) == 0:
+                    qquery = Q(source_count=0)
+                    self.object_list = self.object_list.filter(qquery)
+                elif  (int(has_source_entries[0]) == 1): #(len(has_source_entries) > 1) and
+                    # if int(has_source_entries[1]) == 1:
+                    qquery = Q(source_count__gt=0)
+                    self.object_list = self.object_list.filter(qquery)
+
+            if len(tier_values) > 0 :
+                qquery = Q(tier=tier_values[0])
+                for tier_choice in tier_values[1:]:
+                    qquery.add((Q(tier=tier_choice )), 'OR' ) 
+                self.object_list = self.object_list.filter(qquery)
 
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects
