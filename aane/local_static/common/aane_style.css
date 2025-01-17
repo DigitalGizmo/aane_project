@@ -28,7 +28,8 @@ body {
 	background-image: url('/static/bg_images/landing-inset.jpg');
 	background-size: contain;
 	background-repeat: no-repeat;
-	height: 40vw;
+	/* height: 40vw; */
+  padding-bottom: 2em;
 	width: 75vw;
 	position: relative;
 }
