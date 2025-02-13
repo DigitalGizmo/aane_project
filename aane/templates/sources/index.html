@@ -9,24 +9,32 @@
 
 {% block content %}
 	<h1> Sources | <a href="/sources/entries/">All Entries</a> </h1>
-	<section class="control-panel">
-		<form action="{% url 'sources:index' %}" method="GET" id="search-form" name="menu">
+  <form action="{% url 'sources:index' %}" method="GET" id="search-form" name="menu">
+    <section class="control-panel">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}
 		  <input type="hidden" name="page" value="{{ page_number }}"/>
-	  
-		  <h4 class="heading">Filter by Type</h4>	  
-		  {{ form.sourceTypes }}
 
-		  <h4 class="heading">Search Source Titles</h4>
-		  <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
-			placeholder="Search" class="search-field"/>
+      <div class="control-left">
+        <h4 class="heading">Filter by Type</h4>	  
+        {{ form.sourceTypes }}
+      </div>
 
-		  <input type="submit" value="Go" />
-		  <p>Showing: {{ result_count }} sources</p>
-		  <span id="clear"><a href="#">clear search</a></span>
-		</form>
-	</section>
+      <div class="control-mid">
+        <h4 class="heading">Search Source Titles</h4>
+        <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
+        placeholder="Search" class="search-field"/>
+        <input type="submit" value="Go" />
+        <br>
+        <span id="clear"><a href="#">clear search</a></span>
+        
+      </div>
+      
+      <div class="control-right">
+        <p>Showing: {{ result_count }} sources</p>
+      </div>
+    </section>
+  </form>
 
 	<table>
 		<tr>
