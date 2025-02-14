@@ -19,7 +19,8 @@ class AAPersonAdmin(admin.ModelAdmin):
             'locations','place_of_origin',
             ('first_appearance_year', 'last_appearance_year'), 
             ]
-    readonly_fields = ('owner_id', 'known_status')
+    readonly_fields = ('owner_id', 'known_status',
+                       'first_appearance_year', 'last_appearance_year')
     list_display = ('name', 'id', 'first_name', 'last_name', 
                     'alt_name_spelling', 'research_status', 
                     'get_locations', 'freed_status', 
