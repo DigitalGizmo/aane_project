@@ -170,6 +170,7 @@ class SourceEntry(models.Model):
     volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
         null=True, blank=True)
     entry_text = models.CharField(max_length=255)
+    entry_text_html = tinymce_models.HTMLField(blank=True, default='')
     interpretive_note = tinymce_models.HTMLField(blank=True, default='')
     clarified = models.CharField(max_length=255, blank=True, default='',
         help_text='was for editor interpretation of entry text')
