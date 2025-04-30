@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'sitewide.apps.SitewideConfig',
     'locations.apps.LocationsConfig',
     'about.apps.AboutConfig',
-    'django_quill',
+    # 'django_quill',
     'django_htmx',
     'tinymce',
     # 'graphene_django',

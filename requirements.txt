@@ -1,8 +1,10 @@
-Django==3.2.18
-psycopg2==2.9.1
+Django==4.2
+django-cors-headers==4.7.0
+django-filter==25.1
+django-htmx==1.23.0
+django-tinymce==4.1.0
+djangorestframework==3.16.0
+psycopg2-binary==2.9.10
 Unipath==1.1
-django-quill-editor
-django-cors-headers==3.7.0now
-graphene-django==2.15.0
-django-filter==22.1
+
 

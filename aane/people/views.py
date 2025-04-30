@@ -56,7 +56,7 @@ class AAPersonListView(FormMixin, generic.ListView):
                 #  | Q(narrative__icontains=q)
 
             if in_bio:
-                self.object_list = self.object_list.filter(Q(bio__icontains=in_bio) )
+                self.object_list = self.object_list.filter(Q(bio_html__icontains=in_bio) )
 
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects
@@ -123,7 +123,7 @@ class AAPersonOtherListView(FormMixin, generic.ListView):
                 #  | Q(narrative__icontains=q)
 
             if in_bio:
-                self.object_list = self.object_list.filter(Q(bio__icontains=in_bio) )
+                self.object_list = self.object_list.filter(Q(bio_html__icontains=in_bio) )
 
             if len(freed_status_list) > 0 :
                 # per undocumented .add method for Q objects
@@ -252,7 +252,7 @@ class AAPersonDetailView(generic.DetailView):
 
 class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
     # queryset = AAPerson.objects.filter(bio='{"delta":"","html":""}').order_by('id')
-    queryset = AAPerson.objects.filter(~Q(bio='{"delta":"","html":""}')).order_by('id')
+    queryset = AAPerson.objects.filter(~Q(bio_html='{"delta":"","html":""}')).order_by('id')
     # queryset = AAPerson.objects.all().order_by('id')
     # queryset.add(~Q(bio=''), 'AND' )
     # queryset = AAPerson.objects.all().order_by('id')
@@ -260,7 +260,7 @@ class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'name'
 
 class OPersonViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = OPerson.objects.filter(~Q(bio='{"delta":"","html":""}')).order_by('id')
+    queryset = OPerson.objects.filter(~Q(bio_html='{"delta":"","html":""}')).order_by('id')
     serializer_class = OPersonSerializer
     lookup_field = 'name'
 
