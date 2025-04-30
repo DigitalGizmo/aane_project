@@ -246,7 +246,7 @@ class SourceEntry(models.Model):
         return reverse('sources:entry_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return self.entry_text
+        return self.entry_text_html
 
 class SourceEntryEditHistory(CommonEditHistory):
     source_entry = models.ForeignKey('SourceEntry', related_name='source_entries',

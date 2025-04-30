@@ -150,7 +150,13 @@ p, blockquote {	font-size: 1em; line-height: 1.5em;	}
 li {	font-size: 1em; line-height: 1.2em;	}
 
 /* Don addition */
-.entry-text {
+/* .entry-text {
+    font-weight: 400;
+} 
+Moved class out of p tag since that will now come from 
+wysiwig admin. 
+*/
+.slim-entry p {
     font-weight: 400;
 }
 

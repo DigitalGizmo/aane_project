@@ -2,6 +2,7 @@ from dataclasses import fields
 from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
+from django.utils.html import format_html
 from django import forms
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
@@ -35,7 +36,7 @@ class VolumeAdmin(admin.ModelAdmin):
     list_display = ('id', 'year_start', 'year_end', 'title', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
     list_filter  = ['primary_source'] 
-    search_fields = ['entry_text']
+    search_fields = ['entry_text_html']
     def short_source(self, obj):
         return obj.primary_source.title[0:20]    
     short_source.short_description = 'Source (truncated)'
@@ -74,7 +75,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
             'volume','primary_source', 
-            'entry_text', 'interpretive_note', # 'entry_text_html', 
+            'entry_text_html', 'interpretive_note', # 'entry_text', 
             'event',
             ('aa_id', 'transaction_note'),
             'aa_persons', 
@@ -115,11 +116,11 @@ class SourceEntryAdmin(admin.ModelAdmin):
         # }),
     ]
     readonly_fields = ('aa_id', 'operson_id', 'transaction_note')
-    list_display = ('entry_text', 'legacy_id', 'vol_title', 'short_pvma',
+    list_display = ('get_entry_text_html', 'legacy_id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'data_status', 'primary_source', 'volume']  
-    search_fields = ['entry_text', 'image_name']
+    search_fields = ['entry_text_html', 'image_name']
     filter_horizontal = ['aa_persons']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
@@ -150,11 +151,18 @@ class SourceEntryAdmin(admin.ModelAdmin):
         return obj.volume
     vol_title.short_description = 'vol' 
 
+    # Custom method to render HTML safely
+    @admin.display(description='Entry Text')  # This sets the column header text
+    def get_entry_text_html(self, obj):
+        return format_html(obj.entry_text_html)  
+        # This tells Django to render the HTML safely
+
+
     # From Claude - to make entry_text input wider
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name == 'entry_text':
-            kwargs['widget'] = forms.TextInput(attrs={'size': '90'})
-        return super().formfield_for_dbfield(db_field, request, **kwargs)
+    # def formfield_for_dbfield(self, db_field, request, **kwargs):
+    #     if db_field.name == 'entry_text':
+    #         kwargs['widget'] = forms.TextInput(attrs={'size': '90'})
+    #     return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 admin.site.register(PrimarySource, PrimarySourceAdmin)
 admin.site.register(Volume, VolumeAdmin)

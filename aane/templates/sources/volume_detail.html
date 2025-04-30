@@ -40,7 +40,7 @@
 			<!-- <td class="sm"><a href="/admin/sources/sourceentry/{{entry.id}}/" target="admin">edit</a></td> -->
 			{% comment %} <td class="sm"><a href="/sources/entry/{{entry.id}}/">detail</a></td> {% endcomment %}
 			<td class="xlrg">
-				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text|safe }}</a>
+				<a href="/sources/entry/{{entry.id}}/">{{ entry.entry_text_html|slice:"3:-4"|safe }}</a>
 			</td>
 			<td class="medplus">{% firstof entry.low_year "--" %} 
 				{% if entry.low_month %} {{ entry.get_low_month_display }}{% endif %}

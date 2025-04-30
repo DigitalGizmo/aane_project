@@ -20,8 +20,7 @@
 		{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
 		| ({{ sourceentry.image_name }})
 	</h3>
-	
-	<h3>Entry: {{ sourceentry.entry_text|safe }}</h3> -->
+	-->
 
 	<dl>
 		<dt>Source:</dt>
@@ -38,7 +37,7 @@
 		<dt>File:</dt>
 		<dd>{{ sourceentry.image_name }}</dd>
 		<dt>Entry:</dt>
-		<dd>{{ sourceentry.entry_text|safe }}</dd>
+		<dd>{{ sourceentry.entry_text_html|slice:"3:-4"|safe }}</dd>
 		<dt>Monetary Transaction:</dt>
 		<dd>
 			{% if sourceentry.dollars %} 

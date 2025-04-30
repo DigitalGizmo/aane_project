@@ -21,7 +21,7 @@ class VolumeNode(DjangoObjectType):
 class SourceEntryNode(DjangoObjectType):
   class Meta:
     model = SourceEntry
-    filter_fields = ['volume_id', 'entry_text']
+    filter_fields = ['volume_id', 'entry_text_html']
     interfaces = (relay.Node, )
 
 class Query(ObjectType):

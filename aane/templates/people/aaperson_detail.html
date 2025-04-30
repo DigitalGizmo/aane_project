@@ -95,14 +95,10 @@
 		{% for entry in aaperson.aa_persons.all %}
 		<tr>
 			<td class="xlrg">
-				{% if entry.image_status > 5 %} 
-					&bull; 
+				{% if entry.image_status > 5 %} &bull; {% endif %}
 					<a hx-get="/sources/entry/{{entry.id}}/">
-						{{ entry.entry_text|safe }}
+						{{ entry.entry_text_html|slice:"3:-4"|safe }}
 					</a>
-				{% else %}
-					&nbsp; {{ entry.entry_text|safe }}
-				{% endif %}
 			</td>
 			<td class="medlrg">
         <a href="{% url 'sources:source_detail' entry.primary_source.id %}">

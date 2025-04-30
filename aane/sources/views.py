@@ -201,12 +201,12 @@ class EntryListView(FormMixin, ListView): # FormMixin,
 
 # class EntryCreateView(generic.CreateView):
 #     model = SourceEntry
-#     #fields = ['entry_text']
+#     #fields = ['entry_ text']
 
 # class EntryUpdateView(generic.UpdateView):
 #     model = SourceEntry
 #     # template_name = 'sources/sourceentry_form.html'
-#     fields = ['entry_text', 'clarified', 'aa_id', 'secondary_person_id', 'name_note']
+#     fields = ['entry_ text', 'clarified', 'aa_id', 'secondary_person_id', 'name_note']
 
 # class EntryDeleteView(generic.DeleteView):
 #     model = SourceEntry

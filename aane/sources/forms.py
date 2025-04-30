@@ -21,7 +21,7 @@ class EntrySearchForm(forms.Form):
 
     # order by
     # sortOrder = forms.CharField(max_length=24, required=False)
-    SORT_CHOICES = (('entry_text','Entry'), 
+    SORT_CHOICES = (('entry_text_html','Entry'), 
                 ('primary_source','Source'), 
                 ('low_year','Year'), 
                 ('aa_id','AA Name'),

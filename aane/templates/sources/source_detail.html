@@ -75,12 +75,11 @@
 			{% for entry in volume.sourceentry_set.all %}
 			<tr>
 				<td class="xlrg">
-					{% if entry.image_status > 5 %} 
-						&bull; {% endif %}
+          {% if entry.image_status > 5 %} &bull; {% endif %}
           <a hx-get="/sources/entry/{{entry.id}}/">
             <span class="hx-link">
-              {{ entry.entry_text|safe }}
-            </span> 
+              {{ entry.entry_text_html|slice:"3:-4"|safe }}
+            </span>
           </a>
 				</td>
 				<td class="medplus">{% firstof entry.low_year "--" %} 
@@ -155,11 +154,10 @@
 		{% for entry in entries_no_vol %}
 		<tr>
 			<td class="xlrg">
-				{% if entry.image_status > 5 %} 
-					&bull; {% endif %}
+        {% if entry.image_status > 5 %} &bull; {% endif %}
         <a hx-get="/sources/entry/{{entry.id}}/">
           <span class="hx-link">
-            {{ entry.entry_text|safe }}
+            {{ entry.entry_text_html|slice:"3:-4"|safe }}
           </span>
         </a>
 			</td>
