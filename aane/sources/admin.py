@@ -74,7 +74,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
             'volume','primary_source', 
-            'entry_text', 'entry_text_html', 'interpretive_note',
+            'entry_text', 'interpretive_note', # 'entry_text_html', 
             'event',
             ('aa_id', 'transaction_note'),
             'aa_persons', 
