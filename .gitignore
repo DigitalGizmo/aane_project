@@ -12,5 +12,6 @@ robots.txt
 static/
 webstat/
 bg_images/
+.env-aane
 
 # allow
