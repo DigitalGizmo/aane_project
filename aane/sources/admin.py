@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import Textarea, TextInput
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django import forms
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
@@ -152,10 +153,17 @@ class SourceEntryAdmin(admin.ModelAdmin):
     vol_title.short_description = 'vol' 
 
     # Custom method to render HTML safely
-    @admin.display(description='Entry Text')  # This sets the column header text
+    @admin.display(description='Entry Text')
     def get_entry_text_html(self, obj):
-        return format_html(obj.entry_text_html)  
-        # This tells Django to render the HTML safely
+        try:
+            return format_html(obj.entry_text_html)
+        except Exception as e:
+            # Log the error and record ID
+            print(f"HTML formatting error in SourceEntry ID: {obj.id}")
+            print(f"Error: {str(e)}")
+            # Return a safe version of the text or a warning message
+            return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {obj.id}</span>')
+            # This tells Django to render the HTML safely
 
 
     # From Claude - to make entry_text input wider
