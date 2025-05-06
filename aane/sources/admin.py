@@ -100,7 +100,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         }),
         ('Monetary Transaction', {'fields': [
             'dollars', 'pounds', 'shillings', 'pence', 'farthing'
-            ], 'classes': ['collapse']
+            ]
         }),
         ('Legacy Info', {'fields': [
             'legacy_enslaved_id', 'access_order', 'legacy_id', 'pvma_call_num',
@@ -117,7 +117,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         # }),
     ]
     readonly_fields = ('aa_id', 'operson_id', 'transaction_note')
-    list_display = ('get_entry_text_html', 'legacy_id', 'vol_title', 'short_pvma',
+    list_display = ('get_entry_text_html', 'id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',
     list_filter  = ['image_status', 'data_status', 'primary_source', 'volume']  

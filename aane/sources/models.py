@@ -160,6 +160,7 @@ class SourceEntry(models.Model):
         (7, 'Hilite'),
     )
     DATA_STATUS = (
+        (-1, 'Inactive'),
         (0, 'OrigEntry'),
         (1, 'NewEntry'),
         (2, 'Updated'),
