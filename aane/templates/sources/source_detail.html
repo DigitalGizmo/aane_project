@@ -72,7 +72,7 @@
 				<th>&nbsp;f</th>
 				<th class="faint">id</th>
 			</tr>
-			{% for entry in volume.sourceentry_set.all %}
+			{% for entry in volume.active_entries %}
 			<tr>
 				<td class="xlrg">
           {% if entry.image_status > 5 %} &bull; {% endif %}

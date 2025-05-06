@@ -111,6 +111,9 @@ class Volume(models.Model):
     def two_digit_day_end(self):
         return ("0" + str(self.day_end) 
                 if self.day_end < 10 else self.day_end)
+    @property
+    def active_entries(self):
+        return self.sourceentry_set.filter(data_status__gte=0)
 
     def __str__(self):
         return self.primary_source.title + ": " + self.title
@@ -240,6 +243,11 @@ class SourceEntry(models.Model):
     @property
     def o_person(self):
         # Updated July 2024 to reference the foreign key operson
+        return people.models.OPerson.objects.get(pk=self.operson_fk_id)
+    
+    @property
+    def active_entries(self):
+        # In order to exclude "inactive"
         return people.models.OPerson.objects.get(pk=self.operson_fk_id)
     
     # so that generic update and create views can find the detail template.
