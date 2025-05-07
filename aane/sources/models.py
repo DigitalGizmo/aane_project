@@ -2,6 +2,8 @@ from django.urls import reverse
 from django.db import models
 from tinymce import models as tinymce_models
 # from tinymce.models import HTMLField
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 import people.models
 from sitewide.models import CommonEditHistory
 
@@ -255,7 +257,16 @@ class SourceEntry(models.Model):
         return reverse('sources:entry_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return self.entry_text_html
+        # return self.entry_text_html
+        try:
+            return format_html(self.entry_text_html)
+        except Exception as e:
+            # Log the error and record ID
+            print(f"HTML formatting error in SourceEntry ID: {obj.id}")
+            print(f"Error: {str(e)}")
+            # Return a safe version of the text or a warning message
+            return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {obj.id}</span>')
+            # This tells Django to render the HTML safely
 
 class SourceEntryEditHistory(CommonEditHistory):
     source_entry = models.ForeignKey('SourceEntry', related_name='source_entries',
