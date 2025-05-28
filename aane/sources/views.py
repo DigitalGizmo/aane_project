@@ -3,6 +3,7 @@ from multiprocessing import context
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 from django.urls import reverse_lazy, reverse
+from django.db.models import F
 # from django.views import generic
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
@@ -180,7 +181,10 @@ class EntryListView(FormMixin, ListView): # FormMixin,
 
             # Optional sort
             if sortOrder:
-                self.object_list = self.object_list.order_by(sortOrder)
+                if(sortOrder == 'monetary'):
+                    self.object_list = self.object_list.order_by(F('dollars').desc(nulls_last=True), F('pounds').desc(nulls_last=True), F('shillings').desc(nulls_last=True), F('pence').desc(nulls_last=True))
+                else:
+                    self.object_list = self.object_list.order_by(sortOrder)
 
             if len(noAaId) > 0 :
                 # self.object_list = self.object_list.filter(Q(aa_id__isnull=True) )

@@ -20,9 +20,9 @@ $(document).ready(function(){
 
   // ------- SEARCH ------
 
-  // click on checkbox submits form
-  $('input[type="checkbox"]').change(function(event){
-    console.log('got to checkbox change')
+  // click on checkbox or select submits form
+  $('input[type="checkbox"], select').change(function(event){
+    console.log('got to checkbox/select change')
     // each time a new box is checked we should reset to page 1
     // (if nothing else there may not be a page 2 in new result)
     $('#search-form').find('[type=hidden][name=page]').val('1')
