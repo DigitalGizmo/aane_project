@@ -208,7 +208,7 @@ class SourceEntry(models.Model):
     dollars = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     pounds = models.IntegerField(blank=True, null=True)
     shillings = models.IntegerField(blank=True, null=True)
-    pence = models.IntegerField(blank=True, null=True)
+    pence = models.DecimalField(max_digits=4, decimal_places=1,blank=True, null=True)
     farthing = models.IntegerField(blank=True, null=True)
     notes = models.TextField('Internal Notes', blank=True, default='')
     legacy_enslaved_id = models.IntegerField(blank=True, null=True)
