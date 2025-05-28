@@ -26,6 +26,7 @@ class EntrySearchForm(forms.Form):
                 ('low_year','Year'), 
                 ('aa_id','AA Name'),
                 ('operson_id','Enslaver'),
+                ('shillings', 'Shillings'),
                 )
     sortOrder = forms.ChoiceField(
         choices = SORT_CHOICES,

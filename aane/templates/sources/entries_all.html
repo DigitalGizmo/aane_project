@@ -11,33 +11,39 @@
 	{% endblock %}
 
 {% block content %}
-	<h1> <a href="/sources">Sources</a> | All Entries</h1>
+	<h1> <a href="/sources">Browse Sources</a> | Search All Entries</h1>
 
+  <form action="{% url 'sources:all_entries' %}" method="GET" id="search-form" name="menu">
     <section class="control-panel">
-		<form action="{% url 'sources:all_entries' %}" method="GET" id="search-form" name="menu">
 		  {# csrf_token #} 
 		  {# JS for item selection will change method to post (and will change action) #}
 		  <input type="hidden" name="page" value="{{ page_number }}"/>
 	  
+      <div class="control-left">
+        <h4 class="heading">Search entry transcriptions</h4>
+        <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
+        placeholder="Search" class="search-field"/>
+        <input type="submit" value="Go" />
+      </div>
 
-		  <h4 class="heading">Search entry transcriptions</h4>
-		  <input type="search" name="q" value="{{ form.q.value|default_if_none:'' }}" id="id_q" 
-			placeholder="Search" class="search-field"/>
-
-		  <h4 class="heading">Filter by year</h4>
-		  <input type="search" name="year" value="{{ form.year.value|default_if_none:'' }}" id="id_q" 
-			placeholder="Search" class="search-field"/>
-
-          <h4 class="heading">Sort by</h4>
-            {{ form.sortOrder}}
-      
-		  <input type="submit" value="Go" />
+      <div class="control-mid">
+        <h4 class="heading">Filter by year</h4>
+        <input type="search" name="year" value="{{ form.year.value|default_if_none:'' }}" id="id_q" 
+        placeholder="Search" class="search-field"/>
+        <input type="submit" value="Go" />
+        
+        <h4 class="heading">Sort by</h4>
+          {{ form.sortOrder}}
+        <input type="submit" value="Go" />
+      </div>
  
-           <!-- form.noAaId  -->
 
-		  <p>Showing: {{ result_count }} sources</p>
-		</form>
+      <div class="control-right">
+        <p>Found: {{ result_count }} entries</p>
+      </div>
+
 	  </section>
+  </form>
 
     <table
         hx-target="#slimpop-container"

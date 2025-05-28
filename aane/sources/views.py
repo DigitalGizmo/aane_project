@@ -53,11 +53,6 @@ class SourceListView(FormMixin, ListView):
 
                 self.object_list = self.object_list.filter(qquery)
 
-
-
-                # for idx, val in enumerate(type_list):
-                #     self.object_list = self.object_list.filter(source_type__slug=type_list[idx])
-
         # remove any duplicates
         self.object_list = self.object_list.distinct()
 
@@ -142,7 +137,7 @@ class EntryDetailView(DetailView):
             })
         return context    
 
-
+# For search all entries page
 class EntryListView(FormMixin, ListView): # FormMixin,
     """Shows all entries
     """ 
