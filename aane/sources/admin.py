@@ -129,6 +129,7 @@ class SourceEntryAdmin(admin.ModelAdmin):
         tinymce_models.HTMLField: {"widget": TinyMCE()},
     }
     inlines = [SourceEntryEditHistoryInline]
+    save_as = True
 
     def month_day(self, obj):
         if (obj.low_month):
