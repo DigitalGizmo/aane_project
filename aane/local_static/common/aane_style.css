@@ -323,6 +323,13 @@ h1.slim-title {
     grid-row: 2;	
 }
 /* by Don */
+/* For open sea dragon viewer */
+#openseadragon1 {
+    height: 80vh !important;
+    max-height: 80vh !important;
+    overflow: hidden;
+    background-color: #EEE;
+}
 
 .source-image {
 	max-width: 95%;
