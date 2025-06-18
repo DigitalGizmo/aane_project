@@ -244,7 +244,7 @@ section a:visited	{	color: #695a9f; text-decoration: none;	}
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-height: 85vh; /* Match the slimpop-basic max-height */    
+    max-height: 90vh; /* Match the slimpop-basic max-height */    
     overflow: hidden; /* Prevent wrapper overflow */
 }
 
@@ -261,21 +261,43 @@ section a:visited	{	color: #695a9f; text-decoration: none;	}
     right: 0;
     top: 0;
     z-index: 100;
-    max-height: 85%;
+    max-height: 90%;
     width: 85%;
 }
 
 .slim-info {
 	display: grid;
-	grid-template-columns: 45% 45%;
+	grid-template-columns: 45% 40% 5%;  /* Three columns: title/entry, details, close button */
 	grid-auto-rows: auto;
 	grid-column-gap: 5%;
-  /* padding: 2em 3em; */
-  padding: 1em 3em 0em;
-  /* per Claude */
-  flex-shrink: 0; /* Prevent shrinking */
-  min-height: fit-content; /* Maintain minimum height */
-  }
+	padding: 1em 3em 0em;
+	flex-shrink: 0;
+	min-height: fit-content;
+}
+
+h1.slim-title {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+}
+
+.slim-entry {
+    grid-column: 1;
+    grid-row: 2;	
+}
+
+.slim-entry p {
+	font-size: 1.15em;
+	margin: 0;
+}
+
+.slim-details {
+    grid-column: 2;
+    grid-row: 1 / 3;  
+    /* Span both rows to align with title at top */
+    padding: 0.5em 0em 0em;
+}
+
 /* don adding */
 .dragon-container {
     flex: 1; /* Take remaining space */
@@ -303,10 +325,13 @@ section a:visited	{	color: #695a9f; text-decoration: none;	}
 
 .slimpop-close {
     font-size: .9em;
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 3;
+    /* Same row as title, beside details */
+    grid-row: 1;  
     margin: 0;
     position: relative;
+    /* Align close button to the right */
+    text-align: right;  
 }
 
 .close { 
@@ -332,35 +357,6 @@ section a:visited	{	color: #695a9f; text-decoration: none;	}
     opacity: 0.3;
 }
   
-h1.slim-title {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;
-}
-
-.slim-entry {
-    grid-column: 1;
-    grid-row: 2;	
-}
-
-.slim-entry p {
-	font-size: 1.15em;
-	margin: 0;
-}
-
-.slim-details {
-    grid-column: 2;
-    grid-row: 2;	
-}
-/* by Don */
-/* For open sea dragon viewer */
-/* #openseadragon1 {
-    height: 80vh !important;
-    max-height: 80vh !important;
-    overflow: hidden;
-    background-color: #EEE;
-} */
-
 .source-image {
 	max-width: 95%;
 }
