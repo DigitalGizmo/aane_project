@@ -4,18 +4,8 @@
 {% block entry_pop_detail %}
   <div class="slim-info">
     <p class="slimpop-close">
-      <!-- &larr; previous |  -->
-
-      <!-- <a href="#">next &rarr; </a> -->
-      {% comment %} 
-      having trouble getting the index number
-      <a hx-get="/sources/entry/{{entry_ids[initial_index]}}/">
-        next &rarr;
-        {% endcomment %} 
-
 
       <a hx-target="#close-button" hx-swap="outerHTML">
-        {% comment %} Need to find solution for hx-get {% endcomment %}
         <span 
           id="close-button" 
           class="close"    
@@ -83,16 +73,12 @@
         {% endif %}
         </dd>
       </dl>
-      {% if sourceentry.image_status > 5 %}
-        <p><a class="to-top" href="#">return to top</a></p>
-      {% else %}
-        <!-- a Don cheat -->
-        <p>&nbsp;</p>
-      {% endif %}
-      </div><!-- /slim-details -->
+
+    </div><!-- /slim-details -->
   </div><!-- /slim-info -->
   
   {% if sourceentry.image_status > 5 %} 
+  <div class="dragon-container">
     <div id="openseadragon1"></div> 
     <!-- style=" height: 80vh; background-color: #EEE;" -->
     
@@ -107,5 +93,6 @@
         tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
       });
     </script>
+  </div>
   {% endif %}
 {% endblock %}
