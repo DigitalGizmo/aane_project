@@ -259,7 +259,12 @@ class SourceEntry(models.Model):
     def __str__(self):
         # return self.entry_text_html
         try:
-            return format_html(self.entry_text_html)
+            html_content = self.entry_text_html
+            if len(html_content) > 75:
+                truncated = html_content[:72] + "...</p>"
+                return format_html(truncated)
+            else:
+                return format_html(html_content)
         except Exception as e:
             # Log the error and record ID
             print(f"HTML formatting error in SourceEntry ID: {obj.id}")

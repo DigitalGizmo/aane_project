@@ -119,7 +119,8 @@ class SourceEntryAdmin(admin.ModelAdmin):
     readonly_fields = ('aa_id', 'operson_id', 'transaction_note')
     list_display = ('get_entry_text_html', 'id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
-        'scan_date', 'data_status', 'image_status',) #  'aa_id', 'operson_id',
+        'scan_date', 'data_status', 'image_status',) 
+    #  'aa_id', 'operson_id', 'operson_fk'
     list_filter  = ['image_status', 'data_status', 'primary_source', 'volume']  
     search_fields = ['entry_text_html', 'image_name']
     filter_horizontal = ['aa_persons']
@@ -157,7 +158,12 @@ class SourceEntryAdmin(admin.ModelAdmin):
     @admin.display(description='Entry Text')
     def get_entry_text_html(self, obj):
         try:
-            return format_html(obj.entry_text_html)
+            html_content = obj.entry_text_html
+            if len(html_content) > 75:
+                truncated = html_content[:72] + "...</p>"
+                return format_html(truncated)
+            else:
+                return format_html(html_content)
         except Exception as e:
             # Log the error and record ID
             print(f"HTML formatting error in SourceEntry ID: {obj.id}")
@@ -166,6 +172,19 @@ class SourceEntryAdmin(admin.ModelAdmin):
             return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {obj.id}</span>')
             # This tells Django to render the HTML safely
 
+    # @admin.display(description='Enslavr')
+    # def get_enslaver(self, obj):
+    #     try:
+    #         enslaver_content = obj.operson_fk
+    #         if len(enslaver_content) > 12:
+    #             truncated = enslaver_content[:11] + "..."
+    #             return truncated
+    #         else:
+    #             return enslaver_content
+    #     except Exception as e:
+    #         # Log the error and record ID
+    #         print(f"Error: {str(e)}")
+    #         return mark_safe(f'<span style="color:red">Error in Entry ID: {obj.id}</span>')
 
     # From Claude - to make entry_text input wider
     # def formfield_for_dbfield(self, db_field, request, **kwargs):
