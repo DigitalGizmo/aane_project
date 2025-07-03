@@ -165,9 +165,10 @@ class SourceEntry(models.Model):
         (7, 'Hilite'),
     )
     DATA_STATUS = (
+        (-2, 'To Delete'),
         (-1, 'Inactive'),
-        (0, 'OrigEntry'),
-        (1, 'NewEntry'),
+        (0, 'Orig Entry'),
+        (1, 'New Entry'),
         (2, 'Updated'),
         (3, 'Vetted'),
     )
@@ -247,10 +248,10 @@ class SourceEntry(models.Model):
         # Updated July 2024 to reference the foreign key operson
         return people.models.OPerson.objects.get(pk=self.operson_fk_id)
     
-    @property
-    def active_entries(self):
-        # In order to exclude "inactive"
-        return people.models.OPerson.objects.get(pk=self.operson_fk_id)
+    # @property
+    # def active_entries(self):
+    #     # In order to exclude "inactive"
+    #     return people.models.OPerson.objects.get(pk=self.operson_fk_id)
     
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
