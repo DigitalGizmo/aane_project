@@ -248,32 +248,71 @@ class SourceEntry(models.Model):
         # Updated July 2024 to reference the foreign key operson
         return people.models.OPerson.objects.get(pk=self.operson_fk_id)
     
-    # @property
-    # def active_entries(self):
-    #     # In order to exclude "inactive"
-    #     return people.models.OPerson.objects.get(pk=self.operson_fk_id)
-    
+    @property
+    def safe_entry_html(self):
+        """
+        Returns the entry HTML with <p> tags stripped for safe display.
+        Used in templates where full content is needed.
+        """
+        try:
+            html_content = self.entry_text_html
+            # Strip opening and closing <p> tags
+            if html_content.startswith('<p>') and html_content.endswith('</p>'):
+                return html_content[3:-4]
+            return html_content
+        except Exception as e:
+            print(f"HTML processing error in SourceEntry ID: {self.id}")
+            print(f"Error: {str(e)}")
+            return f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>'
+
+    @property
+    def truncated_entry_html(self, length=72):
+        """
+        Returns truncated HTML content for display in lists.
+        Default length is 72 characters to match current admin display.
+        """
+        try:
+            html_content = self.safe_entry_html  # Use the safe version
+            if len(html_content) > length:
+                return html_content[:length] + "..."
+            return html_content
+        except Exception as e:
+            print(f"HTML truncation error in SourceEntry ID: {self.id}")
+            print(f"Error: {str(e)}")
+            return f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>'
+
+    def get_truncated_html(self, length=72):
+        """
+        Method version that allows custom length specification.
+        Useful when different views need different truncation lengths.
+        """
+        try:
+            html_content = self.safe_entry_html
+            if len(html_content) > length:
+                return html_content[:length] + "..."
+            return html_content
+        except Exception as e:
+            print(f"HTML truncation error in SourceEntry ID: {self.id}")
+            print(f"Error: {str(e)}")
+            return f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>'
+
+
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
         return reverse('sources:entry_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        # return self.entry_text_html
+        """
+        Updated to use the new truncated property
+        """
         try:
-            html_content = self.entry_text_html
-            if len(html_content) > 75:
-                truncated = html_content[:72] + "...</p>"
-                return format_html(truncated)
-            else:
-                return format_html(html_content)
+            # Using format_html to ensure it's marked safe
+            return format_html(self.truncated_entry_html)
         except Exception as e:
-            # Log the error and record ID
-            print(f"HTML formatting error in SourceEntry ID: {obj.id}")
+            print(f"HTML formatting error in SourceEntry ID: {self.id}")
             print(f"Error: {str(e)}")
-            # Return a safe version of the text or a warning message
-            return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {obj.id}</span>')
-            # This tells Django to render the HTML safely
-
+            return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>')
+        
 class SourceEntryEditHistory(CommonEditHistory):
     source_entry = models.ForeignKey('SourceEntry', related_name='source_entries',
                 on_delete=models.CASCADE)
