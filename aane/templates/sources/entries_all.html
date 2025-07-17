@@ -66,7 +66,7 @@
             <td class="xlrg">
               {% if entry.image_status > 5 %} &bull; {% endif %}
               <a hx-get="/sources/entry/{{entry.id}}/">
-                {{ entry.entry_text_html|slice:"3:-4"|safe }}
+                {{ entry.truncated_entry_html|safe }}
               </a>
             </td>
             <td  class="lrg">

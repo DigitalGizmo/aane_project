@@ -2,7 +2,8 @@ from django.urls import reverse
 from django.db import models
 from tinymce import models as tinymce_models
 # from tinymce.models import HTMLField
-from django.utils.html import format_html
+from django.utils.html import format_html, strip_tags
+import re
 from django.utils.safestring import mark_safe
 import people.models
 from sitewide.models import CommonEditHistory
@@ -270,32 +271,109 @@ class SourceEntry(models.Model):
         """
         Returns truncated HTML content for display in lists.
         Default length is 72 characters to match current admin display.
+        This version is HTML-aware and won't break tags.
         """
         try:
             html_content = self.safe_entry_html  # Use the safe version
-            if len(html_content) > length:
-                return html_content[:length] + "..."
-            return html_content
+            return self._smart_truncate_html(html_content, length)
         except Exception as e:
             print(f"HTML truncation error in SourceEntry ID: {self.id}")
             print(f"Error: {str(e)}")
             return f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>'
+
 
     def get_truncated_html(self, length=72):
         """
         Method version that allows custom length specification.
         Useful when different views need different truncation lengths.
+        This version is HTML-aware and won't break tags.
         """
         try:
             html_content = self.safe_entry_html
-            if len(html_content) > length:
-                return html_content[:length] + "..."
-            return html_content
+            return self._smart_truncate_html(html_content, length)
         except Exception as e:
             print(f"HTML truncation error in SourceEntry ID: {self.id}")
             print(f"Error: {str(e)}")
             return f'<span style="color:red">HTML Error in Entry ID: {self.id}</span>'
 
+    def _smart_truncate_html(self, html_content, length):
+        """
+        Helper method that truncates HTML content without breaking tags.
+        
+        Args:
+            html_content: The HTML string to truncate
+            length: The maximum length (counting only visible text)
+        
+        Returns:
+            Truncated HTML that doesn't break any tags
+        """
+        if not html_content:
+            return html_content
+        
+        # First check if the plain text is already short enough
+        plain_text = strip_tags(html_content)
+        if len(plain_text) <= length:
+            return html_content
+        
+        # Pattern to match HTML tags and text separately
+        tag_pattern = re.compile(r'(<[^>]+>)|([^<]+)')
+        
+        parts = []
+        text_length = 0
+        truncated = False
+        
+        for match in tag_pattern.finditer(html_content):
+            tag, text = match.groups()
+            
+            if tag:
+                # It's an HTML tag, add it without counting length
+                parts.append(tag)
+            elif text:
+                # It's text content
+                if text_length + len(text) <= length:
+                    # We can add all of this text
+                    parts.append(text)
+                    text_length += len(text)
+                else:
+                    # We need to truncate this text
+                    remaining = length - text_length
+                    if remaining > 0:
+                        # Truncate at word boundary if possible
+                        truncated_text = text[:remaining]
+                        # Try to find the last complete word
+                        last_space = truncated_text.rfind(' ')
+                        if last_space > remaining * 0.7:  # Only use word boundary if we're not losing too much
+                            truncated_text = truncated_text[:last_space]
+                        parts.append(truncated_text)
+                    truncated = True
+                    break
+        
+        # If we truncated, we need to close any open tags
+        if truncated:
+            result = ''.join(parts)
+            # Find all opening tags and their corresponding closing tags
+            open_tags = []
+            tag_pattern = re.compile(r'<(/?)(\w+)[^>]*>')
+            
+            for match in tag_pattern.finditer(result):
+                is_closing, tag_name = match.groups()
+                if is_closing:
+                    # Remove the corresponding opening tag if it exists
+                    if open_tags and open_tags[-1] == tag_name:
+                        open_tags.pop()
+                else:
+                    # Check if it's not a self-closing tag
+                    if tag_name.lower() not in ['br', 'hr', 'img', 'input', 'meta', 'link']:
+                        open_tags.append(tag_name)
+            
+            # Close any remaining open tags in reverse order
+            for tag in reversed(open_tags):
+                result += f'</{tag}>'
+            
+            result += '...'
+            return result
+        else:
+            return ''.join(parts)
 
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
