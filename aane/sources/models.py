@@ -175,8 +175,7 @@ class SourceEntry(models.Model):
     )
     primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT,
         help_text='We will soon go by volume only')
-    volume = models.ForeignKey('Volume', on_delete=models.PROTECT,
-        null=True, blank=True)
+    volume = models.ForeignKey('Volume', on_delete=models.PROTECT)
     entry_text = models.CharField(max_length=255)
     entry_text_html = tinymce_models.HTMLField(blank=True, default='')
     interpretive_note = tinymce_models.HTMLField(blank=True, default='')

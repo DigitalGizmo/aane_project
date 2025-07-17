@@ -37,7 +37,7 @@ class VolumeAdmin(admin.ModelAdmin):
     list_display = ('id', 'year_start', 'year_end', 'title', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
     list_filter  = ['primary_source'] 
-    search_fields = ['entry_text_html']
+    search_fields = ['primary_source__title']
     def short_source(self, obj):
         return obj.primary_source.title[0:20]    
     short_source.short_description = 'Source (truncated)'
@@ -75,7 +75,7 @@ class SourceEntryEditHistoryInline(admin.StackedInline):
 class SourceEntryAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': [
-            'volume','primary_source', 
+            'volume', 'source_name', # 'primary_source',
             'entry_text_html', 'interpretive_note', # 'entry_text', 
             'event',
             ('aa_id', 'transaction_note'),
@@ -116,13 +116,16 @@ class SourceEntryAdmin(admin.ModelAdmin):
         #     ], 'classes': ['collapse']
         # }),
     ]
-    readonly_fields = ('aa_id', 'operson_id', 'transaction_note')
+    readonly_fields = ('aa_id', 'operson_id', 'transaction_note', 'source_name')
+    # 'primary_source', 
     list_display = ('get_entry_text_html', 'id', 'vol_title', 'short_pvma',
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) 
     #  'aa_id', 'operson_id', 'operson_fk'
-    list_filter  = ['image_status', 'data_status', 'primary_source', 'volume']  
-    search_fields = ['entry_text_html', 'image_name']
+    list_filter  = ['image_status', 'data_status', 
+        'volume__primary_source', 'volume']  
+    search_fields = ['entry_text_html', 'image_name'] 
+        #'volume__primary_source__title' - could, but don't want to!
     filter_horizontal = ['aa_persons']
     formfield_overrides = {
         # models.CharField: {'widget': TextInput(attrs={'size':'80'})},
@@ -153,6 +156,10 @@ class SourceEntryAdmin(admin.ModelAdmin):
     def vol_title(self, obj):
         return obj.volume
     vol_title.short_description = 'vol' 
+
+    def source_name(self, obj):
+        return obj.volume.primary_source.title
+    source_name.short_description = 'source'
 
     # Custom method to render HTML safely
     @admin.display(description='Entry Text')
