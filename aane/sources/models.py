@@ -68,7 +68,11 @@ class PrimarySource(models.Model):
     
     @property
     def entries_count(self):
-        return self.sourceentry_set.count()
+        # return self.sourceentry_set.count()
+        # Wow, since entries are no longer connected directly
+        # to the sources we'd have to iterate through the volumes
+        # to get the total entry cound 
+        return ""
 
     def __str__(self):
         return self.title

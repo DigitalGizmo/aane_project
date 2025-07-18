@@ -42,7 +42,7 @@
 			<th>Type</th>
 			<th>Classification</th>
 			<th>Location</th>
-			<th># Entries</th>
+			<!-- <th># Entries</th> -->
 		</tr>
 		{% for primarysource in primarysource_list %}
 		<tr>
@@ -58,7 +58,7 @@
 			<td class="sm-top">{{ primarysource.source_type }}</td>
 			<td class="sm-top">{{ primarysource.source_classification|safe }}</td>
 			<td class="sm-top">{{ primarysource.location.title}}, {{ primarysource.location.state.abbr}}</td>
-			<td class="sm-top">{{ primarysource.entries_count}}</td>
+			<!-- <td class="sm-top">{{ primarysource.entries_count}}</td> -->
 		</tr>
 		{% endfor %}
 	</table>

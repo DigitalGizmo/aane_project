@@ -70,10 +70,10 @@
               </a>
             </td>
             <td  class="lrg">
-                <a href="{% url 'sources:source_detail' entry.primary_source.id %}">
-                    {{ entry.primary_source.title }},
+                <a href="{% url 'sources:source_detail' entry.volume.primary_source.id %}">
+                    {{ entry.volume.primary_source.title }},
                 </a>
-                <a href="{% url 'sources:source_detail' entry.primary_source.id %}#{{entry.volume.id}}">
+                <a href="{% url 'sources:source_detail' entry.volume.primary_source.id %}#{{entry.volume.id}}">
                 {% if entry.volume.title %}
                     {{ entry.volume.title }}
                 {% else %}
