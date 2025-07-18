@@ -173,8 +173,9 @@ class SourceEntry(models.Model):
         (2, 'Updated'),
         (3, 'Vetted'),
     )
-    primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT,
-        help_text='We will soon go by volume only')
+    # primary_source = models.ForeignKey('PrimarySource', on_delete=models.PROTECT,
+    #     blank=True, default='',
+    #     help_text='We will soon go by volume only')
     volume = models.ForeignKey('Volume', on_delete=models.PROTECT)
     entry_text = models.CharField(max_length=255)
     entry_text_html = tinymce_models.HTMLField(blank=True, default='')
@@ -236,7 +237,7 @@ class SourceEntry(models.Model):
     verbose_name='Enslaver', null=True, blank=True)
 
     class Meta:
-        ordering = ['primary_source', 'volume', 'low_year', 
+        ordering = ['volume', 'low_year', 
         'low_month', 'low_day']
              
     @property
