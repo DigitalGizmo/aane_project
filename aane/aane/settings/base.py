@@ -155,11 +155,24 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": "350px",
     "width": "960px",
     "menubar": "false",
-    "plugins": "lists link visualblocks code code help wordcount", 
+    "plugins": "lists link visualblocks code code help wordcount charmap", 
     # These require paid plugins:  paste spellchecker
     "toolbar": "undo redo | bold italic superscript |  fontsizeselect | outdent indent |  numlist bullist | pagebreak | charmap emoticons | "
     "save |   codesample | code",
     # underline strikethrough link anchor
     "custom_undo_redo_levels": 10,
     # "language": "es_ES",  # To force a specific language instead of the Django current language.
+    "charmap": [
+        [163, 'pound sign'],
+        [8364, 'euro sign'],
+        [36, 'dollar sign'],
+        [162, 'cent sign'],
+        # [165, 'yen sign'],
+        [8211, 'en dash'],
+        [8212, 'em dash'],
+        # [8216, 'left single quotation mark'],
+        # [8217, 'right single quotation mark'],
+        # [8220, 'left double quotation mark'],
+        # [8221, 'right double quotation mark'],
+    ],
 }
