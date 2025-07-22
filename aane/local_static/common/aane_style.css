@@ -294,19 +294,41 @@ h1.slim-title {
 .slim-details {
     grid-column: 2;
     grid-row: 1 / 3;  
-    /* Span both rows to align with title at top */
     padding: 0.5em 0em 0em;
 }
 
-/* don adding */
-.dragon-container {
-    flex: 1; /* Take remaining space */
-    overflow: hidden; /* Prevent overflow */
-    position: relative; /* Contain absolute positioned children */
-    min-height: 0; /* Allow shrinking if needed */
+/* .dragon-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+} */
+
+/* New layout for vertical split */
+.slimpop-content {
+    display: flex;
+    height: calc(100% - 40px); /* Account for close button */
+    gap: 2em;
+    padding: 0 2em 2em;
 }
 
-/* Override OpenSeadragon's inline styles */
+/* Left column - Image viewer (2/3 width) */
+.dragon-container {
+    flex: 2;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+}
+
+/* Right column - Metadata (1/3 width) */
+.slim-metadata {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 1em;
+}
+
+/* Override OpenSeadragon's inline styles 
+Same as Horizontal */
 #openseadragon1 {
     height: 100% !important; /* Use container's full height */
     max-height: 100% !important; /* Don't exceed container */
@@ -317,21 +339,30 @@ h1.slim-title {
     background-color: #EEE; 
 }
 
-/* Ensure OpenSeadragon's internal container respects boundaries */
+/* Ensure OpenSeadragon's internal container respects boundaries 
+Same */
 #openseadragon1 .openseadragon-container {
     height: 100% !important;
     max-height: 100% !important;
 }
 
-.slimpop-close {
+
+/* .slimpop-close {
     font-size: .9em;
     grid-column: 3;
-    /* Same row as title, beside details */
     grid-row: 1;  
     margin: 0;
     position: relative;
-    /* Align close button to the right */
     text-align: right;  
+} */
+
+.slimpop-close {
+    position: absolute;
+    top: 1em;
+    right: 2em;
+    z-index: 101;
+    font-size: .9em;
+    margin: 0;
 }
 
 .close { 
