@@ -275,7 +275,7 @@ section a:visited	{	color: #695a9f; text-decoration: none;	}
 h1.slim-title {
     grid-column: 1;
     grid-row: 1;
-    margin-top: 0;
+    margin-top: 0.5em;
 }
 
 .slim-entry {
@@ -299,11 +299,11 @@ h1.slim-title {
   margin-bottom: 0.75em;
 } */
 
-
+/* Ensure details section stays at bottom */
 .slim-details {
-    grid-column: 2;
-    grid-row: 1 / 3;  
-    padding: 0.5em 0em 0em;
+    flex-shrink: 0; /* Don't shrink */
+    border-top: 1px solid #ddd; /* Optional: visual separator */
+    padding-top: 1em;
 }
 
 .dragon-container-horiz {
@@ -318,7 +318,26 @@ h1.slim-title {
     display: flex;
     height: calc(100% - 40px); /* Account for close button */
     gap: 2em;
-    padding: 0 2em 2em;
+    /* padding: 0 2em 2em; */
+    padding: 0.5em 0.5em 0;
+}
+
+/* Right column - Metadata (1/3 width) */
+.slim-metadata {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1em;
+    height: 100%;
+    overflow: hidden; /* Prevent overall scrolling */
+}
+
+/* Container for entry and note that can scroll */
+.slim-entry-container {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0; /* Important for Firefox */
+    margin-bottom: 0; /* 1em */
 }
 
 /* Left column - Image viewer (2/3 width) */
@@ -327,13 +346,6 @@ h1.slim-title {
     overflow: hidden;
     position: relative;
     min-height: 0;
-}
-
-/* Right column - Metadata (1/3 width) */
-.slim-metadata {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 1em;
 }
 
 /* Override OpenSeadragon's inline styles 
