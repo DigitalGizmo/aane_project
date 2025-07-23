@@ -156,9 +156,6 @@ li {	font-size: 1em; line-height: 1.2em;	}
 Moved class out of p tag since that will now come from 
 wysiwig admin. 
 */
-.slim-entry p {
-    font-weight: 400;
-}
 
 table, th, td, dl {	font-size: .9em; line-height: 1.75em;	}
 
@@ -286,10 +283,22 @@ h1.slim-title {
     grid-row: 2;	
 }
 
-.slim-entry p {
-	font-size: 1.15em;
+.slim-entry p,
+.interpretive-note p {
+	font-size: 1em;
 	margin: 0;
+  font-weight: 400;
+  line-height: 1.25em;
+  margin-bottom: 0.75em;
 }
+
+/* Don for entry interpretive note */
+/* .interpretive-note p {
+  font-size: 1em;
+  line-height: 1em;
+  margin-bottom: 0.75em;
+} */
+
 
 .slim-details {
     grid-column: 2;
@@ -297,12 +306,12 @@ h1.slim-title {
     padding: 0.5em 0em 0em;
 }
 
-/* .dragon-container {
+.dragon-container-horiz {
     flex: 1;
     overflow: hidden;
     position: relative;
     min-height: 0;
-} */
+}
 
 /* New layout for vertical split */
 .slimpop-content {
@@ -346,16 +355,6 @@ Same */
     max-height: 100% !important;
 }
 
-
-/* .slimpop-close {
-    font-size: .9em;
-    grid-column: 3;
-    grid-row: 1;  
-    margin: 0;
-    position: relative;
-    text-align: right;  
-} */
-
 .slimpop-close {
     position: absolute;
     top: 1em;
@@ -363,6 +362,15 @@ Same */
     z-index: 101;
     font-size: .9em;
     margin: 0;
+}
+
+.slimpop-close-horiz {
+    font-size: .9em;
+    grid-column: 3;
+    grid-row: 1;  
+    margin: 0;
+    position: relative;
+    text-align: right;  
 }
 
 .close { 
@@ -546,14 +554,6 @@ color: #999;
 /* For team */
 .team {
     background-color: #fff6c8;
-}
-
-/* Don for entry interpretive note */
-.interpretive-note p {
-  font-size: 1em;
-  /* font-weight: 300; */
-  line-height: 1.2em;
-  margin-bottom: 0.75em;
 }
 
 /* Don for People menu side-by-side 
