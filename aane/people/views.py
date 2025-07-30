@@ -265,7 +265,10 @@ class OPersonViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'name'
 
 class OPersonListView(generic.ListView):
-    model = OPerson
+    # model = OPerson
+    queryset = OPerson.objects.filter(research_status__gt=1)
+
+
     # context_object_name = 'operson_list'
     #template_name = 'people/operson_index.html'
 
