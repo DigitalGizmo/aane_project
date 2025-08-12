@@ -101,12 +101,12 @@
 					</a>
 			</td>
 			<td class="medlrg">
-        <a href="{% url 'sources:source_detail' entry.primary_source.id %}">
-          <em>{{ entry.primary_source }}</em>
+        <a href="{% url 'sources:source_detail' entry.volume.primary_source.id %}">
+          <em>{{ entry.volume.primary_source }}</em>
         </a>
       </td>
 			<td class="medlrg">
-        <a href="{% url 'sources:source_detail' entry.primary_source.id %}#{{entry.volume.id}}">
+        <a href="{% url 'sources:source_detail' entry.volume.primary_source.id %}#{{entry.volume.id}}">
           {{ entry.volume.title }}
         </a>
       </td>
