@@ -7,8 +7,9 @@ from django.utils.safestring import mark_safe
 from django import forms
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
-from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
 from calendar import month_abbr
+from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
+from people.models import AAPerson
 
 """
 class SourceCollectionAdmin(admin.ModelAdmin):
@@ -174,6 +175,13 @@ class SourceEntryAdmin(admin.ModelAdmin):
             # Return a safe version of the text or a warning message
             return mark_safe(f'<span style="color:red">HTML Error in Entry ID: {obj.id}</span>')
 
+    # Add this method to filter the aa_persons queryset
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "aa_persons":
+            # Filter to only show AAPerson objects with research_status > 1
+            kwargs["queryset"] = AAPerson.objects.filter(research_status__gt=1)
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+    
     # @admin.display(description='Enslavr')
     # def get_enslaver(self, obj):
     #     try:
