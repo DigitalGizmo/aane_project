@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('people', '0009_auto_20231108_1136'),
+        # ('people', '0009_auto_20231108_1136'),
         ('sources', '0026_alter_primarysource_location'),
     ]
 
