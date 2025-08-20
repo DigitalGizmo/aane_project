@@ -1,25 +1,20 @@
-"""
-Django settings for aane project.
+import sys
+from pathlib import Path
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+# from unipath import Path
 
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# this call is now (with 3-tier approach) one level deeper, so ..
-# Using Unipath per Two Scoops
-from unipath import Path
 import json
 from django.core.exceptions import ImproperlyConfigured
 
-BASE_DIR = Path(__file__).ancestor(3)
+# BASE_DIR = Path(__file__).ancestor(3)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# Add apps directory to Python path
+sys.path.insert(0, str(BASE_DIR / 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # JSON-based secrets module
-with open(BASE_DIR.child('aane', 'settings', 'secrets.json')) as f:
+with open(BASE_DIR / 'config' / 'settings' / 'secrets.json') as f:
     secrets = json.loads(f.read())
 
 def get_secret(setting, secrets=secrets):
@@ -34,7 +29,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # TEMPLATE_DEBUG = True
 
@@ -76,9 +71,9 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'aane.urls'
+ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'aane.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -120,18 +115,17 @@ STATICFILES_FINDERS = (
 )    
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = BASE_DIR.ancestor(2).child("aane_static")
-
+STATIC_ROOT = BASE_DIR.parent.parent / "aane_static"
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    BASE_DIR.child("local_static"),
+    BASE_DIR / "local_static",
 )
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child("templates")],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
