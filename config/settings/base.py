@@ -33,7 +33,7 @@ DEBUG = False
 
 # TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['aane.deerfield-ma.org', '127.0.0.1']
+ALLOWED_HOSTS = ['aane.deerfield-ma.org', 'aane-temp.deerfield-ma.org', '127.0.0.1']
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
