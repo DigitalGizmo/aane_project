@@ -115,7 +115,7 @@ STATICFILES_FINDERS = (
 )    
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = BASE_DIR.parent.parent / "aane_static"
+STATIC_ROOT = BASE_DIR.parent / "aane_static"
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
