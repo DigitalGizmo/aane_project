@@ -135,6 +135,7 @@ class OPerson(PersonModel):
         ('user', 'service consumer'),
         ('service_provider', 'service provider'),
         ('former', 'former enslaver'),
+        ('other', 'other'),
     )
     RACE = (
         ('white','white'),
