@@ -20,6 +20,14 @@ def strip_html_and_normalize(html_text):
     return text.strip()
 
 
+def minify_html(html_text):
+    """Remove line breaks and extra whitespace from HTML but keep tags"""
+    # Replace newlines and multiple spaces with single space
+    text = re.sub(r'\s+', ' ', html_text)
+    # Strip leading/trailing whitespace
+    return text.strip()
+
+
 class Command(BaseCommand):
     help = 'Export AAPerson data to CSV'
 
@@ -79,9 +87,10 @@ class Command(BaseCommand):
             
             count = 0
             for person in queryset:
-                bio_value = person.bio_html
-                if not keep_html:
-                    bio_value = strip_html_and_normalize(bio_value)
+                if keep_html:
+                    bio_value = minify_html(person.bio_html)
+                else:
+                    bio_value = strip_html_and_normalize(person.bio_html)
                 
                 row = {
                     'id': person.id,
