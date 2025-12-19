@@ -121,6 +121,11 @@ class AAPerson(PersonModel):
         aaperson_entry_list = self.aa_persons
         return aaperson_entry_list.count()
 
+    # For export ton 10 Million Names
+    @property
+    def person_url(self):
+        return f'https://aane.deerfield-ma.org/people/aaperson/{self.id}/'
+    
     # so that generic update and create views can find the detail template.
     def get_absolute_url(self):
         return reverse('people:aaperson_detail', kwargs={'pk': self.pk})

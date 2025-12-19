@@ -1,10 +1,14 @@
 from django.urls import include, path
+from rest_framework import routers
 from . import views
 
 app_name = "sources"
 
-urlpatterns = [
+router = routers.DefaultRouter()
+router.register(r'api', views.SourceEntryViewSet) # views.AAPersonViewSet, 
 
+urlpatterns = [
+    path('', include('rest_framework.urls', namespace='rest_framework')),
     path('', views.SourceListView.as_view(), name='index'),
     path('source/<int:pk>/', views.SourceDetailView.as_view(), name='source_detail'),
     path('volume/<int:pk>/', views.VolumeDetailView.as_view(), name='volume_detail'),
@@ -19,3 +23,5 @@ urlpatterns = [
     path('team/entries/', 
          views.EntryListView.as_view(template_name="sources/entries_team.html"), name='team_entries'),
 ]
+
+urlpatterns += router.urls

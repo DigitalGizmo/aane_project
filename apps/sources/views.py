@@ -2,6 +2,7 @@ from multiprocessing import context
 # import re
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
+from rest_framework import viewsets
 from django.urls import reverse_lazy, reverse
 from django.db.models import F
 # from django.views import generic
@@ -9,7 +10,8 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from .models import PrimarySource, SourceEntry, Volume
 from .forms import SourceSearchForm, EntrySearchForm
-from people.models import AAPerson
+# from people.models import AAPerson
+from .serializers import SourceEntrySerializer
 
 """
 def index(request):
@@ -197,6 +199,11 @@ class EntryListView(FormMixin, ListView): # FormMixin,
         context['result_count'] = len(self.object_list)
         return self.render_to_response(context)
 
+
+class SourceEntryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SourceEntry.objects.filter(id__lte=200).order_by('id')
+    serializer_class = SourceEntrySerializer
+    lookup_field = 'entry_text_html'
 
 # class EntryCreateView(generic.CreateView):
 #     model = SourceEntry

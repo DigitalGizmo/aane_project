@@ -31,6 +31,15 @@ class AAPersonSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'id',
             'name',
+            'first_name',
+            'last_name',
+            # 'locations',
+            'birth_year',
+            'death_year',
+            'gender',
+            'place_of_origin',
+            'freed_status',
+            'person_url',
             'bio_html'          
         ]
         lookup_field = 'name'

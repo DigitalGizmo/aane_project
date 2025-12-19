@@ -252,7 +252,9 @@ class AAPersonDetailView(generic.DetailView):
 
 class AAPersonViewSet(viewsets.ReadOnlyModelViewSet):
     # queryset = AAPerson.objects.filter(bio='{"delta":"","html":""}').order_by('id')
-    queryset = AAPerson.objects.filter(~Q(bio_html='{"delta":"","html":""}')).order_by('id')
+    queryset = AAPerson.objects.filter(id__lte=300, 
+                                       research_status__gte=2,
+                                       tier=1).order_by('name')
     # queryset = AAPerson.objects.all().order_by('id')
     # queryset.add(~Q(bio=''), 'AND' )
     # queryset = AAPerson.objects.all().order_by('id')

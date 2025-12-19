@@ -5,7 +5,7 @@ from . import views
 app_name = "people"
 
 router = routers.DefaultRouter()
-router.register(r'api', views.OPersonViewSet) # views.AAPersonViewSet, 
+router.register(r'api', views.AAPersonViewSet) # views.AAPersonViewSet, 
 
 urlpatterns = [
 
