@@ -12,18 +12,39 @@ from people.models import AAPerson
 
 def strip_html_and_normalize(html_text):
     """Remove HTML tags and normalize whitespace"""
-    # Remove HTML tags
-    text = re.sub(r'<[^>]+>', '', html_text)
+    # Remove class attributes from all tags
+    text = re.sub(r'\s+class="[^"]*"', '', html_text)
+    text = re.sub(r"\s+class='[^']*'", '', text)
+    
+    # Remove span tags (both opening and closing) but keep content
+    text = re.sub(r'<span[^>]*>', '', text)
+    text = re.sub(r'</span>', '', text)
+    
+    # Remove all remaining HTML tags
+    text = re.sub(r'<[^>]+>', '', text)
+    
     # Replace multiple whitespace (including newlines) with single space
     text = re.sub(r'\s+', ' ', text)
+    
     # Strip leading/trailing whitespace
     return text.strip()
 
 
 def minify_html(html_text):
-    """Remove line breaks and extra whitespace from HTML but keep tags"""
+    """Remove line breaks, extra whitespace, class attributes, and span tags from HTML but keep other tags"""
+    # Remove class attributes from all tags
+    text = re.sub(r'\s+class="[^"]*"', '', html_text)
+    text = re.sub(r"\s+class='[^']*'", '', text)
+    
+    # Remove span opening tags (with any attributes)
+    text = re.sub(r'<span[^>]*>', '', text)
+    
+    # Remove span closing tags
+    text = re.sub(r'</span>', '', text)
+    
     # Replace newlines and multiple spaces with single space
-    text = re.sub(r'\s+', ' ', html_text)
+    text = re.sub(r'\s+', ' ', text)
+    
     # Strip leading/trailing whitespace
     return text.strip()
 
