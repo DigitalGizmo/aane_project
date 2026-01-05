@@ -38,7 +38,7 @@
 
 	<h2>Enslaved persons:</h2>
 	<ul class="unstyledlist">
-		{% for aaperson in operson.aaperson_set.all %}
+		{% for aaperson in operson.active_aapersons %}
 			<li>
 				<a href="{% url 'people:aaperson_detail' aaperson.id %}">{{ aaperson.name|safe }}
 				</a>

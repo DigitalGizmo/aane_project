@@ -155,6 +155,10 @@ class OPerson(PersonModel):
     legacy_owner_id = models.IntegerField(blank=True, null=True)
     original_id = models.IntegerField(blank=True, null=True)
 
+    @property
+    def active_aapersons(self):
+        return self.aaperson_set.filter(research_status__gt=1)
+    
     class Meta:
         ordering = ["last_name"]
         verbose_name = "Others/Enslavers"
