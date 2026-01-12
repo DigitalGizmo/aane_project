@@ -1,4 +1,5 @@
 from django.urls import include, path
+from django.views.generic import TemplateView
 from rest_framework import routers
 from . import views
 
@@ -22,6 +23,7 @@ urlpatterns = [
          views.EntryListView.as_view(template_name="sources/entries_all.html"), name='all_entries'),
     path('team/entries/', 
          views.EntryListView.as_view(template_name="sources/entries_team.html"), name='team_entries'),
+    path('test-map/', TemplateView.as_view(template_name='sources/test_map.html'), name='about'),
 ]
 
 urlpatterns += router.urls
