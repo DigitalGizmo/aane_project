@@ -45,7 +45,8 @@ class PrimarySource(models.Model):
     location = models.ForeignKey('locations.Town', default=9,
                                  on_delete=models.PROTECT, 
                                  )
-    title = models.CharField(max_length=128, blank=True, default='')
+    title = models.CharField(max_length=128)
+    title_alpha = models.CharField(max_length=128, blank=True, default='')
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
     year_start = models.IntegerField('Year', blank=True, null=True, 
