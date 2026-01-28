@@ -11,8 +11,10 @@
 	{% endblock %}
 
 {% block content %}
-	<h1>{{ primarysource.title|safe }}</h1>
-	<dl>
+	<h1>{{ primarysource.title_alpha|safe }}</h1>
+	<dl class="source-dl">
+		<dt>Recorded Source Name:</dt>
+		<dd>{{ primarysource.title|safe }}</dd>
 		<dt>Location:</dt>
 		<dd>{{ primarysource.location.title }}, {{ primarysource.location.state.abbr}}</dd>
 

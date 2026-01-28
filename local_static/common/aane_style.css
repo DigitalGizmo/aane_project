@@ -192,6 +192,16 @@ dd {
 }
 dd:after {content: "."; color: #faf6ef;}
 
+/* Don adding for source page */
+.source-dl dt {
+  width: 15%
+}
+.source-dl dd {
+  margin-left: 18%;
+  width: 80%
+}
+/* end source page changes */
+
 ul.unstyledlist	{list-style-type: none; padding-left: 0;}
 ul.unstyledlist li	{ line-height: 1.5em;}
 
