@@ -25,6 +25,7 @@ urlpatterns = [
          views.EntryListView.as_view(template_name="sources/entries_team.html"), name='team_entries'),
     path('test-map/', TemplateView.as_view(template_name='sources/test_map.html'), name='about'),
     path('test-prutt/', TemplateView.as_view(template_name='sources/test_prutt.html'), name='about'),
+    path('test-calab/', TemplateView.as_view(template_name='sources/test_calab.html'), name='about'),
 ]
 
 urlpatterns += router.urls
