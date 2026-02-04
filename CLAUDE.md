@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Keep your replies concise and focus on conveying the key infomration. No unnecessary fluff, no long code snippets.
+
 ## Project Overview
 
 The African Americans of the North East (AANE) project is a Django 4.2 application that serves as a historical database tracking enslaved African Americans and enslavers in the Northeast United States. The application manages primary historical sources, source entries, biographical information, and relationships between people.
