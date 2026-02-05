@@ -101,43 +101,16 @@ class VolumeDetailView(DetailView):
     template_name = 'sources/volume_detail.html'
 
 class EntryDetailView(DetailView):
-    model = SourceEntry 
-    # template_name = 'sources/entry_detail.html'
-    template_name = 'sources/entry_pop_detail.html'
-    # get the entry record
+    model = SourceEntry
+
+    def get_template_names(self):
+        """Return modal template for HTMX requests, full page for direct browser access."""
+        if self.request.htmx:
+            return ['sources/entry_pop_detail.html']
+        return ['sources/entry_detail_full.html']
+
     def get_context_data(self, **kwargs):
-        # Get the context
-        context = super(EntryDetailView, self).get_context_data(**kwargs)
-        # Get this entry object
-        entry_object = super(EntryDetailView, self).get_object()
-
-        entry_ids = [30,41,45,50]
-        # initial_index = 2
-        initial_index = entry_ids[2]
-        print('index: ' + str(initial_index))
-        # # Get the percentage from top
-        # view_percent_top = 0
-        # if entry_object.percent_top:
-        #     view_percent_top = entry_object.percent_top
-        # view_percent_height = 8
-        # if entry_object.percent_left:
-        #     view_percent_left = entry_object.percent_left
-        # view_percent_width = 100
-        # if entry_object.percent_height:
-        #     view_percent_height = entry_object.percent_height
-        # view_percent_left = 0
-        # if entry_object.percent_right:
-        #     view_percent_width = entry_object.percent_right
-        # Add updated variable to context
-        context.update({
-            'entry_ids': entry_ids,
-            'initial_index': initial_index
-            # 'view_percent_top': view_percent_top,
-            # 'view_percent_left': view_percent_left,
-            # 'view_percent_width': view_percent_width,
-            # 'view_percent_height': view_percent_height,
-
-            })
+        context = super().get_context_data(**kwargs)
         return context    
 
 # For search all entries page
