@@ -13,5 +13,6 @@ static/
 webstat/
 bg_images/
 .env-aane
+exports/
 
 # allow
