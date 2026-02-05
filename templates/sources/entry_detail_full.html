@@ -1,0 +1,86 @@
+{% extends "basic_page.html" %}
+{% load static %}
+
+{% block head_title %}Entry - {{ sourceentry.volume.primary_source.title_alpha|safe }}{% endblock %}
+
+{% block breadcrumbs %}
+	<a href="/">Home</a> >
+	<a href="{% url 'sources:index'%}">Primary Sources</a> >
+	<a href="{% url 'sources:source_detail' sourceentry.volume.primary_source.id %}#{{ sourceentry.volume.id }}">{{ sourceentry.volume.primary_source.title_alpha|safe }}</a> >
+	Entry
+{% endblock %}
+
+{% block content %}
+	<h1>{{ sourceentry.volume.primary_source.title|safe }}</h1>
+
+	{% if sourceentry.image_status > 5 %}
+	<div class="dragon-container" style="height: 50vh; min-height: 300px;">
+		<div id="openseadragon1"></div>
+
+		<script type="text/javascript">
+			var viewer = OpenSeadragon({
+				id: "openseadragon1",
+				minZoomImageRatio: 1,
+				maxZoomLevel: 2,
+				crossOriginPolicy: "Anonymous",
+				prefixUrl: "{% static 'js/images/' %}",
+				tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
+			});
+		</script>
+	</div>
+	{% endif %}
+
+	<div class="entry-metadata">
+		<div class="entry-text-container">
+			<h4>Entry</h4>
+			<div class="entry-text">
+				{{ sourceentry.entry_text_html|safe }}
+			</div>
+
+			{% if sourceentry.interpretive_note %}
+			<h4>Note</h4>
+			<div class="interpretive-note">
+				{{ sourceentry.interpretive_note|safe }}
+			</div>
+			{% endif %}
+		</div>
+
+		<div class="entry-details">
+			<h4>Details</h4>
+			<dl>
+				<dt>Source:</dt>
+				<dd>{{ sourceentry.volume.primary_source.title|safe }}</dd>
+
+				<dt>Volume:</dt>
+				<dd>{{ sourceentry.volume.title|safe }}</dd>
+
+				<dt>Date:</dt>
+				<dd>
+					{% firstof sourceentry.low_year "--" %}
+					{% if sourceentry.low_month %}
+						{{ sourceentry.get_low_month_display }}
+					{% endif %}
+					{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
+				</dd>
+
+				<dt>Person:</dt>
+				<dd>{{ sourceentry.aa_person.name }}</dd>
+
+				<dt>Transaction:</dt>
+				<dd>
+					{% if sourceentry.dollars %}
+						${{ sourceentry.dollars }}
+					{% else %}
+						&pound;
+						{% firstof sourceentry.pounds "0" %}/
+						{% firstof sourceentry.shillings "0" %}/
+						{% firstof sourceentry.pence "0" %}
+						{% if sourceentry.farthing %}
+							(f {{ sourceentry.farthing }})
+						{% endif %}
+					{% endif %}
+				</dd>
+			</dl>
+		</div>
+	</div>
+{% endblock %}
