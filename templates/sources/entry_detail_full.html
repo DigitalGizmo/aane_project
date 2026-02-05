@@ -13,24 +13,27 @@
 {% block content %}
 	<h1>{{ sourceentry.volume.primary_source.title|safe }}</h1>
 
-	{% if sourceentry.image_status > 5 %}
-	<div class="dragon-container" style="height: 50vh; min-height: 300px;">
-		<div id="openseadragon1"></div>
+	<div class="entry-content-wrapper" style="display: flex; gap: 2em; height: 60vh; min-height: 400px;">
+		{% if sourceentry.image_status > 5 %}
+		<div class="dragon-container" style="flex: 2;">
+			<div id="openseadragon1"></div>
 
-		<script type="text/javascript">
-			var viewer = OpenSeadragon({
-				id: "openseadragon1",
-				minZoomImageRatio: 1,
-				maxZoomLevel: 2,
-				crossOriginPolicy: "Anonymous",
-				prefixUrl: "{% static 'js/images/' %}",
-				tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
-			});
-		</script>
-	</div>
-	{% endif %}
+			<script type="text/javascript">
+				var viewer = OpenSeadragon({
+					id: "openseadragon1",
+					minZoomImageRatio: 0.5,
+					maxZoomLevel: 3,
+					homeFillsViewer: true,
+					visibilityRatio: 0.5,
+					crossOriginPolicy: "Anonymous",
+					prefixUrl: "{% static 'js/images/' %}",
+					tileSources: "https://img.americancenturies.org/iiif/3/aane|{{ sourceentry.image_name }}.jp2/info.json"
+				});
+			</script>
+		</div>
+		{% endif %}
 
-	<div class="entry-metadata">
+		<div class="entry-metadata" style="flex: 1; overflow-y: auto;">
 		<div class="entry-text-container">
 			<h4>Entry</h4>
 			<div class="entry-text">
@@ -82,5 +85,6 @@
 				</dd>
 			</dl>
 		</div>
-	</div>
+	</div><!-- /entry-metadata -->
+	</div><!-- /entry-content-wrapper -->
 {% endblock %}
