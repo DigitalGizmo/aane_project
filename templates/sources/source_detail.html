@@ -1,12 +1,12 @@
 {% extends "basic_page.html" %}
 {% load static %}
 
-{% block head_title %}Sources{% endblock %}
+{% block head_title %}{{ primarysource.title_alpha|safe }}{% endblock %}
 
 	{% block breadcrumbs %}
 		<a href="/">Home</a> > 
 		<!-- <a href="{% url 'sources:index'%}">Primary Sources </a>  -->
-		<a onclick="history.back()">Primary Sources </a> 
+		<a href="{% url 'sources:index'%}">Primary Sources </a> 
 		> Source Detail
 	{% endblock %}
 

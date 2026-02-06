@@ -27,12 +27,27 @@ class Command(BaseCommand):
             default=40,
             help='Limit number of records (default: 40)'
         )
+        parser.add_argument(
+            '--increment',
+            type=int,
+            default=1,
+            help='Sample every Nth record (default: 1, i.e. every record)'
+        )
 
     def handle(self, *args, **options):
         output_file = options['output']
         limit = options['limit']
+        increment = options['increment']
 
-        # Optimized queryset with related data
+        # Get sampled IDs first (every Nth record)
+        all_ids = list(
+            SourceEntry.objects.filter(
+                data_status__gte=0
+            ).order_by('id').values_list('id', flat=True)
+        )
+        sampled_ids = all_ids[::increment][:limit]
+
+        # Optimized queryset with related data for sampled records
         queryset = SourceEntry.objects.select_related(
             'volume__primary_source__source_type',
             'volume__primary_source__location__state',
@@ -40,8 +55,8 @@ class Command(BaseCommand):
         ).prefetch_related(
             'aa_persons'
         ).filter(
-            data_status__gte=0  # Active entries only
-        ).order_by('id')[:limit]
+            id__in=sampled_ids
+        ).order_by('id')
 
         # Define CSV fields
         fields = [
@@ -88,12 +103,15 @@ class Command(BaseCommand):
                     'City': location.title if location else '',
                     'State': location.state.abbr if location and location.state else '',
                     'Source': primary_source.title if primary_source else '',
-                    'URL': f'https://aane.deerfield-ma.org/sources/source/{entry.id}/',
+                    'URL': f'https://aane.deerfield-ma.org/sources/entry/{entry.id}/',
                     'Notes': entry.entry_text_html or ''
                 }
                 writer.writerow(row)
                 count += 1
 
             self.stdout.write(
-                self.style.SUCCESS(f'Successfully exported {count} records to {output_path}')
+                self.style.SUCCESS(
+                    f'Successfully exported {count} records to {output_path} '
+                    f'(sampled every {increment} of {len(all_ids)} total)'
+                )
             )
