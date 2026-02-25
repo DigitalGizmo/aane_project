@@ -46,7 +46,7 @@ class PrimarySource(models.Model):
                                  on_delete=models.PROTECT, 
                                  )
     title = models.CharField(max_length=128)
-    title_alpha = models.CharField(max_length=128, blank=True, default='')
+    title_alpha = models.CharField(max_length=128)
     pub_info = models.CharField(max_length=128, blank=True, default='')
     description = models.TextField(blank=True, default='')
     year_start = models.IntegerField('Year', blank=True, null=True, 

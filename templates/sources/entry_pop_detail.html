@@ -74,7 +74,7 @@
           <dd>{{ sourceentry.image_name }}</dd> -->
 
           <dt>Person:</dt>
-          <dd>{{ sourceentry.aa_person.name }}</dd>
+          <dd>{% for aa in sourceentry.aa_persons.all %}<a href="/people/aaperson/{{ aa.id }}/">{% if aa.known_status == 1 %}<strong>{% endif %}{{ aa.name }}{% if aa.known_status == 1 %}</strong>{% endif %}</a>{% if not forloop.last %}, {% endif %}{% empty %}{{ sourceentry.name_note }}{% endfor %}</dd>
 
           <dt>Transaction: </dt>
           <dd>
