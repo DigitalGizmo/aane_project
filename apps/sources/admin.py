@@ -29,6 +29,20 @@ class VolumeInline(admin.StackedInline):
         models.TextField: {'widget': Textarea(attrs={'rows':2, 'cols':80})},
     }
 
+class PrimarySourceFilter(admin.SimpleListFilter):
+    title = 'primary source'
+    parameter_name = 'primary_source'
+
+    def lookups(self, request, model_admin):
+        sources = PrimarySource.objects.all().order_by('title_alpha')
+        return [(s.id, '• ' + s.title) for s in sources]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(primary_source_id=self.value())
+        return queryset
+
+
 class VolumeAdmin(admin.ModelAdmin):
     fields = ['primary_source', 'title', 'legacy_title',
     ('volume_scan_id', 'accession_num', 'other_accession_num'),
@@ -37,7 +51,7 @@ class VolumeAdmin(admin.ModelAdmin):
     ]
     list_display = ('id', 'year_start', 'year_end', 'title', 'short_source', 'volume_scan_id',
         'accession_num', 'other_accession_num')
-    list_filter  = ['primary_source'] 
+    list_filter  = [PrimarySourceFilter]
     search_fields = ['primary_source__title']
     def short_source(self, obj):
         return obj.primary_source.title[0:20]    
