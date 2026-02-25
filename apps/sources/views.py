@@ -145,7 +145,7 @@ class EntryListView(FormMixin, ListView): # FormMixin,
 
             if q:
                 print("got to if q")
-                self.object_list = self.object_list.filter(Q(entry_text__icontains=q) )
+                self.object_list = self.object_list.filter(Q(entry_text_html__icontains=q) )
                 #  | Q(narrative__icontains=q)
 
             if year:

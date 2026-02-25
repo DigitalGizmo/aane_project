@@ -53,7 +53,7 @@ class PrimarySourceAdmin(admin.ModelAdmin):
         'operson_id', 'year_start', 'year_end')
     search_fields = ['title']
     list_filter  = ['source_classification'] 
-    inlines = [VolumeInline]
+    # inlines = [VolumeInline]
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'60'})},
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':60})},

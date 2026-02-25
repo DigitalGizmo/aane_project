@@ -92,10 +92,11 @@ The project follows Django's reusable app pattern with apps in the [apps/](apps/
 - `PersonModel` (abstract) - Base model with fields common to both AAPerson and OPerson
 - `AAPerson` - Enslaved and free African Americans
   - Fields: name, birth/death years, freed status, confidence level, tier
+  - `tier`: 0="other people" (not in core public listing), 1="core people" (default public list)
   - Relationships: Many-to-many with `OPerson` (enslavers), `SourceEntry` (through `aa_persons`), and `Town` (locations)
 - `OPerson` - Enslavers, service providers, and other historical figures
   - Fields: name, role, race, title
-  - Relationship: Many-to-many with `AAPerson`
+  - Relationship: Many-to-many with `AAPerson`; `active_aapersons` property filters to `research_status > 1`
 
 #### Sources App ([apps/sources/models.py](apps/sources/models.py))
 - `PrimarySource` - Historical documents (wills, deeds, church records, etc.)
@@ -104,9 +105,8 @@ The project follows Django's reusable app pattern with apps in the [apps/](apps/
   - Relationship: Foreign key to `PrimarySource`
   - Fields: title, date range, accession numbers
 - `SourceEntry` - Individual entries extracted from volumes
-  - Fields: entry text (plain and HTML via TinyMCE), dates, monetary values, image references
+  - `entry_text_html` (TinyMCE HTMLField) is the active field for both display and search; `entry_text` (plain CharField) is legacy/abandoned
   - Relationships: Foreign key to `Volume`, many-to-many with `AAPerson`, foreign key to `OPerson` (enslaver)
-  - Important: Uses `entry_text_html` (TinyMCE field) for formatted display
 
 #### Key Relationships
 1. `SourceEntry` → `Volume` → `PrimarySource` (hierarchical source organization)
@@ -117,7 +117,8 @@ The project follows Django's reusable app pattern with apps in the [apps/](apps/
 
 ### Frontend Architecture
 - **Templates**: Django templates in [templates/](templates/) directory with app-specific subdirectories
-- **HTMX**: Used for dynamic page updates without full page reloads
+- **HTMX**: Used for dynamic page updates. `EntryDetailView` uses `request.htmx` to serve either `entry_pop_detail.html` (modal) or `entry_detail_full.html` (full page)
+- **Team vs. public templates**: `entries_team.html` / `aaperson_team.html` are internal research tools; public views use `entries_all.html` / `aaperson_list.html`
 - **TinyMCE**: Rich text editor for biographical text and source entries
 - **Static Files**: CSS/JS in [local_static/](local_static/)
 - **Template Structure**: Base template is [base.html](templates/base.html), extended by app templates
