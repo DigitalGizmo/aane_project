@@ -35,7 +35,7 @@ class PrimarySourceFilter(admin.SimpleListFilter):
 
     def lookups(self, request, model_admin):
         sources = PrimarySource.objects.all().order_by('title_alpha')
-        return [(s.id, '• ' + s.title) for s in sources]
+        return [(s.id, '• ' + s.title_alpha) for s in sources]
 
     def queryset(self, request, queryset):
         if self.value():
@@ -63,7 +63,7 @@ class PrimarySourceAdmin(admin.ModelAdmin):
         ('source_classification', 'source_type'),
         'pub_info', 'location', 'description', 
         ('year_start', 'year_end'), ('operson_id', 'tiff_location')]
-    list_display = ('title', 'id', 'title_alpha', 'source_type', # , 'location'
+    list_display = ('title_alpha', 'title', 'id', 'source_type', # , 'location'
         'operson_id', 'year_start', 'year_end')
     search_fields = ['title']
     list_filter  = ['source_classification'] 
