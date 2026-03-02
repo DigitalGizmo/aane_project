@@ -60,6 +60,8 @@ class Command(BaseCommand):
 
         # Define CSV fields
         fields = [
+            'PageNumber',
+            'Day',
             'Month',
             'Year',
             'LASTNAME',
@@ -94,6 +96,7 @@ class Command(BaseCommand):
 
                 row = {
                     'Month': entry.get_low_month_display() if entry.low_month else '',
+                    'Day': entry.low_day or '',
                     'Year': entry.low_year or '',
                     'LASTNAME': aa_person.last_name.upper() if aa_person and aa_person.last_name else '',
                     'FirstName': aa_person.first_name if aa_person else '',
@@ -103,6 +106,7 @@ class Command(BaseCommand):
                     'City': location.title if location else '',
                     'State': location.state.abbr if location and location.state else '',
                     'Source': primary_source.title if primary_source else '',
+                    'PageNumber': entry.page_num or '',
                     'URL': f'https://aane.deerfield-ma.org/sources/entry/{entry.id}/',
                     'Notes': entry.entry_text_html or ''
                 }

@@ -43,6 +43,20 @@ class PrimarySourceFilter(admin.SimpleListFilter):
         return queryset
 
 
+class EntryPrimarySourceFilter(admin.SimpleListFilter):
+    title = 'primary source'
+    parameter_name = 'volume__primary_source'
+
+    def lookups(self, request, model_admin):
+        sources = PrimarySource.objects.all().order_by('title_alpha')
+        return [(s.id, '• ' + s.title_alpha) for s in sources]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(volume__primary_source_id=self.value())
+        return queryset
+
+
 class VolumeAdmin(admin.ModelAdmin):
     fields = ['primary_source', 'title', 'legacy_title',
     ('volume_scan_id', 'accession_num', 'other_accession_num'),
@@ -138,8 +152,8 @@ class SourceEntryAdmin(admin.ModelAdmin):
         'low_year', 'month_day', 'aa_names', 'operson_fk', 'page_num', 'image_name', 
         'scan_date', 'data_status', 'image_status',) 
     #  'aa_id', 'operson_id', 'operson_fk'
-    list_filter  = ['image_status', 'data_status', 
-        'volume__primary_source', 'volume']  
+    list_filter  = ['image_status', 'data_status',
+        EntryPrimarySourceFilter, 'volume']
     search_fields = ['entry_text_html', 'image_name'] 
         #'volume__primary_source__title' - could, but don't want to!
     filter_horizontal = ['aa_persons']
