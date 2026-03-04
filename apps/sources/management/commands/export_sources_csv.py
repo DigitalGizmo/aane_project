@@ -6,6 +6,7 @@ Output goes to: exports/source_entries_export.csv
 """
 import csv
 import os
+import re
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from sources.models import SourceEntry
@@ -24,8 +25,8 @@ class Command(BaseCommand):
         parser.add_argument(
             '--limit',
             type=int,
-            default=40,
-            help='Limit number of records (default: 40)'
+            default=None,
+            help='Limit number of records (default: all)'
         )
         parser.add_argument(
             '--increment',
@@ -45,7 +46,9 @@ class Command(BaseCommand):
                 data_status__gte=0
             ).order_by('id').values_list('id', flat=True)
         )
-        sampled_ids = all_ids[::increment][:limit]
+        sampled_ids = all_ids[::increment]
+        if limit is not None:
+            sampled_ids = sampled_ids[:limit]
 
         # Optimized queryset with related data for sampled records
         queryset = SourceEntry.objects.select_related(
@@ -106,7 +109,7 @@ class Command(BaseCommand):
                     'City': location.title if location else '',
                     'State': location.state.abbr if location and location.state else '',
                     'Source': primary_source.title if primary_source else '',
-                    'PageNumber': entry.page_num or '',
+                    'PageNumber': re.sub(r'^[Pp]\.\s*', '', entry.page_num or ''),
                     'URL': f'https://aane.deerfield-ma.org/sources/entry/{entry.id}/',
                     'Notes': entry.entry_text_html or ''
                 }
@@ -116,6 +119,6 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(
                     f'Successfully exported {count} records to {output_path} '
-                    f'(sampled every {increment} of {len(all_ids)} total)'
+                    f'(sampled every {increment} of {len(all_ids)} total records)'
                 )
             )
