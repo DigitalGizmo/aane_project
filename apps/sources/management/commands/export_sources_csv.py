@@ -76,7 +76,8 @@ class Command(BaseCommand):
             'State',
             'Source',
             'URL',
-            'Notes'
+            'Notes',
+            'InterpretiveNote'
         ]
 
         # Ensure exports directory exists
@@ -108,10 +109,11 @@ class Command(BaseCommand):
                     'EnslaverFirstName': entry.operson_fk.first_name if entry.operson_fk else '',
                     'City': location.title if location else '',
                     'State': location.state.abbr if location and location.state else '',
-                    'Source': primary_source.title if primary_source else '',
+                    'Source': (primary_source.title + (', ' + entry.volume.title if entry.volume.title != 'Single' else '')) if primary_source else '',
                     'PageNumber': re.sub(r'^[Pp]\.\s*', '', entry.page_num or ''),
                     'URL': f'https://aane.deerfield-ma.org/sources/entry/{entry.id}/',
-                    'Notes': entry.entry_text_html or ''
+                    'Notes': entry.entry_text_html or '',
+                    'InterpretiveNote': entry.interpretive_note or ''
                 }
                 writer.writerow(row)
                 count += 1
