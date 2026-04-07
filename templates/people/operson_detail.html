@@ -20,7 +20,7 @@
 		<dd>
 			{% firstof operson.birth_year "--" %}, {% firstof operson.death_year "--" %} 
 		</dd>
-		<dt>role</dt><dd>{{ operson.get_role_display }}</dd>
+		<dt>role</dt><dd>{{ operson.roles.all|join:", " }}</dd>
 		<dt>race</dt><dd>{{ operson.race }}</dd>
 		<dt>location(s)</dt>
 		<dd>
