@@ -47,7 +47,7 @@ admin.site.register(AAPerson, AAPersonAdmin)
 
 class OPersonAdmin(admin.ModelAdmin):
     fields = ['name', 'first_name',('last_name', 'title'),
-              ('gender', 'role', 'race'), 'roles',
+              ('gender', 'race', 'role'), 'roles',
             ('birth_year', 'death_year'),
             ('year_lower', 'year_upper'), 'research_status',
             'bio_html', 'note', 'locations']
@@ -55,8 +55,9 @@ class OPersonAdmin(admin.ModelAdmin):
                     'research_status', 'get_locations', 'birth_year',
                     'death_year', 'year_lower')
     filter_horizontal = ['locations', 'roles']
+    readonly_fields = ['role']
     search_fields = ['name']
-    list_filter  = ['research_status'] 
+    list_filter  = ['research_status']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

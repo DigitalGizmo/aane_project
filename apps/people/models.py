@@ -163,7 +163,8 @@ class OPerson(PersonModel):
         ('native', 'native'),
     )
     title = models.CharField(max_length=24, blank=True, default='')
-    role = models.CharField(max_length=24, choices=ROLE)
+    role = models.CharField(max_length=24, choices=ROLE, 
+                            verbose_name='Legacy Role')
     roles = models.ManyToManyField('Role', blank=True)
     race = models.CharField(max_length=24, choices=RACE)
     year_lower = models.IntegerField(blank=True, null=True)
