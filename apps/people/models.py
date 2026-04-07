@@ -131,6 +131,21 @@ class AAPerson(PersonModel):
         return reverse('people:aaperson_detail', kwargs={'pk': self.pk})
 		
 
+class Role(models.Model):
+    """
+    Role lookup table for OPerson (replaces ROLE choices tuple).
+    Codes match the old CharField values for easy data migration.
+    """
+    code = models.CharField(max_length=24, unique=True)
+    label = models.CharField(max_length=64)
+
+    class Meta:
+        ordering = ['label']
+
+    def __str__(self):
+        return self.label
+
+
 class OPerson(PersonModel):
     """
     OPerson Other/ Owner - inherits PersonModel
@@ -149,6 +164,7 @@ class OPerson(PersonModel):
     )
     title = models.CharField(max_length=24, blank=True, default='')
     role = models.CharField(max_length=24, choices=ROLE)
+    roles = models.ManyToManyField('Role', blank=True)
     race = models.CharField(max_length=24, choices=RACE)
     year_lower = models.IntegerField(blank=True, null=True)
     year_upper = models.IntegerField(blank=True, null=True)
