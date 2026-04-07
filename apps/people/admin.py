@@ -4,7 +4,7 @@ from django.db import models
 from django.http.request import HttpRequest
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
-from .models import AAPerson, OPerson
+from .models import AAPerson, OPerson, Role
 from locations.models import Town
 
 
@@ -46,15 +46,15 @@ admin.site.register(AAPerson, AAPersonAdmin)
 
 
 class OPersonAdmin(admin.ModelAdmin):
-    fields = ['name', 'first_name',('last_name', 'title'), 
-              ('gender', 'role', 'race'), 
-            ('birth_year', 'death_year'), 
+    fields = ['name', 'first_name',('last_name', 'title'),
+              ('gender', 'role', 'race'), 'roles',
+            ('birth_year', 'death_year'),
             ('year_lower', 'year_upper'), 'research_status',
             'bio_html', 'note', 'locations']
-    list_display = ('name', 'id', 'first_name', 'last_name', 'title', 
-                    'research_status', 'get_locations', 'birth_year', 
+    list_display = ('name', 'id', 'first_name', 'last_name', 'title',
+                    'research_status', 'get_locations', 'birth_year',
                     'death_year', 'year_lower')
-    filter_horizontal = ['locations']
+    filter_horizontal = ['locations', 'roles']
     search_fields = ['name']
     list_filter  = ['research_status'] 
 
@@ -69,3 +69,4 @@ class OPersonAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OPerson, OPersonAdmin)
+admin.site.register(Role)
