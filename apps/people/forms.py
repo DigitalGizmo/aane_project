@@ -1,5 +1,5 @@
 from django import forms
-from .models import AAPerson
+from .models import AAPerson, Role
 
 class PersonSearchForm(forms.Form):
     for_name = forms.CharField(max_length=100, required=False)
@@ -64,3 +64,22 @@ class PersonSearchForm(forms.Form):
     #     widget  = forms.RadioSelect,
     #     required=False,
     # )
+
+
+class OPersonSearchForm(forms.Form):
+    roles = forms.MultipleChoiceField(
+        choices=Role.objects.all().values_list('id', 'label'),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
+    SORT_CHOICES = (
+        ('last_name', 'last name'),
+        ('birth_year', 'birth'),
+        ('death_year', 'death'),
+    )
+    sortOrder = forms.ChoiceField(
+        choices=SORT_CHOICES,
+        widget=forms.Select,
+        required=False,
+    )

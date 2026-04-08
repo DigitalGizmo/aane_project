@@ -4,7 +4,7 @@ from django.db.models import Q, Count
 from rest_framework import viewsets
 from django.views.generic.edit import FormMixin
 from .models import AAPerson, OPerson
-from .forms import PersonSearchForm
+from .forms import PersonSearchForm, OPersonSearchForm
 from .serializers import AAPersonSerializer, OPersonSerializer
 
 """
@@ -266,13 +266,33 @@ class OPersonViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = OPersonSerializer
     lookup_field = 'name'
 
-class OPersonListView(generic.ListView):
-    # model = OPerson
+class OPersonListView(FormMixin, generic.ListView):
     queryset = OPerson.objects.filter(research_status__gt=1)
+    form_class = OPersonSearchForm
 
+    def get_form_kwargs(self):
+        return {
+            'initial': self.get_initial(),
+            'prefix': self.get_prefix(),
+            'data': self.request.GET,
+        }
 
-    # context_object_name = 'operson_list'
-    #template_name = 'people/operson_index.html'
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        form = self.get_form()
+
+        if form.is_valid():
+            role_ids = form.cleaned_data['roles']
+            if role_ids:
+                self.object_list = self.object_list.filter(roles__id__in=role_ids)
+            sortOrder = form.cleaned_data['sortOrder']
+            if sortOrder:
+                self.object_list = self.object_list.order_by(sortOrder)
+
+        self.object_list = self.object_list.distinct()
+        context = self.get_context_data(form=form)
+        context['result_count'] = self.object_list.count()
+        return self.render_to_response(context)
 
 class OPersonDetailView(generic.DetailView):
     model = OPerson

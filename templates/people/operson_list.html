@@ -9,6 +9,26 @@
 
 {% block content %}
 <h1>Other People / Enslavers</h1>
+<form action="{% url 'people:operson_index' %}" method="GET" id="search-form" name="menu">
+  <section class="control-panel">
+    <input type="hidden" name="page" value="{{ page_number }}"/>
+
+    <div class="control-left">
+      <h4 class="heading">Filter by Role</h4>
+      {{ form.roles }}
+    </div>
+
+    <div class="control-mid">
+      <h4 class="heading">Sort by</h4>
+      {{ form.sortOrder }}
+    </div>
+
+    <div class="control-right">
+      <p>Showing: {{ result_count }} enslavers</p>
+    </div>
+  </section>
+</form>
+
 	<table>
 		<tr>
 			<th>Name</th>
