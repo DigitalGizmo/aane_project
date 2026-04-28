@@ -37,6 +37,10 @@ class SourceType(models.Model):
         return self.title
 
 
+def get_default_contributor():
+    return Contributor.objects.get(slug='pvma').pk
+
+
 class PrimarySource(models.Model):
     """PrimarySource
     Also includes secondary sources -- determined by source type.
@@ -48,7 +52,9 @@ class PrimarySource(models.Model):
     )
     source_classification = models.CharField('Classification', 
         max_length=32, choices=SOURCE_CLASSIFICATION)
-    source_type = models.ForeignKey('SourceType', default=1, 
+    contributor = models.ForeignKey('Contributor', on_delete=models.PROTECT,
+        default=get_default_contributor)
+    source_type = models.ForeignKey('SourceType', default=1,
         on_delete=models.PROTECT)
     location = models.ForeignKey('locations.Town', default=9,
                                  on_delete=models.PROTECT, 
