@@ -57,7 +57,7 @@ class PrimarySource(models.Model):
     source_type = models.ForeignKey('SourceType', default=1,
         on_delete=models.PROTECT)
     location = models.ForeignKey('locations.Town', default=9,
-                                 on_delete=models.PROTECT, 
+        verbose_name='Place', on_delete=models.PROTECT, 
                                  )
     title = models.CharField(max_length=128)
     title_alpha = models.CharField(max_length=128)

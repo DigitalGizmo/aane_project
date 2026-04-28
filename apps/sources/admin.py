@@ -75,8 +75,11 @@ class VolumeAdmin(admin.ModelAdmin):
 class PrimarySourceAdmin(admin.ModelAdmin): 
     fields = ['title', 'title_alpha',
         ('source_classification', 'source_type'),
-        'pub_info', 'location', 'description', 
-        ('year_start', 'year_end'), ('operson_id', 'tiff_location')]
+        ('location','contributor'),  
+        'description', 
+        ('year_start', 'year_end'), 
+        ('operson_id', 'tiff_location'),
+        'pub_info']
     list_display = ('title_alpha', 'title', 'id', 'source_type', # , 'location'
         'operson_id', 'year_start', 'year_end')
     search_fields = ['title']
