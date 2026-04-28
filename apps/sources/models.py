@@ -17,6 +17,14 @@ class SourceCollection(models.Model):
     def __str__(self):
         return self.title
 """
+class Contributor(models.Model):
+    slug = models.SlugField(max_length=64, unique=True)
+    credit = tinymce_models.HTMLField(blank=True, default='')
+
+    def __str__(self):
+        return self.slug
+
+
 class SourceType(models.Model):
     slug = models.SlugField('short name', max_length=32, unique=True)
     title = models.CharField(max_length=64)
