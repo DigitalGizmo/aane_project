@@ -8,7 +8,7 @@ from django import forms
 from tinymce.widgets import TinyMCE
 from tinymce import models as tinymce_models
 from calendar import month_abbr
-from .models import PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
+from .models import Contributor, PrimarySource, SourceEntry, SourceType, Volume, SourceEntryEditHistory
 from people.models import AAPerson
 
 """
@@ -231,6 +231,10 @@ class SourceEntryAdmin(admin.ModelAdmin):
     #         kwargs['widget'] = forms.TextInput(attrs={'size': '90'})
     #     return super().formfield_for_dbfield(db_field, request, **kwargs)
 
+class ContributorAdmin(admin.ModelAdmin):
+    fields = ['slug', 'credit']
+
+admin.site.register(Contributor, ContributorAdmin)
 admin.site.register(PrimarySource, PrimarySourceAdmin)
 admin.site.register(Volume, VolumeAdmin)
 admin.site.register(SourceType, SourceTypeAdmin)
