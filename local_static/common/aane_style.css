@@ -303,6 +303,13 @@ h1.slim-title {
   margin-bottom: 0.75em;
 }
 
+/* Tell contributor p inside source dd to not act like a p */
+.source-dl dd p {
+  /* font-size: 1em;
+  line-height: 0.7em;
+  margin-bottom: 0px; */
+  display: inline;
+}
 /* Don for entry interpretive note */
 /* .interpretive-note p {
   font-size: 1em;
