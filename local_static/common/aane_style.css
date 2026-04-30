@@ -304,7 +304,8 @@ h1.slim-title {
 }
 
 /* Tell contributor p inside source dd to not act like a p */
-.source-dl dd p {
+.source-dl dd p,
+.slim-details dd p {
   /* font-size: 1em;
   line-height: 0.7em;
   margin-bottom: 0px; */
@@ -323,6 +324,11 @@ h1.slim-title {
     border-top: 1px solid #ddd; /* Optional: visual separator */
     padding-top: 1em;
 }
+
+/* detail metadata smaller? */
+/* .slim-details dd {
+  font-size: em;
+} */
 
 .dragon-container-horiz {
     flex: 1;

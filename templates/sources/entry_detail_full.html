@@ -11,7 +11,6 @@
 {% endblock %}
 
 {% block content %}
-	<h1>{{ sourceentry.volume.primary_source.title|safe }}</h1>
 
 	<div class="entry-content-wrapper" style="display: flex; gap: 2em; height: 60vh; min-height: 400px;">
 		{% if sourceentry.image_status > 5 %}
@@ -33,64 +32,73 @@
 		</div>
 		{% endif %}
 
-		<div class="entry-metadata" style="flex: 1; overflow-y: auto;">
-		<div class="entry-text-container">
-			<h4>Entry</h4>
-			<div class="entry-text">
-				{{ sourceentry.entry_text_html|safe }}
-			</div>
+		<div class="slim-metadata" style="flex: 1; overflow-y: auto;">
+      <h1>{{ sourceentry.volume.primary_source.title|safe }}</h1>
+      <div class="slim-entry-container">
+        {% comment %} entry-text {% endcomment %}
+        <h4>Entry</h4>
+        <div class="slim-entry">
+          {{ sourceentry.entry_text_html|safe }}
+        </div>
 
-			{% if sourceentry.interpretive_note %}
-			<h4>Note</h4>
-			<div class="interpretive-note">
-				{{ sourceentry.interpretive_note|safe }}
-			</div>
-			{% endif %}
-		</div>
+        {% if sourceentry.interpretive_note %}
+        <h4>Note</h4>
+        <div class="interpretive-note">
+          {{ sourceentry.interpretive_note|safe }}
+        </div>
+        {% endif %}
+      </div>
 
-		<div class="entry-details">
-			<h4>Details</h4>
-			<dl>
-				<dt>Source:</dt>
-				<dd>{{ sourceentry.volume.primary_source.title|safe }}</dd>
+      <div class="slim-details">
+        <h4>Details</h4>
+        <dl>
+          <dt>Source:</dt>
+          <dd>{{ sourceentry.volume.primary_source.title|safe }}</dd>
 
-				<dt>Volume:</dt>
-				<dd>{{ sourceentry.volume.title|safe }}</dd>
+          <dt>Contributor:</dt>
+          <dd>{{ sourceentry.volume.primary_source.contributor.credit|safe }}</dd>
 
-				<dt>Date:</dt>
-				<dd>
-					{% firstof sourceentry.low_year "--" %}
-					{% if sourceentry.low_month %}
-						{{ sourceentry.get_low_month_display }}
-					{% endif %}
-					{% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
-				</dd>
+          <dt>Place:</dt>
+          <dd>{{ sourceentry.volume.primary_source.location.title }}, 
+            {{ sourceentry.volume.primary_source.location.state.abbr}}</dd>
 
-				<dt>Person:</dt>
-				<dd>
-				  {% for aa in sourceentry.aa_persons.all %}
-				    <a href="/people/aaperson/{{ aa.id }}/">{% if aa.known_status == 1 %}<strong>{% endif %}{{ aa.name }}{% if aa.known_status == 1 %}</strong>{% endif %}</a>{% if not forloop.last %}, {% endif %}
-				  {% empty %}
-				    {{ sourceentry.name_note }}
-				  {% endfor %}
-				</dd>
+          <dt>Volume:</dt>
+          <dd>{{ sourceentry.volume.title|safe }}</dd>
 
-				<dt>Transaction:</dt>
-				<dd>
-					{% if sourceentry.dollars %}
-						${{ sourceentry.dollars }}
-					{% else %}
-						&pound;
-						{% firstof sourceentry.pounds "0" %}/
-						{% firstof sourceentry.shillings "0" %}/
-						{% firstof sourceentry.pence "0" %}
-						{% if sourceentry.farthing %}
-							(f {{ sourceentry.farthing }})
-						{% endif %}
-					{% endif %}
-				</dd>
-			</dl>
-		</div>
-	</div><!-- /entry-metadata -->
+          <dt>Date:</dt>
+          <dd>
+            {% firstof sourceentry.low_year "--" %}
+            {% if sourceentry.low_month %}
+              {{ sourceentry.get_low_month_display }}
+            {% endif %}
+            {% if sourceentry.low_day %} {{ sourceentry.low_day }}{% endif %}
+          </dd>
+
+          <dt>Person:</dt>
+          <dd>
+            {% for aa in sourceentry.aa_persons.all %}
+              <a href="/people/aaperson/{{ aa.id }}/">{% if aa.known_status == 1 %}<strong>{% endif %}{{ aa.name }}{% if aa.known_status == 1 %}</strong>{% endif %}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              {{ sourceentry.name_note }}
+            {% endfor %}
+          </dd>
+
+          <dt>Transaction:</dt>
+          <dd>
+            {% if sourceentry.dollars %}
+              ${{ sourceentry.dollars }}
+            {% else %}
+              &pound;
+              {% firstof sourceentry.pounds "0" %}/
+              {% firstof sourceentry.shillings "0" %}/
+              {% firstof sourceentry.pence "0" %}
+              {% if sourceentry.farthing %}
+                (f {{ sourceentry.farthing }})
+              {% endif %}
+            {% endif %}
+          </dd>
+        </dl>
+      </div>
+    </div><!-- /entry-metadata -->
 	</div><!-- /entry-content-wrapper -->
 {% endblock %}

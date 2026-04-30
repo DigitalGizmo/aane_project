@@ -58,6 +58,13 @@
           <dt>Source:</dt>
           <dd>{{ sourceentry.volume.primary_source.title|safe }}</dd>
 
+          <dt>Contributor:</dt>
+          <dd>{{ sourceentry.volume.primary_source.contributor.credit|safe }}</dd>
+
+          <dt>Place:</dt>
+          <dd>{{ sourceentry.volume.primary_source.location.title }}, 
+            {{ sourceentry.volume.primary_source.location.state.abbr}}</dd>
+
           <dt>Volume:</dt>
           <dd>{{ sourceentry.volume.title|safe }}</dd>
 
