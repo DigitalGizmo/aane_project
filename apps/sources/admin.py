@@ -79,7 +79,7 @@ class PrimarySourceAdmin(admin.ModelAdmin):
         'description', 
         ('year_start', 'year_end'), 
         ('operson_id', 'tiff_location'),
-        'pub_info']
+        'pub_info', 'transcript_pdf']
     list_display = ('title_alpha', 'title', 'id', 'source_type', # , 'location'
         'operson_id', 'year_start', 'year_end')
     search_fields = ['title']
