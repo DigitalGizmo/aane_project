@@ -76,6 +76,8 @@ class PrimarySource(models.Model):
     accession_num = models.CharField(max_length=64, blank=True, null=True,
         help_text='We often do not have this.')
     other_accession_num = models.CharField(max_length=64, blank=True, null=True)
+    transcript_pdf = models.CharField(max_length=128, blank=True, default='',
+        help_text='PDF filename without .pdf extension')
 
     class Meta:
         ordering = ['source_classification','title_alpha'] 
