@@ -76,8 +76,6 @@ class PrimarySource(models.Model):
     accession_num = models.CharField(max_length=64, blank=True, null=True,
         help_text='We often do not have this.')
     other_accession_num = models.CharField(max_length=64, blank=True, null=True)
-    transcript_pdf = models.CharField(max_length=128, blank=True, default='',
-        help_text='PDF filename without .pdf extension')
 
     class Meta:
         ordering = ['source_classification','title_alpha'] 
@@ -249,6 +247,8 @@ class SourceEntry(models.Model):
     image_source = models.CharField(max_length=255, blank=True, default='')
     other_image_source = models.CharField(max_length=128, blank=True, default='')
     scan_note = models.TextField(blank=True, default='')
+    transcript_pdf = models.CharField(max_length=128, blank=True, default='',
+        help_text='PDF filename without .pdf extension')
     data_status = models.IntegerField('data', default=0, choices=DATA_STATUS,
         help_text='Data Status')
     image_status = models.IntegerField('image', default=0, choices=IMAGE_STATUS,
