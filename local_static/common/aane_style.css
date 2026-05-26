@@ -372,7 +372,27 @@ h1.slim-title {
     min-height: 0;
 }
 
-/* Override OpenSeadragon's inline styles 
+.dragon-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+    font-size: 72pt;
+    color: beige;
+    text-align: center;
+    line-height: 1.1;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Override OpenSeadragon's inline styles
 Same as Horizontal */
 #openseadragon1 {
     height: 100% !important; /* Use container's full height */
@@ -409,8 +429,11 @@ Same */
     text-align: right;  
 }
 
-.close { 
-  cursor:pointer;
+.close {
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
 }
  .close:after, .close:before {
     content:"";
