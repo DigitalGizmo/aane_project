@@ -30,7 +30,12 @@
 				});
 			</script>
 		</div>
-		{% endif %}
+    {% else %}
+      <div class="dragon-container">
+        <img src="https://pvma.nyc3.digitaloceanspaces.com/aane/jpg/placeholder.jpg" alt="placeholder">
+        <div class="no-image-label">No image<br>available</div>
+      </div>
+    {% endif %}
 
 		<div class="slim-metadata" style="flex: 1; overflow-y: auto;">
       <h1>{{ sourceentry.volume.primary_source.title|safe }}</h1>
