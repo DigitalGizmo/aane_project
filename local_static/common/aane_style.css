@@ -605,6 +605,10 @@ color: #999;
 .about p {
 	font-weight: 400;
 }
+
+.expanded {
+    display: none;
+}
 /* Don adding for zoom */
 /* .dragon-wrapper {
     height: 50vh;

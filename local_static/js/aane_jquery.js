@@ -43,6 +43,14 @@ $(document).ready(function(){
     $('#search-form').submit()   
   })
 
+    // ------- EXPAND/COLLAPSE ------
+
+  $(document).on("click", ".expand-toggle", function(event){
+    event.preventDefault();
+    $(".expanded").toggle();
+    $(this).text($(this).text().trim() === "MORE" ? "LESS" : "MORE");
+  });
+
     // ------- MISC ------
 
   // Zoom scroll to top -- possibly temporary
